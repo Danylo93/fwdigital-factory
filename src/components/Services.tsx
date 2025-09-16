@@ -9,7 +9,6 @@ const Services = () => {
       title: "Apps Mobile",
       description: "Aplicativos nativos e híbridos para iOS e Android",
       features: ["React Native / Flutter", "UI/UX Profissional", "Integração com APIs", "Publicação nas Stores"],
-      price: "A partir de R$ 15.000",
       popular: false,
     },
     {
@@ -17,7 +16,6 @@ const Services = () => {
       title: "Sistemas Web",
       description: "Plataformas completas para gestão e automação",
       features: ["Dashboard Administrativo", "Banco de Dados", "Autenticação Segura", "Relatórios Avançados"],
-      price: "A partir de R$ 25.000",
       popular: true,
     },
     {
@@ -25,7 +23,6 @@ const Services = () => {
       title: "Sites Profissionais",
       description: "Sites institucionais responsivos e otimizados",
       features: ["Design Responsivo", "SEO Otimizado", "CMS Intuitivo", "Certificado SSL"], 
-      price: "A partir de R$ 3.500",
       popular: false,
     },
     {
@@ -33,7 +30,6 @@ const Services = () => {
       title: "Landing Pages",
       description: "Páginas de alta conversão para suas campanhas",
       features: ["Conversão Otimizada", "A/B Testing", "Analytics Integrado", "Forms Inteligentes"],
-      price: "A partir de R$ 1.200",
       popular: false,
     },
   ];
@@ -87,13 +83,13 @@ const Services = () => {
                   </div>
 
                   <div className="pt-4 border-t border-border">
-                    <div className="text-2xl font-bold text-primary mb-4">{service.price}</div>
+                    <div className="text-lg font-semibold text-muted-foreground mb-4">Orçamento personalizado</div>
                     <Button 
                       variant={service.popular ? "hero" : "default"} 
                       className="w-full"
                       onClick={scrollToContact}
                     >
-                      Solicitar Orçamento
+                      Agendar Reunião
                     </Button>
                   </div>
                 </CardContent>

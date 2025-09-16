@@ -44,12 +44,12 @@ const Header = () => {
               <Code2 className="h-6 w-6 text-primary-foreground" />
             </div>
             <div>
-              <div className="font-bold text-lg bg-gradient-primary bg-clip-text text-transparent">
-                FW Digital
-              </div>
-              <div className="text-xs text-muted-foreground -mt-1">
-                Fábrica de Software
-              </div>
+            <div className="font-bold text-sm sm:text-lg bg-gradient-primary bg-clip-text text-transparent">
+              FW Digital
+            </div>
+            <div className="text-xs text-muted-foreground -mt-1 hidden sm:block">
+              Fábrica de Software
+            </div>
             </div>
           </div>
 

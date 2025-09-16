@@ -22,37 +22,37 @@ const Hero = () => {
 
       <div className="relative z-10 container mx-auto px-4 text-center">
         <div className="max-w-4xl mx-auto animate-fade-up">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent leading-tight">
             Agência FW Digital
           </h1>
           
-          <p className="text-xl md:text-2xl text-muted-foreground mb-4 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-4 max-w-2xl mx-auto px-4">
             Fábrica de Software Especializada
           </p>
           
-          <p className="text-lg md:text-xl text-foreground/80 mb-8 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-foreground/80 mb-8 max-w-3xl mx-auto px-4">
             Desenvolvemos <span className="text-primary font-semibold">apps mobile</span>, 
             <span className="text-secondary font-semibold"> sistemas web</span>, 
             <span className="text-primary font-semibold"> sites profissionais</span> e 
             <span className="text-secondary font-semibold"> landing pages</span> de alta conversão
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4">
             <Button 
               variant="hero" 
               size="lg"
               onClick={scrollToContact}
-              className="text-lg px-8 py-6 h-auto animate-scale-up"
+              className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 h-auto animate-scale-up w-full sm:w-auto"
             >
-              Solicitar Orçamento
+              Agendar Reunião
             </Button>
             <Button 
               variant="outline" 
               size="lg"
-              onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-              className="text-lg px-8 py-6 h-auto animate-scale-up"
+              onClick={() => window.open('https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre os serviços da FW Digital.', '_blank')}
+              className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 h-auto animate-scale-up w-full sm:w-auto"
             >
-              Ver Serviços
+              WhatsApp
             </Button>
           </div>
 
