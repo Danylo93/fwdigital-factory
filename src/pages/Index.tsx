@@ -7,6 +7,7 @@ import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import AIChat from "@/components/AIChat";
 
 const Index = () => {
   return (
@@ -22,6 +23,7 @@ const Index = () => {
       </main>
       <Footer />
       <WhatsAppFloat />
+      <AIChat />
     </div>
   );
 };

@@ -68,7 +68,7 @@ const Pricing = () => {
       ]
     },
     {
-      category: "Combos FW Digital",
+      category: "Combos Agência FW Digital",
       icon: "🎁",
       plans: [
         {
@@ -96,53 +96,58 @@ const Pricing = () => {
   };
 
   return (
-    <section id="pricing" className="py-20 bg-gradient-to-br from-purple-50 to-blue-50">
-      <div className="container mx-auto px-4">
+    <section id="pricing" className="py-20 bg-gradient-to-br from-muted/30 to-background relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 left-10 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 animate-fade-up">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Catálogo Digital <span className="bg-gradient-primary bg-clip-text text-transparent">FW Digital 2025</span>
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            Nossos <span className="bg-gradient-primary bg-clip-text text-transparent">Serviços</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-4">
-            Valores estimados para diferentes tipos de projetos
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto mb-8 leading-relaxed">
+            Soluções digitais completas para o seu negócio
           </p>
-          <div className="inline-block bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded">
-            <p className="font-semibold">💡 Para saber os valores exatos, marque uma reunião personalizada</p>
+          <div className="inline-flex items-center gap-3 glass rounded-2xl p-6 hover-glass transition-glass">
+            <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
+            <p className="font-semibold text-lg">💡 Solicite um orçamento personalizado para seu projeto</p>
           </div>
         </div>
 
         <div className="space-y-16">
           {pricingData.map((category, categoryIndex) => (
             <div key={categoryIndex} className="animate-fade-up" style={{ animationDelay: `${categoryIndex * 0.1}s` }}>
-              <h3 className="text-3xl font-bold mb-8 text-center flex items-center justify-center gap-3">
-                <span className="text-4xl">{category.icon}</span>
-                {category.category}
+              <h3 className="text-3xl md:text-4xl font-bold mb-12 text-center flex items-center justify-center gap-4">
+                <span className="text-5xl">{category.icon}</span>
+                <span className="bg-gradient-primary bg-clip-text text-transparent">{category.category}</span>
               </h3>
-              
-              <div className="grid md:grid-cols-3 gap-6">
+
+              <div className="grid md:grid-cols-3 gap-8">
                 {category.plans.map((plan, planIndex) => (
-                  <Card 
-                    key={planIndex} 
-                    className="relative hover:shadow-lg transition-all duration-300 hover:-translate-y-2 bg-white/80 backdrop-blur-sm border-2 border-purple-100"
+                  <Card
+                    key={planIndex}
+                    className="relative glass hover-lift transition-smooth rounded-3xl border-white/10 group"
                   >
-                    <CardHeader className="text-center pb-4">
-                      <CardTitle className="text-2xl mb-2">{plan.name}</CardTitle>
-                      <CardDescription className="text-2xl font-bold text-primary">
-                        {plan.price}
+                    <CardHeader className="text-center pb-6 p-8">
+                      <CardTitle className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-primary transition-colors">{plan.name}</CardTitle>
+                      <CardDescription className="text-lg text-muted-foreground leading-relaxed">
+                        Solicite um orçamento personalizado
                       </CardDescription>
                     </CardHeader>
                     
-                    <CardContent className="space-y-4">
-                      <ul className="space-y-3">
+                    <CardContent className="space-y-6 p-8 pt-0">
+                      <ul className="space-y-4">
                         {plan.features.map((feature, featureIndex) => (
-                          <li key={featureIndex} className="flex items-start gap-2">
-                            <Check className="h-5 w-5 text-success mt-0.5 flex-shrink-0" />
-                            <span className="text-sm">{feature}</span>
+                          <li key={featureIndex} className="flex items-start gap-3">
+                            <Check className="h-5 w-5 text-success mt-1 flex-shrink-0" />
+                            <span className="text-base leading-relaxed">{feature}</span>
                           </li>
                         ))}
                       </ul>
-                      
-                      <Button 
-                        className="w-full mt-6" 
+
+                      <Button
+                        className="w-full mt-8 rounded-2xl py-6 text-lg font-semibold hover-lift shadow-glass"
                         variant="outline"
                         onClick={scrollToContact}
                       >

@@ -32,8 +32,8 @@ const Contact = () => {
     {
       icon: <Phone className="h-5 w-5" />,
       title: "Telefone",
-      content: "(11) 99999-9999",
-      link: "tel:+5511999999999"
+      content: "(11) 93407-9208",
+      link: "tel:+551193407-9208"
     },
     {
       icon: <Mail className="h-5 w-5" />,
@@ -109,7 +109,7 @@ const Contact = () => {
                       <Input 
                         id="phone" 
                         name="phone"
-                        placeholder="(11) 99999-9999" 
+                        placeholder="(11) 93407-9208"
                         className="bg-background"
                       />
                     </div>
@@ -196,7 +196,7 @@ const Contact = () => {
 
             <Card className="bg-gradient-primary text-primary-foreground border-0 shadow-glow">
               <CardContent className="p-6">
-                <h4 className="text-xl font-bold mb-4">Por que escolher a FW Digital?</h4>
+                <h4 className="text-xl font-bold mb-4">Por que escolher a Agência FW Digital?</h4>
                 <ul className="space-y-3">
                   <li className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-primary-foreground rounded-full"></div>

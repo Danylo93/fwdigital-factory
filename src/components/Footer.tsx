@@ -7,16 +7,20 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-card border-t border-border">
-      <div className="container mx-auto px-4 py-12">
+    <footer className="glass border-t border-white/10 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute top-0 left-10 w-72 h-72 bg-primary/3 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-10 w-96 h-96 bg-secondary/3 rounded-full blur-3xl"></div>
+
+      <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <img src="/src/assets/fw-logo.png" alt="FW Digital" className="h-10 w-10" />
+              <img src="/src/assets/fw-logo.png" alt="Agência FW Digital" className="h-10 w-10" />
               <div>
                 <div className="font-bold text-lg">
-                  FW <span className="bg-gradient-primary bg-clip-text text-transparent">Digital</span>
+                  Agência FW <span className="bg-gradient-primary bg-clip-text text-transparent">Digital</span>
                 </div>
               </div>
             </div>
@@ -98,8 +102,8 @@ const Footer = () => {
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-primary" />
-                <a href="tel:+5511964891128" className="text-muted-foreground hover:text-primary transition-colors">
-                  (11) 96489-1128
+                <a href="tel:+551193407-9208" className="text-muted-foreground hover:text-primary transition-colors">
+                  (11) 93407-9208
                 </a>
               </li>
               <li className="flex items-center gap-2">
@@ -119,7 +123,7 @@ const Footer = () => {
         <div className="border-t border-border mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-muted-foreground text-sm">
-              © 2024 Agência FW Digital. Todos os direitos reservados.
+              © 2025 Agência FW Digital. Todos os direitos reservados.
             </p>
             <div className="flex gap-6 text-sm">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
