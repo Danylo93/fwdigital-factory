@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
 
 const Hero = () => {
@@ -8,79 +9,76 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background with gradient */}
+      <div className="absolute inset-0 bg-gradient-hero" />
+      <div 
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage: `url(${heroImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
       
-      {/* Background Image */}
-      <div className="absolute inset-0 opacity-20">
-        <img 
-          src={heroImage} 
-          alt="Desenvolvimento de software"
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      <div className="relative z-10 container mx-auto px-4 text-center">
-        <div className="max-w-4xl mx-auto animate-fade-up">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent leading-tight">
-            Agência FW Digital
+      {/* Content */}
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-4xl mx-auto text-center text-white animate-fade-up">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            Transformamos ideias em negócios digitais
           </h1>
           
-          <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-4 max-w-2xl mx-auto px-4">
-            Fábrica de Software Especializada
+          <p className="text-xl md:text-2xl mb-4 text-white/90">
+            Sites, Apps e Robôs de WhatsApp com IA
           </p>
           
-          <p className="text-base sm:text-lg md:text-xl text-foreground/80 mb-8 max-w-3xl mx-auto px-4">
-            Desenvolvemos <span className="text-primary font-semibold">apps mobile</span>, 
-            <span className="text-secondary font-semibold"> sistemas web</span>, 
-            <span className="text-primary font-semibold"> sites profissionais</span> e 
-            <span className="text-secondary font-semibold"> landing pages</span> de alta conversão
+          <p className="text-lg mb-12 text-white/80 max-w-2xl mx-auto">
+            Soluções completas para levar sua empresa ao próximo nível. 
+            Criamos experiências digitais que geram resultados reais.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
             <Button 
-              variant="hero" 
-              size="lg"
+              size="lg" 
+              variant="secondary"
+              className="text-lg px-8 py-6 w-full sm:w-auto"
               onClick={scrollToContact}
-              className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 h-auto animate-scale-up w-full sm:w-auto"
             >
-              Agendar Reunião
+              Solicitar Orçamento
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button 
-              variant="outline" 
-              size="lg"
-              onClick={() => window.open('https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre os serviços da FW Digital.', '_blank')}
-              className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 h-auto animate-scale-up w-full sm:w-auto"
+              size="lg" 
+              variant="outline"
+              className="text-lg px-8 py-6 bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20 w-full sm:w-auto"
+              onClick={() => window.open('https://wa.me/5511964891128?text=Olá! Gostaria de saber mais sobre os serviços da FW Digital.', '_blank')}
             >
-              WhatsApp
+              <MessageCircle className="mr-2 h-5 w-5" />
+              Falar no WhatsApp
             </Button>
           </div>
 
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
-            <div className="text-center animate-slide-up">
-              <div className="text-3xl font-bold text-primary">50+</div>
-              <div className="text-sm text-muted-foreground">Projetos</div>
-            </div>
-            <div className="text-center animate-slide-up" style={{ animationDelay: '0.1s' }}>
-              <div className="text-3xl font-bold text-secondary">5+</div>
-              <div className="text-sm text-muted-foreground">Anos</div>
-            </div>
-            <div className="text-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
-              <div className="text-3xl font-bold text-primary">98%</div>
-              <div className="text-sm text-muted-foreground">Satisfação</div>
-            </div>
-            <div className="text-center animate-slide-up" style={{ animationDelay: '0.3s' }}>
-              <div className="text-3xl font-bold text-secondary">24h</div>
-              <div className="text-sm text-muted-foreground">Suporte</div>
-            </div>
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
+            {[
+              { number: "100+", label: "Projetos Entregues" },
+              { number: "5+", label: "Anos de Experiência" },
+              { number: "98%", label: "Satisfação" },
+              { number: "24/7", label: "Suporte" },
+            ].map((stat, index) => (
+              <div key={index} className="animate-scale-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div className="text-4xl md:text-5xl font-bold mb-2">{stat.number}</div>
+                <div className="text-sm md:text-base text-white/80">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-primary rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-pulse"></div>
+        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
+          <div className="w-1.5 h-1.5 bg-white/50 rounded-full" />
         </div>
       </div>
     </section>

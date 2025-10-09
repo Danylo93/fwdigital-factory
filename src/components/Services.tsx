@@ -5,31 +5,31 @@ import { Smartphone, Globe, Code, TrendingUp, CheckCircle, Star } from "lucide-r
 const Services = () => {
   const services = [
     {
+      icon: <Globe className="h-8 w-8" />,
+      title: "Sites Profissionais",
+      description: "Sites institucionais, lojas virtuais e landing pages",
+      features: ["Design Responsivo", "SEO Otimizado", "Alta Performance", "Certificado SSL"],
+      popular: false,
+    },
+    {
       icon: <Smartphone className="h-8 w-8" />,
-      title: "Apps Mobile",
-      description: "Aplicativos nativos e híbridos para iOS e Android",
-      features: ["React Native / Flutter", "UI/UX Profissional", "Integração com APIs", "Publicação nas Stores"],
+      title: "Aplicativos Mobile",
+      description: "Apps nativos e híbridos para iOS e Android",
+      features: ["React Native / Flutter", "UI/UX Premium", "Integração APIs", "Publicação nas Stores"],
       popular: false,
     },
     {
       icon: <Code className="h-8 w-8" />,
-      title: "Sistemas Web",
-      description: "Plataformas completas para gestão e automação",
-      features: ["Dashboard Administrativo", "Banco de Dados", "Autenticação Segura", "Relatórios Avançados"],
+      title: "Robôs WhatsApp com IA",
+      description: "Automação inteligente para atendimento 24/7",
+      features: ["Atendimento Automático", "IA OpenAI", "Integração CRM", "Analytics Completo"],
       popular: true,
     },
     {
-      icon: <Globe className="h-8 w-8" />,
-      title: "Sites Profissionais",
-      description: "Sites institucionais responsivos e otimizados",
-      features: ["Design Responsivo", "SEO Otimizado", "CMS Intuitivo", "Certificado SSL"], 
-      popular: false,
-    },
-    {
       icon: <TrendingUp className="h-8 w-8" />,
-      title: "Landing Pages",
-      description: "Páginas de alta conversão para suas campanhas",
-      features: ["Conversão Otimizada", "A/B Testing", "Analytics Integrado", "Forms Inteligentes"],
+      title: "Sistemas Web",
+      description: "Plataformas completas para gestão e automação",
+      features: ["Dashboard Admin", "Banco de Dados", "Autenticação Segura", "Relatórios Avançados"],
       popular: false,
     },
   ];

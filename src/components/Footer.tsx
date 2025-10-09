@@ -13,21 +13,16 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="p-2 bg-gradient-primary rounded-lg">
-                <Code2 className="h-5 w-5 text-primary-foreground" />
-              </div>
+              <img src="/src/assets/fw-logo.png" alt="FW Digital" className="h-10 w-10" />
               <div>
-                <div className="font-bold bg-gradient-primary bg-clip-text text-transparent">
-                  FW Digital
-                </div>
-                <div className="text-xs text-muted-foreground">
-                  Fábrica de Software
+                <div className="font-bold text-lg">
+                  FW <span className="bg-gradient-primary bg-clip-text text-transparent">Digital</span>
                 </div>
               </div>
             </div>
             <p className="text-muted-foreground text-sm">
-              Transformamos suas ideias em soluções digitais inovadoras. 
-              Apps, sistemas, sites e landing pages de alta qualidade.
+              Transformamos ideias em negócios digitais. 
+              Sites, Apps e Robôs de WhatsApp com IA.
             </p>
           </div>
 
@@ -37,22 +32,22 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li>
                 <a href="#services" className="text-muted-foreground hover:text-primary transition-colors">
-                  Apps Mobile
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="text-muted-foreground hover:text-primary transition-colors">
-                  Sistemas Web
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="text-muted-foreground hover:text-primary transition-colors">
                   Sites Profissionais
                 </a>
               </li>
               <li>
                 <a href="#services" className="text-muted-foreground hover:text-primary transition-colors">
-                  Landing Pages
+                  Apps Mobile
+                </a>
+              </li>
+              <li>
+                <a href="#services" className="text-muted-foreground hover:text-primary transition-colors">
+                  Robôs WhatsApp IA
+                </a>
+              </li>
+              <li>
+                <a href="#services" className="text-muted-foreground hover:text-primary transition-colors">
+                  Sistemas Web
                 </a>
               </li>
             </ul>
@@ -64,18 +59,26 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li>
                 <button 
-                  onClick={() => scrollToSection('hero')}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Início
-                </button>
-              </li>
-              <li>
-                <button 
                   onClick={() => scrollToSection('services')}
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   Serviços
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('pricing')}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Preços
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('testimonials')}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Cases
                 </button>
               </li>
               <li>
@@ -95,14 +98,14 @@ const Footer = () => {
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-primary" />
-                <a href="tel:+5511999999999" className="text-muted-foreground hover:text-primary transition-colors">
-                  (11) 99999-9999
+                <a href="tel:+5511964891128" className="text-muted-foreground hover:text-primary transition-colors">
+                  (11) 96489-1128
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-primary" />
-                <a href="mailto:contato@fwdigital.com.br" className="text-muted-foreground hover:text-primary transition-colors">
-                  contato@fwdigital.com.br
+                <a href="mailto:contato@agenciafwdigital.com.br" className="text-muted-foreground hover:text-primary transition-colors">
+                  contato@agenciafwdigital.com.br
                 </a>
               </li>
               <li className="flex items-center gap-2">

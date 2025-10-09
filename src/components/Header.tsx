@@ -22,8 +22,9 @@ const Header = () => {
   };
 
   const menuItems = [
-    { label: 'Início', id: 'hero' },
     { label: 'Serviços', id: 'services' },
+    { label: 'Preços', id: 'pricing' },
+    { label: 'Cases', id: 'testimonials' },
     { label: 'Contato', id: 'contact' },
   ];
 
@@ -37,20 +38,13 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div 
-            className="flex items-center gap-2 cursor-pointer group"
+            className="flex items-center gap-2 cursor-pointer"
             onClick={() => scrollToSection('hero')}
           >
-            <div className="p-2 bg-gradient-primary rounded-lg group-hover:shadow-glow transition-all duration-300">
-              <Code2 className="h-6 w-6 text-primary-foreground" />
-            </div>
-            <div>
-            <div className="font-bold text-sm sm:text-lg bg-gradient-primary bg-clip-text text-transparent">
-              FW Digital
-            </div>
-            <div className="text-xs text-muted-foreground -mt-1 hidden sm:block">
-              Fábrica de Software
-            </div>
-            </div>
+            <img src="/src/assets/fw-logo.png" alt="FW Digital" className="h-10 w-10" />
+            <span className="text-xl font-bold">
+              FW <span className="bg-gradient-primary bg-clip-text text-transparent">Digital</span>
+            </span>
           </div>
 
           {/* Desktop Navigation */}
