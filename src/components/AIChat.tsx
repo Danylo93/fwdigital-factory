@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, X, Send, Bot, User, Minimize2, Maximize2 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Message {
   id: string;
@@ -10,19 +12,23 @@ interface Message {
 }
 
 const AIChat = () => {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "1",
-      text: "Olá! 👋 Sou o assistente virtual da Agência FW Digital. Como posso ajudá-lo hoje? Posso responder sobre nossos serviços, preços, tecnologias e muito mais!",
-      isUser: false,
-      timestamp: new Date(),
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Initialize welcome message when language changes
+  useEffect(() => {
+    setMessages([{
+      id: "1",
+      text: t('chat.welcome'),
+      isUser: false,
+      timestamp: new Date(),
+    }]);
+  }, [t]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -38,34 +44,65 @@ const AIChat = () => {
     await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000));
 
     const message = userMessage.toLowerCase();
-    
-    // Respostas baseadas em palavras-chave
-    if (message.includes("preço") || message.includes("valor") || message.includes("custo")) {
-      return "💰 Nossos preços variam conforme o projeto. Oferecemos:\n\n• Sites profissionais: A partir de R$ 2.500\n• Apps mobile: A partir de R$ 8.000\n• Sistemas web: A partir de R$ 5.000\n• Landing pages: A partir de R$ 1.200\n\nGostaria de um orçamento personalizado? Entre em contato conosco!";
+
+    // Respostas em português
+    const responsesPT = {
+      price: "💰 Nossos preços variam conforme o projeto e suas necessidades específicas. Oferecemos:\n\n• Sites profissionais e institucionais\n• Apps mobile para iOS e Android\n• Sistemas web personalizados\n• Landing pages de alta conversão\n• Robôs de WhatsApp com IA\n\nPara um orçamento personalizado, fale conosco no WhatsApp! 📱",
+      services: "🚀 A Agência FW Digital oferece:\n\n• Desenvolvimento de Sites Profissionais\n• Criação de Apps Mobile (iOS/Android)\n• Sistemas Web Personalizados\n• Landing Pages de Alta Conversão\n• E-commerce Completo\n• Integração com WhatsApp Business\n• Suporte 24/7\n\nQual serviço te interessa mais?",
+      tech: "⚡ Utilizamos as tecnologias mais modernas:\n\n• Frontend: React, Next.js, TypeScript\n• Mobile: React Native, Flutter\n• Backend: Node.js, Python, PHP\n• Banco de dados: PostgreSQL, MongoDB\n• Cloud: AWS, Google Cloud\n• Design: Figma, Adobe Creative Suite\n\nSempre atualizados com as últimas tendências!",
+      time: "⏱️ Nossos prazos médios de entrega:\n\n• Landing Page: 3-5 dias úteis\n• Site institucional: 7-15 dias úteis\n• E-commerce: 15-30 dias úteis\n• App mobile: 30-60 dias úteis\n• Sistema web: 30-90 dias úteis\n\nTrabalhamos com metodologia ágil e entregas parciais!",
+      contact: "📞 Entre em contato conosco:\n\n• WhatsApp: (11) 93407-9208\n• Email: contato@fwdigital.com.br\n• Horário: Segunda a Sexta, 9h às 18h\n\nClique no botão 'Falar no WhatsApp' abaixo para conversar diretamente! 😊",
+      experience: "🏆 A Agência FW Digital tem:\n\n• +10 anos de experiência no mercado\n• +100 projetos entregues\n• 98% de satisfação dos clientes\n• Equipe especializada e certificada\n• Suporte contínuo pós-entrega\n\nSomos uma fábrica de software confiável!",
+      default: "🤖 Obrigado pela sua pergunta! Posso ajudar com informações sobre:\n\n• Nossos serviços e soluções\n• Preços e orçamentos\n• Tecnologias utilizadas\n• Prazos de entrega\n• Formas de contato\n\nPoderia reformular sua pergunta ou escolher um dos tópicos acima?"
+    };
+
+    // Respostas em inglês
+    const responsesEN = {
+      price: "💰 Our prices vary according to the project and your specific needs. We offer:\n\n• Professional and institutional websites\n• Mobile apps for iOS and Android\n• Custom web systems\n• High conversion landing pages\n• AI WhatsApp bots\n\nFor a personalized quote, contact us on WhatsApp! 📱",
+      services: "🚀 FW Digital Agency offers:\n\n• Professional Website Development\n• Mobile App Creation (iOS/Android)\n• Custom Web Systems\n• High Conversion Landing Pages\n• Complete E-commerce\n• WhatsApp Business Integration\n• 24/7 Support\n\nWhich service interests you most?",
+      tech: "⚡ We use the most modern technologies:\n\n• Frontend: React, Next.js, TypeScript\n• Mobile: React Native, Flutter\n• Backend: Node.js, Python, PHP\n• Database: PostgreSQL, MongoDB\n• Cloud: AWS, Google Cloud\n• Design: Figma, Adobe Creative Suite\n\nAlways updated with the latest trends!",
+      time: "⏱️ Our average delivery times:\n\n• Landing Page: 3-5 business days\n• Institutional website: 7-15 business days\n• E-commerce: 15-30 business days\n• Mobile app: 30-60 business days\n• Web system: 30-90 business days\n\nWe work with agile methodology and partial deliveries!",
+      contact: "📞 Contact us:\n\n• WhatsApp: (11) 93407-9208\n• Email: contato@fwdigital.com.br\n• Hours: Monday to Friday, 9am to 6pm\n\nClick the 'Talk on WhatsApp' button below to chat directly! 😊",
+      experience: "🏆 FW Digital Agency has:\n\n• +10 years of market experience\n• +100 delivered projects\n• 98% client satisfaction\n• Specialized and certified team\n• Continuous post-delivery support\n\nWe are a reliable software factory!",
+      default: "🤖 Thank you for your question! I can help with information about:\n\n• Our services and solutions\n• Prices and quotes\n• Technologies used\n• Delivery times\n• Contact methods\n\nCould you rephrase your question or choose one of the topics above?"
+    };
+
+    // Seleciona as respostas baseadas no idioma atual
+    const responses = t('language.current') === 'Idioma atual' ? responsesPT : responsesEN;
+
+    // Respostas baseadas em palavras-chave (português e inglês)
+    if (message.includes("preço") || message.includes("valor") || message.includes("custo") ||
+        message.includes("price") || message.includes("cost") || message.includes("pricing")) {
+      return responses.price;
     }
-    
-    if (message.includes("serviço") || message.includes("fazem") || message.includes("oferecem")) {
-      return "🚀 A Agência FW Digital oferece:\n\n• Desenvolvimento de Sites Profissionais\n• Criação de Apps Mobile (iOS/Android)\n• Sistemas Web Personalizados\n• Landing Pages de Alta Conversão\n• E-commerce Completo\n• Integração com WhatsApp Business\n• Suporte 24/7\n\nQual serviço te interessa mais?";
+
+    if (message.includes("serviço") || message.includes("fazem") || message.includes("oferecem") ||
+        message.includes("service") || message.includes("offer") || message.includes("provide")) {
+      return responses.services;
     }
-    
-    if (message.includes("tecnologia") || message.includes("tech") || message.includes("linguagem")) {
-      return "⚡ Utilizamos as tecnologias mais modernas:\n\n• Frontend: React, Next.js, TypeScript\n• Mobile: React Native, Flutter\n• Backend: Node.js, Python, PHP\n• Banco de dados: PostgreSQL, MongoDB\n• Cloud: AWS, Google Cloud\n• Design: Figma, Adobe Creative Suite\n\nSempre atualizados com as últimas tendências!";
+
+    if (message.includes("tecnologia") || message.includes("tech") || message.includes("linguagem") ||
+        message.includes("technology") || message.includes("language") || message.includes("stack")) {
+      return responses.tech;
     }
-    
-    if (message.includes("tempo") || message.includes("prazo") || message.includes("entrega")) {
-      return "⏱️ Nossos prazos médios de entrega:\n\n• Landing Page: 3-5 dias úteis\n• Site institucional: 7-15 dias úteis\n• E-commerce: 15-30 dias úteis\n• App mobile: 30-60 dias úteis\n• Sistema web: 30-90 dias úteis\n\nTrabalhamos com metodologia ágil e entregas parciais!";
+
+    if (message.includes("tempo") || message.includes("prazo") || message.includes("entrega") ||
+        message.includes("time") || message.includes("delivery") || message.includes("timeline")) {
+      return responses.time;
     }
-    
-    if (message.includes("contato") || message.includes("falar") || message.includes("whatsapp")) {
-      return "📞 Entre em contato conosco:\n\n• WhatsApp: (11) 93407-9208\n• Email: contato@fwdigital.com.br\n• Horário: Segunda a Sexta, 9h às 18h\n\nTambém pode clicar no botão verde do WhatsApp no canto da tela! 😊";
+
+    if (message.includes("contato") || message.includes("falar") || message.includes("whatsapp") ||
+        message.includes("contact") || message.includes("talk") || message.includes("reach")) {
+      return responses.contact;
     }
-    
-    if (message.includes("experiência") || message.includes("tempo de mercado") || message.includes("anos")) {
-      return "🏆 A Agência FW Digital tem:\n\n• +5 anos de experiência no mercado\n• +100 projetos entregues\n• 98% de satisfação dos clientes\n• Equipe especializada e certificada\n• Suporte contínuo pós-entrega\n\nSomos uma fábrica de software confiável!";
+
+    if (message.includes("experiência") || message.includes("tempo de mercado") || message.includes("anos") ||
+        message.includes("experience") || message.includes("years") || message.includes("expertise")) {
+      return responses.experience;
     }
-    
+
     // Resposta padrão
-    return "🤖 Obrigado pela sua pergunta! Posso ajudar com informações sobre:\n\n• Nossos serviços e soluções\n• Preços e orçamentos\n• Tecnologias utilizadas\n• Prazos de entrega\n• Formas de contato\n\nPoderia reformular sua pergunta ou escolher um dos tópicos acima?";
+    return responses.default;
   };
 
   const handleSendMessage = async () => {
@@ -113,7 +150,7 @@ const AIChat = () => {
 
   if (!isOpen) {
     return (
-      <div className="fixed bottom-20 sm:bottom-24 right-4 sm:right-6 z-40">
+      <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-40">
         <button
           onClick={() => setIsOpen(true)}
           className="glass hover-glass text-primary rounded-2xl p-4 sm:p-5 shadow-glass hover:shadow-glow transition-glass hover-lift flex items-center justify-center group touch-manipulation min-h-[56px] min-w-[56px] border border-primary/20 backdrop-blur-md animate-pulse hover:animate-none"
@@ -211,14 +248,14 @@ const AIChat = () => {
             </div>
 
             {/* Input */}
-            <div className="p-4 border-t border-white/10">
+            <div className="p-4 border-t border-white/10 space-y-3">
               <div className="flex gap-2">
                 <input
                   type="text"
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="Digite sua pergunta..."
+                  placeholder={t('chat.placeholder')}
                   className="flex-1 bg-background/50 border border-white/10 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                   disabled={isLoading}
                 />
@@ -231,6 +268,15 @@ const AIChat = () => {
                   <Send className="h-4 w-4" />
                 </Button>
               </div>
+
+              {/* WhatsApp Button */}
+              <Button
+                onClick={() => window.open('https://wa.me/5511934079208?text=Olá! Gostaria de saber mais sobre os serviços da Agência FW Digital.', '_blank')}
+                className="w-full bg-green-600 hover:bg-green-700 text-white rounded-xl py-2 text-sm font-medium transition-colors flex items-center justify-center gap-2"
+              >
+                <FaWhatsapp className="h-4 w-4" />
+                {t('chat.whatsapp.button')}
+              </Button>
             </div>
           </>
         )}

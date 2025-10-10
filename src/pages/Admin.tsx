@@ -101,10 +101,10 @@ const Admin = () => {
                 <div className="border-t pt-4">
                   <h4 className="font-semibold mb-2">Instruções:</h4>
                   <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>• O catálogo é gerado automaticamente com os preços atuais</li>
+                    <li>• O catálogo é gerado automaticamente com os serviços atuais</li>
                     <li>• O arquivo PDF será baixado automaticamente</li>
                     <li>• Use este material para apresentações comerciais</li>
-                    <li>• Mantenha os preços atualizados no código</li>
+                    <li>• Mantenha os serviços atualizados no código</li>
                   </ul>
                 </div>
               </CardContent>

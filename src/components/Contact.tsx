@@ -7,8 +7,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Contact = () => {
+  const { t } = useLanguage();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -20,8 +22,8 @@ const Contact = () => {
     await new Promise(resolve => setTimeout(resolve, 1000));
     
     toast({
-      title: "Mensagem enviada com sucesso!",
-      description: "Entraremos em contato em até 24 horas.",
+      title: t('contact.success.title'),
+      description: t('contact.success.description'),
     });
     
     setIsSubmitting(false);
@@ -31,26 +33,26 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: <Phone className="h-5 w-5" />,
-      title: "Telefone",
+      title: t('contact.info.phone'),
       content: "(11) 93407-9208",
       link: "tel:+551193407-9208"
     },
     {
       icon: <Mail className="h-5 w-5" />,
-      title: "E-mail",
+      title: t('contact.info.email'),
       content: "contato@fwdigital.com.br",
       link: "mailto:contato@fwdigital.com.br"
     },
     {
       icon: <MapPin className="h-5 w-5" />,
-      title: "Localização",
+      title: t('contact.info.location'),
       content: "São Paulo, SP",
       link: "#"
     },
     {
       icon: <Clock className="h-5 w-5" />,
-      title: "Horário",
-      content: "Seg-Sex: 9h-18h",
+      title: t('contact.info.hours'),
+      content: t('contact.info.hours.value'),
       link: "#"
     }
   ];
@@ -60,10 +62,10 @@ const Contact = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Vamos <span className="bg-gradient-primary bg-clip-text text-transparent">Conversar</span>
+            {t('language.current') === 'Idioma atual' ? 'Vamos' : 'Let\'s'} <span className="bg-gradient-primary bg-clip-text text-transparent">{t('language.current') === 'Idioma atual' ? 'Conversar' : 'Talk'}</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Pronto para transformar sua ideia em realidade? Entre em contato conosco!
+            {t('language.current') === 'Idioma atual' ? 'Pronto para transformar sua ideia em realidade? Entre em contato conosco!' : 'Ready to turn your idea into reality? Contact us!'}
           </p>
         </div>
 
@@ -74,30 +76,30 @@ const Contact = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-2xl">
                   <Send className="h-6 w-6 text-primary" />
-                  Solicitar Orçamento
+                  {t('language.current') === 'Idioma atual' ? 'Solicitar Orçamento' : 'Request Quote'}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="name">Nome *</Label>
-                      <Input 
-                        id="name" 
+                      <Label htmlFor="name">{t('contact.form.name')} *</Label>
+                      <Input
+                        id="name"
                         name="name"
-                        placeholder="Seu nome completo" 
-                        required 
+                        placeholder={t('contact.form.name.placeholder')}
+                        required
                         className="bg-background"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email">E-mail *</Label>
-                      <Input 
-                        id="email" 
+                      <Label htmlFor="email">{t('contact.form.email')} *</Label>
+                      <Input
+                        id="email"
                         name="email"
                         type="email"
-                        placeholder="seu@email.com" 
-                        required 
+                        placeholder={t('contact.form.email.placeholder')}
+                        required
                         className="bg-background"
                       />
                     </div>
@@ -105,19 +107,19 @@ const Contact = () => {
 
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="phone">Telefone</Label>
-                      <Input 
-                        id="phone" 
+                      <Label htmlFor="phone">{t('contact.form.phone')}</Label>
+                      <Input
+                        id="phone"
                         name="phone"
-                        placeholder="(11) 93407-9208"
+                        placeholder={t('contact.form.phone.placeholder')}
                         className="bg-background"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="service">Serviço de Interesse</Label>
+                      <Label htmlFor="service">{t('contact.form.service')}</Label>
                       <Select name="service">
                         <SelectTrigger className="bg-background">
-                          <SelectValue placeholder="Selecione um serviço" />
+                          <SelectValue placeholder={t('contact.form.service.placeholder')} />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="app">App Mobile</SelectItem>

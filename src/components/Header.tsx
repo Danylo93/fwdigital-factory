@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Code2 } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import LanguageSelector from "./LanguageSelector";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Header = () => {
+  const { t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -23,16 +26,16 @@ const Header = () => {
   };
 
   const menuItems = [
-    { label: 'Serviços', id: 'services' },
-    { label: 'Preços', id: 'pricing' },
-    { label: 'Cases', id: 'testimonials' },
-    { label: 'Contato', id: 'contact' },
+    { label: t('nav.services'), id: 'services' },
+    { label: t('nav.solutions'), id: 'solutions' },
+    { label: t('nav.cases'), id: 'testimonials' },
+    { label: t('nav.contact'), id: 'contact' },
   ];
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-smooth ${
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled
-        ? 'glass shadow-glass border-b border-white/10'
+        ? 'backdrop-blur-md bg-white/80 dark:bg-white/10 border-b border-gray-200/50 dark:border-white/20 shadow-lg'
         : 'bg-transparent'
     }`}>
       <div className="container mx-auto px-4">
@@ -54,30 +57,32 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-body-md text-foreground hover:text-primary transition-colors duration-200 font-medium hover:scale-105"
+                className="text-body-md text-white hover:text-primary transition-colors duration-200 font-medium hover:scale-105"
               >
                 {item.label}
               </button>
             ))}
           </nav>
 
-          {/* Desktop CTA & Theme Toggle */}
-          <div className="hidden md:flex items-center gap-4">
+          {/* Desktop CTA & Controls */}
+          <div className="hidden md:flex items-center gap-3">
+            <LanguageSelector />
             <ThemeToggle />
             <Button
               variant="hero"
               onClick={() => scrollToSection('contact')}
               className="rounded-2xl px-6 py-3 font-semibold hover-lift shadow-glass"
             >
-              Orçamento Grátis
+              {t('header.cta')}
             </Button>
           </div>
 
           {/* Mobile Controls */}
           <div className="md:hidden flex items-center gap-2">
+            <LanguageSelector />
             <ThemeToggle />
             <button
-              className="p-2 hover:bg-accent rounded-lg transition-colors"
+              className="p-2 hover:bg-accent rounded-lg transition-colors text-white"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
@@ -97,18 +102,22 @@ const Header = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors duration-200 font-medium"
+                  className="block w-full text-left py-2 text-white hover:text-primary transition-colors duration-200 font-medium"
                 >
                   {item.label}
                 </button>
               ))}
-              <div className="pt-4 border-t border-white/10">
+              <div className="pt-4 border-t border-white/10 space-y-4">
+                <div className="flex items-center justify-center gap-4">
+                  <LanguageSelector />
+                  <ThemeToggle />
+                </div>
                 <Button
                   variant="hero"
                   onClick={() => scrollToSection('contact')}
                   className="w-full rounded-2xl py-3 font-semibold"
                 >
-                  Orçamento Grátis
+                  {t('header.cta')}
                 </Button>
               </div>
             </nav>

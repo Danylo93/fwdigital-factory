@@ -11,17 +11,14 @@ const CatalogGenerator = () => {
       plans: [
         {
           name: "Landing Page",
-          price: "R$ 490 - R$ 790",
           features: ["Página única", "CTA WhatsApp", "SEO básico", "Responsivo"]
         },
         {
           name: "Site Institucional",
-          price: "R$ 890 - R$ 1.490",
           features: ["3-5 páginas", "Formulário de contato", "Google Maps", "Blog"]
         },
         {
           name: "Loja Virtual",
-          price: "R$ 1.990 - R$ 3.490",
           features: ["Carrinho de compras", "Pagamento integrado", "Gestão de produtos", "Relatórios"]
         }
       ]
@@ -32,17 +29,14 @@ const CatalogGenerator = () => {
       plans: [
         {
           name: "App Simples",
-          price: "R$ 1.990 - R$ 3.500",
           features: ["Catálogo digital", "Delivery local", "Push notifications", "iOS + Android"]
         },
         {
           name: "App com Backend",
-          price: "R$ 4.000 - R$ 8.000",
           features: ["Sistema de login", "Chat integrado", "Notificações", "APIs personalizadas"]
         },
         {
           name: "App Sob Medida",
-          price: "R$ 10.000+",
           features: ["Marketplace completo", "Gestão avançada", "Integrações complexas", "Suporte dedicado"]
         }
       ]
@@ -53,17 +47,14 @@ const CatalogGenerator = () => {
       plans: [
         {
           name: "Bot Básico",
-          price: "R$ 490 setup + R$ 99/mês",
           features: ["Respostas automáticas", "Menu simples", "Horário de atendimento", "Relatórios básicos"]
         },
         {
           name: "Bot com IA",
-          price: "R$ 890 setup + R$ 199/mês",
           features: ["Atendimento inteligente", "OpenAI integrado", "Aprendizado contínuo", "Analytics avançado"]
         },
         {
           name: "Bot Avançado",
-          price: "R$ 1.490 setup + R$ 299/mês",
           features: ["Integração CRM", "APIs personalizadas", "Multi-atendente", "Dashboard completo"]
         }
       ]
@@ -74,17 +65,14 @@ const CatalogGenerator = () => {
       plans: [
         {
           name: "Presença Digital",
-          price: "R$ 890 setup + R$ 99/mês",
           features: ["Site profissional", "Bot WhatsApp", "Google Meu Negócio", "Suporte mensal"]
         },
         {
           name: "Automação Comercial",
-          price: "R$ 1.490 setup + R$ 199/mês",
           features: ["Site + Bot IA", "CRM integrado", "Email marketing", "Gestão de leads"]
         },
         {
           name: "Premium Empresarial",
-          price: "R$ 3.990+ setup + R$ 299/mês",
           features: ["App + Site + IA", "Automação completa", "Gestão de leads", "Suporte prioritário"]
         }
       ]
@@ -172,18 +160,12 @@ const CatalogGenerator = () => {
         pdf.setFont('helvetica', 'bold');
         pdf.text(plan.name, 30, yPosition + 5);
 
-        // Plan price
-        pdf.setTextColor(138, 43, 226);
-        pdf.setFontSize(13);
-        pdf.setFont('helvetica', 'bold');
-        pdf.text(plan.price, 30, yPosition + 20);
-
         // Features with bullet points
         pdf.setTextColor(60, 60, 60);
         pdf.setFontSize(10);
         pdf.setFont('helvetica', 'normal');
 
-        let featureY = yPosition + 30;
+        let featureY = yPosition + 20;
         plan.features.forEach((feature, index) => {
           if (index < 2) { // Show only first 2 features to fit in space
             pdf.text(`• ${feature}`, 30, featureY);
@@ -239,7 +221,7 @@ const CatalogGenerator = () => {
           Catálogo PDF
         </CardTitle>
         <CardDescription>
-          Gere um catálogo completo com todos os serviços e preços
+          Gere um catálogo completo com todos os serviços e soluções
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">

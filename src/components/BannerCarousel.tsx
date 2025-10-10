@@ -1,80 +1,89 @@
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import aboutImage from "@/assets/about.png";
+import about1Image from "@/assets/about-1.png";
 
 const BannerCarousel = () => {
+  const { t } = useLanguage();
   const [currentBanner, setCurrentBanner] = useState(0);
   
   const banners = [
     {
-      title: "Transforme sua ideia em realidade",
-      subtitle: "Apps mobile de alta qualidade para iOS e Android",
-      cta: "Agendar Reunião",
-      gradient: "from-primary via-primary-glow to-secondary"
+      title: t('banner.1.title'),
+      subtitle: t('banner.1.subtitle'),
+      cta: t('banner.1.cta'),
+      gradient: "from-primary via-primary-glow to-secondary",
+      backgroundImage: null
     },
     {
-      title: "Sistemas web que fazem a diferença",
-      subtitle: "Plataformas robustas para gestão empresarial",
-      cta: "Conversar no WhatsApp", 
-      gradient: "from-secondary via-accent to-primary"
+      title: t('banner.2.title'),
+      subtitle: t('banner.2.subtitle'),
+      cta: t('banner.2.cta'),
+      gradient: "from-secondary via-accent to-primary",
+      backgroundImage: null
     },
     {
-      title: "Sua presença digital profissional",
-      subtitle: "Sites e landing pages que convertem visitantes em clientes",
-      cta: "Ver Portfólio",
-      gradient: "from-primary-glow via-secondary to-primary"
+      title: t('banner.3.title'),
+      subtitle: t('banner.3.subtitle'),
+      cta: t('banner.3.cta'),
+      gradient: "from-primary-glow via-secondary to-primary",
+      backgroundImage: null
+    },
+    {
+      title: t('banner.1.title'),
+      subtitle: t('banner.1.subtitle'),
+      cta: t('banner.1.cta'),
+      gradient: "from-primary/80 via-primary-glow/80 to-secondary/80",
+      backgroundImage: aboutImage
+    },
+    {
+      title: t('banner.2.title'),
+      subtitle: t('banner.2.subtitle'),
+      cta: t('banner.2.cta'),
+      gradient: "from-secondary/80 via-accent/80 to-primary/80",
+      backgroundImage: about1Image
     }
   ];
 
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    contactSection?.scrollIntoView({ behavior: 'smooth' });
-  };
 
-  const openWhatsApp = () => {
-    window.open('https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre os serviços da FW Digital.', '_blank');
-  };
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentBanner((prev) => (prev + 1) % banners.length);
-    }, 4000);
+    }, 5000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [banners.length]);
 
   return (
     <section className="py-16 px-4">
       <div className="container mx-auto">
         <div className="relative overflow-hidden rounded-3xl">
           {banners.map((banner, index) => (
-            <Card 
+            <Card
               key={index}
-              className={`absolute inset-0 transition-transform duration-700 ease-in-out bg-gradient-to-br ${banner.gradient} border-0 ${
-                index === currentBanner ? 'translate-x-0' : 
+              className={`absolute inset-0 transition-transform duration-700 ease-in-out border-0 ${
+                index === currentBanner ? 'translate-x-0' :
                 index < currentBanner ? '-translate-x-full' : 'translate-x-full'
               }`}
+              style={{
+                backgroundImage: banner.backgroundImage ? `url(${banner.backgroundImage})` : 'none',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+              }}
             >
-              <div className="p-8 md:p-12 text-center min-h-[300px] flex flex-col justify-center">
-                <h3 className="text-2xl md:text-4xl font-bold text-white mb-4 animate-fade-up">
+              <div className={`absolute inset-0 bg-gradient-to-br ${banner.gradient} ${banner.backgroundImage ? 'bg-opacity-80' : ''}`} />
+              <div className="relative z-10 p-8 md:p-12 text-center min-h-[300px] flex flex-col justify-center">
+                <h3 className="text-2xl md:text-4xl font-bold text-white mb-4 animate-fade-up drop-shadow-lg">
                   {banner.title}
                 </h3>
-                <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto animate-fade-up" 
+                <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto animate-fade-up drop-shadow-md"
                    style={{ animationDelay: '0.1s' }}>
                   {banner.subtitle}
                 </p>
-                <div className="animate-fade-up" style={{ animationDelay: '0.2s' }}>
-                  <Button 
-                    variant="secondary"
-                    size="lg"
-                    onClick={banner.cta === "Conversar no WhatsApp" ? openWhatsApp : scrollToContact}
-                    className="bg-white/20 text-white border-white/30 hover:bg-white/30 px-8 py-3 text-lg"
-                  >
-                    {banner.cta}
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </div>
+
               </div>
             </Card>
           ))}

@@ -1,9 +1,32 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agência FW Digital - Fábrica de Software | Apps, Sistemas e Sites</title>
+
+    <!-- Favicon Configuration -->
+    <link rel="icon" type="image/x-icon" href="/fw-logo.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/fw-logo.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/fw-logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/fw-logo.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#8b5cf6" />
+
+    <!-- Dark Theme Script - Prevents flash of light theme -->
+    <script>
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme !== 'light') {
+          document.documentElement.classList.add('dark');
+          if (!savedTheme) {
+            localStorage.setItem('theme', 'dark');
+          }
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
 
     <!-- Modern Typography System -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

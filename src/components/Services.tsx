@@ -1,35 +1,57 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Smartphone, Globe, Code, TrendingUp, CheckCircle, Star } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Services = () => {
+  const { t } = useLanguage();
   const services = [
     {
       icon: <Globe className="h-8 w-8" />,
-      title: "Sites Profissionais",
-      description: "Sites institucionais, lojas virtuais e landing pages",
-      features: ["Design Responsivo", "SEO Otimizado", "Alta Performance", "Certificado SSL"],
+      title: t('services.websites.full.title'),
+      description: t('services.websites.full.description'),
+      features: [
+        t('language.current') === 'Idioma atual' ? "Design Responsivo" : "Responsive Design",
+        t('language.current') === 'Idioma atual' ? "SEO Otimizado" : "SEO Optimized",
+        t('language.current') === 'Idioma atual' ? "Alta Performance" : "High Performance",
+        t('language.current') === 'Idioma atual' ? "Certificado SSL" : "SSL Certificate"
+      ],
       popular: false,
     },
     {
       icon: <Smartphone className="h-8 w-8" />,
-      title: "Aplicativos Mobile",
-      description: "Apps nativos e híbridos para iOS e Android",
-      features: ["React Native / Flutter", "UI/UX Premium", "Integração APIs", "Publicação nas Stores"],
+      title: t('services.apps.full.title'),
+      description: t('services.apps.full.description'),
+      features: [
+        "React Native / Flutter",
+        t('language.current') === 'Idioma atual' ? "UI/UX Premium" : "Premium UI/UX",
+        t('language.current') === 'Idioma atual' ? "Integração APIs" : "API Integration",
+        t('language.current') === 'Idioma atual' ? "Publicação nas Stores" : "Store Publishing"
+      ],
       popular: false,
     },
     {
       icon: <Code className="h-8 w-8" />,
-      title: "Robôs WhatsApp com IA",
-      description: "Automação inteligente para atendimento 24/7",
-      features: ["Atendimento Automático", "IA OpenAI", "Integração CRM", "Analytics Completo"],
+      title: t('services.bots.full.title'),
+      description: t('services.bots.full.description'),
+      features: [
+        t('language.current') === 'Idioma atual' ? "Atendimento Automático" : "Automatic Support",
+        "IA OpenAI",
+        t('language.current') === 'Idioma atual' ? "Integração CRM" : "CRM Integration",
+        t('language.current') === 'Idioma atual' ? "Analytics Completo" : "Complete Analytics"
+      ],
       popular: true,
     },
     {
       icon: <TrendingUp className="h-8 w-8" />,
-      title: "Sistemas Web",
-      description: "Plataformas completas para gestão e automação",
-      features: ["Dashboard Admin", "Banco de Dados", "Autenticação Segura", "Relatórios Avançados"],
+      title: t('services.systems.full.title'),
+      description: t('services.systems.full.description'),
+      features: [
+        t('language.current') === 'Idioma atual' ? "Dashboard Admin" : "Admin Dashboard",
+        t('language.current') === 'Idioma atual' ? "Banco de Dados" : "Database",
+        t('language.current') === 'Idioma atual' ? "Autenticação Segura" : "Secure Authentication",
+        t('language.current') === 'Idioma atual' ? "Relatórios Avançados" : "Advanced Reports"
+      ],
       popular: false,
     },
   ];
@@ -44,10 +66,10 @@ const Services = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-fade-up">
           <h2 className="text-display-md mb-6">
-            Nossos <span className="text-gradient-primary">Serviços</span>
+            {t('language.current') === 'Idioma atual' ? 'Nossos' : 'Our'} <span className="text-gradient-primary">{t('services.title').split(' ')[1]}</span>
           </h2>
           <p className="text-body-lg text-muted-foreground max-w-2xl mx-auto">
-            Soluções completas para transformar suas ideias em realidade digital
+            {t('services.subtitle')}
           </p>
         </div>
 
@@ -83,13 +105,13 @@ const Services = () => {
                   </div>
 
                   <div className="pt-4 border-t border-border">
-                    <div className="text-lg font-semibold text-muted-foreground mb-4">Orçamento personalizado</div>
-                    <Button 
-                      variant={service.popular ? "hero" : "default"} 
+                    <div className="text-lg font-semibold text-muted-foreground mb-4">{t('services.quote.text')}</div>
+                    <Button
+                      variant={service.popular ? "hero" : "default"}
                       className="w-full"
                       onClick={scrollToContact}
                     >
-                      Agendar Reunião
+                      {t('services.quote.button')}
                     </Button>
                   </div>
                 </CardContent>
@@ -100,13 +122,12 @@ const Services = () => {
 
         <div className="text-center animate-fade-up">
           <div className="bg-gradient-card rounded-2xl p-8 max-w-4xl mx-auto shadow-medium">
-            <h3 className="text-2xl font-bold mb-4">Precisa de algo personalizado?</h3>
+            <h3 className="text-2xl font-bold mb-4">{t('services.custom.title')}</h3>
             <p className="text-muted-foreground mb-6">
-              Desenvolvemos soluções sob medida para atender suas necessidades específicas. 
-              Entre em contato para discutirmos seu projeto.
+              {t('services.custom.description')}
             </p>
             <Button variant="gradient" size="lg" onClick={scrollToContact}>
-              Falar com Especialista
+              {t('services.custom.button')}
             </Button>
           </div>
         </div>

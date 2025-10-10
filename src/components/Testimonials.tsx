@@ -1,55 +1,57 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Star, Quote } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Testimonials = () => {
+  const { t } = useLanguage();
   const testimonials = [
     {
       name: "Carlos Mendes",
-      role: "CEO - Tech Solutions",
+      role: t('testimonial.1.role'),
       image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Carlos",
-      content: "O site desenvolvido pela FW Digital aumentou nossos leads em 45% no primeiro mês. Profissionalismo e qualidade excepcionais!",
+      content: t('testimonial.1.content'),
       rating: 5,
-      result: "+45% de leads"
+      result: t('testimonial.1.result')
     },
     {
       name: "Ana Paula Silva",
-      role: "Proprietária - Boutique Elegance",
+      role: t('testimonial.2.role'),
       image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ana",
-      content: "O app mobile revolucionou nossas vendas. Interface linda e funcional. Recomendo muito!",
+      content: t('testimonial.2.content'),
       rating: 5,
-      result: "+60% em vendas"
+      result: t('testimonial.2.result')
     },
     {
       name: "Roberto Lima",
-      role: "Diretor - Clínica Vida",
+      role: t('testimonial.3.role'),
       image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Roberto",
-      content: "O robô de WhatsApp com IA automatizou 80% do nosso atendimento. Economia de tempo e melhoria na experiência do cliente.",
+      content: t('testimonial.3.content'),
       rating: 5,
-      result: "80% de automação"
+      result: t('testimonial.3.result')
     },
     {
       name: "Juliana Costa",
-      role: "Marketing - Startup Inovadora",
+      role: t('testimonial.4.role'),
       image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Juliana",
-      content: "Landing page perfeita! Conversão triplicou após o lançamento. Equipe atenciosa e prazo cumprido.",
+      content: t('testimonial.4.content'),
       rating: 5,
-      result: "3x mais conversões"
+      result: t('testimonial.4.result')
     },
     {
       name: "Fernando Souza",
-      role: "Fundador - Delivery Express",
+      role: t('testimonial.5.role'),
       image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Fernando",
-      content: "Aplicativo de delivery top! Clientes adoraram a experiência. Suporte técnico sempre disponível.",
+      content: t('testimonial.5.content'),
       rating: 5,
-      result: "+200 pedidos/dia"
+      result: t('testimonial.5.result')
     },
     {
       name: "Mariana Oliveira",
-      role: "Gerente - Consultoria Empresarial",
+      role: t('testimonial.6.role'),
       image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Mariana",
-      content: "Sistema web completo que organizou toda nossa operação. Valeu cada centavo investido!",
+      content: t('testimonial.6.content'),
       rating: 5,
-      result: "100% organizado"
+      result: t('testimonial.6.result')
     }
   ];
 
@@ -58,10 +60,10 @@ const Testimonials = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Prova Social & <span className="bg-gradient-primary bg-clip-text text-transparent">Casos de Sucesso</span>
+            {t('testimonials.title')} <span className="bg-gradient-primary bg-clip-text text-transparent">{t('testimonials.highlight')}</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Veja o que nossos clientes têm a dizer sobre nosso trabalho
+            {t('testimonials.subtitle')}
           </p>
         </div>
 
