@@ -4,6 +4,7 @@ import { Menu, X, Code2 } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 import LanguageSelector from "./LanguageSelector";
 import { useLanguage } from "@/contexts/LanguageContext";
+import fwLogo from "@/assets/fw-logo.png";
 
 const Header = () => {
   const { t } = useLanguage();
@@ -45,7 +46,7 @@ const Header = () => {
             className="flex items-center gap-3 cursor-pointer group"
             onClick={() => scrollToSection('hero')}
           >
-            <img src="/src/assets/fw-logo.png" alt="Agência FW Digital" className="h-12 w-12 group-hover:scale-110 transition-transform" />
+            <img src={fwLogo} alt="Agência FW Digital" className="h-12 w-12 group-hover:scale-110 transition-transform" />
             <span className="text-heading-md">
               <span className="text-gradient-primary">Agência FW Digital</span>
             </span>
