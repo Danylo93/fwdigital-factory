@@ -18,6 +18,7 @@ const AIChat = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showAutoPrompt, setShowAutoPrompt] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Initialize welcome message when language changes
@@ -29,6 +30,26 @@ const AIChat = () => {
       timestamp: new Date(),
     }]);
   }, [t]);
+
+  // Auto-show chat after 12 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowAutoPrompt(true);
+    }, 12000); // 12 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Auto-open chat 2 seconds after showing the prompt
+  useEffect(() => {
+    if (showAutoPrompt && !isOpen) {
+      const autoOpenTimer = setTimeout(() => {
+        setIsOpen(true);
+      }, 2000); // 2 seconds after showing prompt
+
+      return () => clearTimeout(autoOpenTimer);
+    }
+  }, [showAutoPrompt, isOpen]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -151,21 +172,42 @@ const AIChat = () => {
   if (!isOpen) {
     return (
       <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-40">
-        <button
-          onClick={() => setIsOpen(true)}
-          className="glass hover-glass text-primary rounded-2xl p-4 sm:p-5 shadow-glass hover:shadow-glow transition-glass hover-lift flex items-center justify-center group touch-manipulation min-h-[56px] min-w-[56px] border border-primary/20 backdrop-blur-md animate-pulse hover:animate-none"
-          aria-label="Abrir chat com IA"
-        >
-          <Bot className="h-6 w-6 sm:h-7 sm:w-7 group-hover:scale-110 transition-transform" />
-        </button>
-        
-        {/* Tooltip */}
-        <div className="absolute bottom-full right-0 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-          <div className="glass text-gray-800 dark:text-white text-sm px-4 py-3 rounded-2xl whitespace-nowrap shadow-glass border border-gray-200/20 dark:border-white/20 backdrop-blur-md">
-            Chat com IA - Tire suas dúvidas
-            <div className="absolute top-full right-6 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-200/20 dark:border-t-white/20"></div>
-          </div>
+        <div className="relative">
+          <button
+            onClick={() => setIsOpen(true)}
+            className={`glass hover-glass text-primary rounded-2xl p-4 sm:p-5 shadow-glass hover:shadow-glow transition-glass hover-lift flex items-center justify-center group touch-manipulation min-h-[56px] min-w-[56px] border border-primary/20 backdrop-blur-md ${showAutoPrompt ? 'animate-bounce' : 'animate-pulse hover:animate-none'}`}
+            aria-label="Abrir chat com IA"
+          >
+            <Bot className="h-6 w-6 sm:h-7 sm:w-7 group-hover:scale-110 transition-transform" />
+          </button>
+
+          {/* Notification dot when auto-prompt is active */}
+          {showAutoPrompt && (
+            <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center animate-pulse">
+              <div className="w-2 h-2 bg-white rounded-full"></div>
+            </div>
+          )}
         </div>
+
+        {/* Auto-prompt tooltip */}
+        {showAutoPrompt && (
+          <div className="absolute bottom-full right-0 mb-3 opacity-100 transition-opacity duration-300 pointer-events-none">
+            <div className="glass text-gray-800 dark:text-white text-sm px-4 py-3 rounded-2xl whitespace-nowrap shadow-glass border border-gray-200/20 dark:border-white/20 backdrop-blur-md">
+              👋 Como posso ajudar você hoje?
+              <div className="absolute top-full right-6 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-200/20 dark:border-t-white/20"></div>
+            </div>
+          </div>
+        )}
+
+        {/* Regular tooltip */}
+        {!showAutoPrompt && (
+          <div className="absolute bottom-full right-0 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <div className="glass text-gray-800 dark:text-white text-sm px-4 py-3 rounded-2xl whitespace-nowrap shadow-glass border border-gray-200/20 dark:border-white/20 backdrop-blur-md">
+              Chat com IA - Tire suas dúvidas
+              <div className="absolute top-full right-6 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-200/20 dark:border-t-white/20"></div>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
@@ -254,7 +296,7 @@ const AIChat = () => {
                   type="text"
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
-                  onKeyPress={handleKeyPress}
+                  onKeyDown={handleKeyPress}
                   placeholder={t('chat.placeholder')}
                   className="flex-1 bg-background/50 border border-white/10 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                   disabled={isLoading}
