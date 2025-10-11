@@ -31,7 +31,7 @@ const AIChat = () => {
     }]);
   }, [t]);
 
-  // Auto-show chat after 12 seconds
+  // Show auto-prompt after 12 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowAutoPrompt(true);
@@ -39,17 +39,6 @@ const AIChat = () => {
 
     return () => clearTimeout(timer);
   }, []);
-
-  // Auto-open chat 2 seconds after showing the prompt
-  useEffect(() => {
-    if (showAutoPrompt && !isOpen) {
-      const autoOpenTimer = setTimeout(() => {
-        setIsOpen(true);
-      }, 2000); // 2 seconds after showing prompt
-
-      return () => clearTimeout(autoOpenTimer);
-    }
-  }, [showAutoPrompt, isOpen]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
