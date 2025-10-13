@@ -1,5 +1,6 @@
 import { Code2, Mail, Phone, MapPin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import fwLogo from "@/assets/fw-logo.png";
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -19,7 +20,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <img src="/src/assets/fw-logo.png" alt="Agência FW Digital" className="h-10 w-10" />
+              <img src={fwLogo} alt="Agência FW Digital" className="h-10 w-10" />
               <div>
                 <div className="font-bold text-lg">
                   Agência FW <span className="bg-gradient-primary bg-clip-text text-transparent">Digital</span>
