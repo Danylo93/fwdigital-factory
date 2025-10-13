@@ -1,17 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { useLanguage } from "@/contexts/LanguageContext";
-import heroImage from "@/assets/hero-image.jpg";
 import HeroBackgroundCarousel from "./HeroBackgroundCarousel";
 
 const Hero = () => {
   const { t } = useLanguage();
-
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    contactSection?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
@@ -30,45 +23,37 @@ const Hero = () => {
       {/* Content */}
       <div className="container mx-auto px-4 relative z-30">
         <div className="max-w-6xl mx-auto text-center text-white dark:text-white">
-          {/* Simplified Badge */}
+          {/* Badge */}
           <div className="mb-8 animate-fade-up">
             <div className="inline-flex items-center gap-2 backdrop-blur-sm bg-white/20 dark:bg-white/10 border border-white/30 dark:border-white/20 rounded-full px-6 py-3 mb-8 transition-all duration-300">
-              <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-              <span className="text-sm font-medium tracking-wide">✨ Tecnologia & Inovação</span>
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span className="text-sm font-medium tracking-wide">🚀 Especialistas em transformação digital</span>
             </div>
           </div>
-          {/* Cleaner Typography */}
-          <h1 className="text-display-xl mb-8 leading-tight animate-fade-up" style={{animationDelay: '0.2s'}}>
-            {t('hero.title')} <span className="text-gradient-primary">{t('hero.highlight')}</span>
+
+          {/* Main Heading */}
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 animate-fade-up" style={{animationDelay: '0.2s'}}>
+            Transformamos o seu negócio em uma{" "}
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              marca digital lucrativa
+            </span>{" "}
+            — sites, apps e automações com IA
           </h1>
 
-          <p className="text-heading-lg mb-6 text-white/90 dark:text-white/90 animate-fade-up" style={{animationDelay: '0.4s'}}>
-            {t('hero.subtitle')}
+          {/* Subtitle */}
+          <p className="text-xl md:text-2xl lg:text-3xl text-gray-200 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed font-light mb-12 animate-fade-up" style={{animationDelay: '0.4s'}}>
+            Soluções completas para brasileiros que vivem no exterior e querem vender mais com presença digital profissional
           </p>
 
-          <p className="text-body-lg mb-12 text-white/80 dark:text-white/80 max-w-2xl mx-auto animate-fade-up" style={{animationDelay: '0.6s'}}>
-            Soluções completas para levar sua empresa ao próximo nível. Criamos experiências digitais que geram resultados reais.
-          </p>
-
-          {/* Modern CTA Buttons - Mobile Optimized */}
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-stretch sm:items-center mb-16 animate-fade-up px-4 sm:px-0" style={{animationDelay: '0.8s'}}>
+          {/* CTA Button */}
+          <div className="flex justify-center items-center mb-16 animate-fade-up px-4 sm:px-0" style={{animationDelay: '0.6s'}}>
             <Button
               size="lg"
-              variant="secondary"
-              className="btn-modern text-white w-full sm:w-auto min-h-[56px] touch-manipulation group shadow-glow-primary"
-              onClick={scrollToContact}
+              className="bg-gradient-primary hover:bg-gradient-primary-hover text-white px-10 py-6 text-xl font-semibold rounded-2xl shadow-glow hover:shadow-glow-hover transition-all duration-300 hover:scale-105 group min-w-[320px] min-h-[64px]"
+              onClick={() => window.open('https://wa.me/5511934079208?text=Olá! Quero transformar meu negócio digitalmente com a FW Digital.', '_blank')}
             >
-              {t('hero.cta.quote')}
-              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-6 glass-ultra border-white/30 text-white hover-lift w-full sm:w-auto rounded-2xl font-semibold group min-h-[56px] touch-manipulation gradient-border"
-              onClick={() => window.open('https://wa.me/5511934079208?text=Olá! Gostaria de saber mais sobre os serviços da Agência FW Digital.', '_blank')}
-            >
-              <FaWhatsapp className="mr-2 h-5 w-5 transition-transform group-hover:scale-110" />
-              {t('hero.cta.whatsapp')}
+              <FaWhatsapp className="mr-3 h-6 w-6 transition-transform group-hover:scale-110" />
+              Quero transformar meu negócio digitalmente
             </Button>
           </div>
 
