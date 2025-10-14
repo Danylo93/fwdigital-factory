@@ -1,53 +1,55 @@
 import { Globe, Smartphone, Bot, TrendingUp, Shield, Headphones } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FaWhatsapp } from "react-icons/fa";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const OurOffer = () => {
+  const { t } = useLanguage();
   const benefits = [
     {
       icon: Globe,
-      title: "Site profissional e moderno",
-      description: "Design responsivo e otimizado para conversão"
+      title: t('our-offer.benefit1.title'),
+      description: t('our-offer.benefit1.description')
     },
     {
       icon: Bot,
-      title: "Automação com IA no WhatsApp",
-      description: "Chatbots inteligentes que vendem 24/7"
+      title: t('our-offer.benefit2.title'),
+      description: t('our-offer.benefit2.description')
     },
     {
       icon: TrendingUp,
-      title: "Suporte e otimização contínua",
-      description: "Melhorias constantes baseadas em dados"
+      title: t('our-offer.benefit3.title'),
+      description: t('our-offer.benefit3.description')
     },
     {
       icon: Shield,
-      title: "Crescimento previsível e sustentável",
-      description: "Estratégias que geram resultados consistentes"
+      title: t('our-offer.benefit4.title'),
+      description: t('our-offer.benefit4.description')
     },
     {
       icon: Smartphone,
-      title: "Apps mobile nativos",
-      description: "Presença completa em todas as plataformas"
+      title: t('our-offer.benefit5.title'),
+      description: t('our-offer.benefit5.description')
     },
     {
       icon: Headphones,
-      title: "Suporte especializado",
-      description: "Time dedicado ao seu sucesso"
+      title: t('our-offer.benefit6.title'),
+      description: t('our-offer.benefit6.description')
     }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
+    <section id="our-offer" className="py-20 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-6 py-3 mb-6 font-medium">
               <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-              Modelo de Negócio
+              {t('our-offer.badge')}
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-gray-900 dark:text-white">
-              Nossa <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Oferta</span>
+              {t('our-offer.title')} <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{t('our-offer.highlight')}</span>
             </h2>
           </div>
 
@@ -57,10 +59,10 @@ const OurOffer = () => {
             <div className="space-y-8">
               <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-100 dark:border-gray-700">
                 <h3 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-                  Implementação + Recorrência
+                  {t('our-offer.implementation.title')}
                 </h3>
                 <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-                  Na FW Digital, trabalhamos com uma estrutura simples e eficiente:
+                  {t('our-offer.implementation.description')}
                 </p>
                 
                 <div className="space-y-6">
@@ -69,9 +71,9 @@ const OurOffer = () => {
                       <span className="text-white font-bold text-sm">1</span>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Implementação</h4>
+                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{t('our-offer.step1.title')}</h4>
                       <p className="text-gray-600 dark:text-gray-300">
-                        Primeiro criamos toda a base digital do seu negócio (site, app, automação, marca).
+                        {t('our-offer.step1.description')}
                       </p>
                     </div>
                   </div>
@@ -81,9 +83,9 @@ const OurOffer = () => {
                       <span className="text-white font-bold text-sm">2</span>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Recorrência</h4>
+                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{t('our-offer.step2.title')}</h4>
                       <p className="text-gray-600 dark:text-gray-300">
-                        Depois seguimos com a manutenção e crescimento contínuo, garantindo resultados reais mês após mês.
+                        {t('our-offer.step2.description')}
                       </p>
                     </div>
                   </div>
@@ -117,7 +119,7 @@ const OurOffer = () => {
               onClick={() => window.open('https://wa.me/5511934079208?text=Olá! Quero entender como a implementação + recorrência pode ajudar meu negócio.', '_blank')}
             >
               <FaWhatsapp className="mr-3 h-6 w-6 transition-transform group-hover:scale-110" />
-              Quero saber mais sobre a oferta
+              {t('our-offer.cta')}
             </Button>
           </div>
         </div>

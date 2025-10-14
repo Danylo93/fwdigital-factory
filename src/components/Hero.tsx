@@ -27,22 +27,22 @@ const Hero = () => {
           <div className="mb-8 animate-fade-up">
             <div className="inline-flex items-center gap-2 backdrop-blur-sm bg-white/20 dark:bg-white/10 border border-white/30 dark:border-white/20 rounded-full px-6 py-3 mb-8 transition-all duration-300">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <span className="text-sm font-medium tracking-wide">🚀 Especialistas em transformação digital</span>
+              <span className="text-sm font-medium tracking-wide">{t('hero.badge')}</span>
             </div>
           </div>
 
           {/* Main Heading */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 animate-fade-up" style={{animationDelay: '0.2s'}}>
-            Transformamos o seu negócio em uma{" "}
+            {t('hero.title')}{" "}
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              marca digital lucrativa
+              {t('hero.highlight')}
             </span>{" "}
-            — sites, apps e automações com IA
+            {t('hero.title.end')}
           </h1>
 
           {/* Subtitle */}
           <p className="text-xl md:text-2xl lg:text-3xl text-gray-200 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed font-light mb-12 animate-fade-up" style={{animationDelay: '0.4s'}}>
-            Soluções completas para brasileiros que vivem no exterior e querem vender mais com presença digital profissional
+            {t('hero.subtitle')}
           </p>
 
           {/* CTA Button */}
@@ -53,7 +53,7 @@ const Hero = () => {
               onClick={() => window.open('https://wa.me/5511934079208?text=Olá! Quero transformar meu negócio digitalmente com a FW Digital.', '_blank')}
             >
               <FaWhatsapp className="mr-3 h-6 w-6 transition-transform group-hover:scale-110" />
-              Quero transformar meu negócio digitalmente
+              {t('hero.cta.transform')}
             </Button>
           </div>
 

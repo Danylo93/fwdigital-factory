@@ -1,28 +1,30 @@
 import { Button } from "@/components/ui/button";
 import { FaWhatsapp } from "react-icons/fa";
 import { Rocket, MessageCircle, Clock } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const FinalCTA = () => {
+  const { t } = useLanguage();
   const features = [
     {
       icon: Rocket,
-      title: "Implementação Rápida",
-      description: "Seu projeto digital pronto em até 30 dias"
+      title: t('final-cta.feature1.title'),
+      description: t('final-cta.feature1.description')
     },
     {
       icon: MessageCircle,
-      title: "Consultoria Gratuita",
-      description: "Análise completa do seu negócio sem custo"
+      title: t('final-cta.feature2.title'),
+      description: t('final-cta.feature2.description')
     },
     {
       icon: Clock,
-      title: "Suporte Contínuo",
-      description: "Acompanhamento e otimizações mensais"
+      title: t('final-cta.feature3.title'),
+      description: t('final-cta.feature3.description')
     }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-primary via-primary to-secondary relative overflow-hidden">
+    <section id="final-cta" className="py-20 bg-gradient-to-br from-primary via-primary to-secondary relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-secondary/90"></div>
       <div className="absolute top-0 left-0 w-full h-full">
@@ -37,19 +39,19 @@ const FinalCTA = () => {
           <div className="mb-16">
             <div className="inline-flex items-center gap-2 bg-white/20 rounded-full px-6 py-3 mb-8 font-medium backdrop-blur-sm">
               <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-              Última Chance
+              {t('final-cta.badge')}
             </div>
             
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-              Vamos criar algo{" "}
+              {t('final-cta.title')}{" "}
               <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
-                incrível
+                {t('final-cta.highlight')}
               </span>{" "}
-              pro seu negócio?
+              {t('final-cta.title.end')}
             </h2>
             
             <p className="text-xl md:text-2xl lg:text-3xl mb-12 text-white/90 max-w-4xl mx-auto leading-relaxed font-light">
-              Fale com um especialista e entenda como nossa implementação pode te levar mais longe
+              {t('final-cta.subtitle')}
             </p>
           </div>
 
@@ -78,21 +80,21 @@ const FinalCTA = () => {
               onClick={() => window.open('https://wa.me/5511934079208?text=Olá! Quero falar com um especialista da FW Digital e entender como vocês podem transformar meu negócio.', '_blank')}
             >
               <FaWhatsapp className="mr-4 h-8 w-8 transition-transform group-hover:scale-110" />
-              Quero falar com a FW Digital
+              {t('final-cta.button')}
             </Button>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-white/80">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-sm">Resposta em até 5 minutos</span>
+                <span className="text-sm">{t('final-cta.response')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                <span className="text-sm">Consultoria 100% gratuita</span>
+                <span className="text-sm">{t('final-cta.consultation')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
-                <span className="text-sm">Sem compromisso</span>
+                <span className="text-sm">{t('final-cta.no-commitment')}</span>
               </div>
             </div>
           </div>
@@ -102,19 +104,19 @@ const FinalCTA = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               <div>
                 <div className="text-3xl font-bold text-white mb-2">100+</div>
-                <div className="text-white/70 text-sm">Projetos Entregues</div>
+                <div className="text-white/70 text-sm">{t('final-cta.stats.projects')}</div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-white mb-2">98%</div>
-                <div className="text-white/70 text-sm">Satisfação</div>
+                <div className="text-white/70 text-sm">{t('final-cta.stats.satisfaction')}</div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-white mb-2">24h</div>
-                <div className="text-white/70 text-sm">Suporte</div>
+                <div className="text-white/70 text-sm">{t('final-cta.stats.support')}</div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-white mb-2">10+</div>
-                <div className="text-white/70 text-sm">Anos de Experiência</div>
+                <div className="text-white/70 text-sm">{t('final-cta.stats.experience')}</div>
               </div>
             </div>
           </div>

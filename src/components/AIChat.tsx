@@ -55,39 +55,45 @@ const AIChat = () => {
 
     const message = userMessage.toLowerCase();
 
-    // Respostas em português
+    // Respostas em português - Abordagens melhoradas e mais conversacionais
     const responsesPT = {
-      price: "💰 Nossos preços variam conforme o projeto e suas necessidades específicas. Oferecemos:\n\n• Sites profissionais e institucionais\n• Apps mobile para iOS e Android\n• Sistemas web personalizados\n• Landing pages de alta conversão\n• Robôs de WhatsApp com IA\n\nPara um orçamento personalizado, fale conosco no WhatsApp! 📱",
-      services: "🚀 A Agência FW Digital oferece:\n\n• Desenvolvimento de Sites Profissionais\n• Criação de Apps Mobile (iOS/Android)\n• Sistemas Web Personalizados\n• Landing Pages de Alta Conversão\n• E-commerce Completo\n• Integração com WhatsApp Business\n• Suporte 24/7\n\nQual serviço te interessa mais?",
-      tech: "⚡ Utilizamos as tecnologias mais modernas:\n\n• Frontend: React, Next.js, TypeScript\n• Mobile: React Native, Flutter\n• Backend: Node.js, Python, PHP\n• Banco de dados: PostgreSQL, MongoDB\n• Cloud: AWS, Google Cloud\n• Design: Figma, Adobe Creative Suite\n\nSempre atualizados com as últimas tendências!",
-      time: "⏱️ Nossos prazos médios de entrega:\n\n• Landing Page: 3-5 dias úteis\n• Site institucional: 7-15 dias úteis\n• E-commerce: 15-30 dias úteis\n• App mobile: 30-60 dias úteis\n• Sistema web: 30-90 dias úteis\n\nTrabalhamos com metodologia ágil e entregas parciais!",
-      contact: "📞 Entre em contato conosco:\n\n• WhatsApp: (11) 93407-9208\n• Email: contato@fwdigital.com.br\n• Horário: Segunda a Sexta, 9h às 18h\n\nClique no botão 'Falar no WhatsApp' abaixo para conversar diretamente! 😊",
-      experience: "🏆 A Agência FW Digital tem:\n\n• +10 anos de experiência no mercado\n• +100 projetos entregues\n• 98% de satisfação dos clientes\n• Equipe especializada e certificada\n• Suporte contínuo pós-entrega\n\nSomos uma fábrica de software confiável!",
-      default: "🤖 Obrigado pela sua pergunta! Posso ajudar com informações sobre:\n\n• Nossos serviços e soluções\n• Preços e orçamentos\n• Tecnologias utilizadas\n• Prazos de entrega\n• Formas de contato\n\nPoderia reformular sua pergunta ou escolher um dos tópicos acima?"
+      price: "💰 Ótima pergunta! Nossos investimentos são personalizados para cada negócio:\n\n🎯 **Pacotes populares:**\n• Landing Page: a partir de R$ 2.500\n• Site Profissional: a partir de R$ 4.500\n• App Mobile: a partir de R$ 8.500\n• Bot WhatsApp IA: a partir de R$ 1.200/mês\n\n💡 **Dica:** Brasileiros no exterior costumam ter ROI de 300%+ no primeiro ano!\n\nQuer um orçamento específico? Fale comigo no WhatsApp! 📱",
+      services: "🚀 Perfeito! Somos especialistas em transformar negócios de brasileiros no exterior:\n\n✅ **Nossos diferenciais:**\n• Sites que vendem 24/7\n• Apps que seus clientes amam\n• Automação que escala vendas\n• Suporte em português\n\n🎯 **Para quem mora fora:**\n• Entendemos o mercado local\n• Criamos presença digital forte\n• Automatizamos processos\n\nQual seu maior desafio hoje?",
+      tech: "⚡ Usamos o que há de mais moderno no mercado:\n\n🔥 **Stack Premium:**\n• React/Next.js (sites ultrarrápidos)\n• React Native (apps nativos)\n• IA OpenAI (automação inteligente)\n• Cloud AWS (segurança máxima)\n\n🎯 **Resultado:** Sites 3x mais rápidos que a concorrência!\n\nQuer saber como isso pode ajudar seu negócio?",
+      time: "⏱️ Entregamos rápido porque somos especialistas:\n\n⚡ **Prazos garantidos:**\n• Landing Page: 5 dias úteis\n• Site Profissional: 10 dias úteis\n• App Mobile: 45 dias úteis\n• Bot IA: 7 dias úteis\n\n🎯 **Metodologia ágil:**\n• Entregas parciais\n• Feedback constante\n• Ajustes em tempo real\n\nPrecisa de algo urgente? Podemos acelerar!",
+      contact: "📞 Vamos conversar! Estou aqui para ajudar:\n\n💬 **Formas de contato:**\n• WhatsApp: (11) 93407-9208\n• Email: contato@fwdigital.com.br\n• Horário: Segunda a Sexta, 9h às 18h\n\n🎯 **Por que falar comigo?**\n• Entendo o mercado exterior\n• Falo português\n• Consultoria gratuita\n\nClique no botão abaixo e vamos transformar seu negócio! 🚀",
+      experience: "🏆 Somos referência em brasileiros no exterior:\n\n📊 **Números que impressionam:**\n• +10 anos no mercado\n• +100 projetos entregues\n• 98% de satisfação\n• 300%+ ROI médio\n\n🎯 **Especialização:**\n• Brasileiros no exterior\n• Mercados: EUA, Canadá, UK, Portugal\n• Nichos: restaurantes, serviços, e-commerce\n\nQuer ser nosso próximo case de sucesso?",
+      default: "🤖 Oi! Como posso te ajudar hoje?\n\n💡 **Posso falar sobre:**\n• Como vender mais no exterior\n• Sites que convertem visitantes\n• Apps que seus clientes amam\n• Automação que escala vendas\n• Preços e investimentos\n\n🎯 **Ou me conte:**\n• Qual seu negócio?\n• Onde você mora?\n• Qual seu maior desafio?\n\nVamos conversar! 😊"
     };
 
-    // Respostas em inglês
+    // Respostas em inglês - Abordagens melhoradas e mais conversacionais
     const responsesEN = {
-      price: "💰 Our prices vary according to the project and your specific needs. We offer:\n\n• Professional and institutional websites\n• Mobile apps for iOS and Android\n• Custom web systems\n• High conversion landing pages\n• AI WhatsApp bots\n\nFor a personalized quote, contact us on WhatsApp! 📱",
-      services: "🚀 FW Digital Agency offers:\n\n• Professional Website Development\n• Mobile App Creation (iOS/Android)\n• Custom Web Systems\n• High Conversion Landing Pages\n• Complete E-commerce\n• WhatsApp Business Integration\n• 24/7 Support\n\nWhich service interests you most?",
-      tech: "⚡ We use the most modern technologies:\n\n• Frontend: React, Next.js, TypeScript\n• Mobile: React Native, Flutter\n• Backend: Node.js, Python, PHP\n• Database: PostgreSQL, MongoDB\n• Cloud: AWS, Google Cloud\n• Design: Figma, Adobe Creative Suite\n\nAlways updated with the latest trends!",
-      time: "⏱️ Our average delivery times:\n\n• Landing Page: 3-5 business days\n• Institutional website: 7-15 business days\n• E-commerce: 15-30 business days\n• Mobile app: 30-60 business days\n• Web system: 30-90 business days\n\nWe work with agile methodology and partial deliveries!",
-      contact: "📞 Contact us:\n\n• WhatsApp: (11) 93407-9208\n• Email: contato@fwdigital.com.br\n• Hours: Monday to Friday, 9am to 6pm\n\nClick the 'Talk on WhatsApp' button below to chat directly! 😊",
-      experience: "🏆 FW Digital Agency has:\n\n• +10 years of market experience\n• +100 delivered projects\n• 98% client satisfaction\n• Specialized and certified team\n• Continuous post-delivery support\n\nWe are a reliable software factory!",
-      default: "🤖 Thank you for your question! I can help with information about:\n\n• Our services and solutions\n• Prices and quotes\n• Technologies used\n• Delivery times\n• Contact methods\n\nCould you rephrase your question or choose one of the topics above?"
+      price: "💰 Great question! Our investments are customized for each business:\n\n🎯 **Popular packages:**\n• Landing Page: starting at $500\n• Professional Website: starting at $900\n• Mobile App: starting at $1,700\n• AI WhatsApp Bot: starting at $240/month\n\n💡 **Tip:** Brazilians abroad typically see 300%+ ROI in the first year!\n\nWant a specific quote? Chat with me on WhatsApp! 📱",
+      services: "🚀 Perfect! We specialize in transforming Brazilian businesses abroad:\n\n✅ **Our advantages:**\n• Websites that sell 24/7\n• Apps your customers love\n• Automation that scales sales\n• Support in Portuguese\n\n🎯 **For those living abroad:**\n• We understand the local market\n• We create strong digital presence\n• We automate processes\n\nWhat's your biggest challenge today?",
+      tech: "⚡ We use the most modern technology in the market:\n\n🔥 **Premium Stack:**\n• React/Next.js (ultra-fast websites)\n• React Native (native apps)\n• OpenAI AI (smart automation)\n• AWS Cloud (maximum security)\n\n🎯 **Result:** Websites 3x faster than competitors!\n\nWant to know how this can help your business?",
+      time: "⏱️ We deliver fast because we're specialists:\n\n⚡ **Guaranteed deadlines:**\n• Landing Page: 5 business days\n• Professional Website: 10 business days\n• Mobile App: 45 business days\n• AI Bot: 7 business days\n\n🎯 **Agile methodology:**\n• Partial deliveries\n• Constant feedback\n• Real-time adjustments\n\nNeed something urgent? We can speed it up!",
+      contact: "📞 Let's talk! I'm here to help:\n\n💬 **Contact methods:**\n• WhatsApp: (11) 93407-9208\n• Email: contato@fwdigital.com.br\n• Hours: Monday to Friday, 9am to 6pm\n\n🎯 **Why talk to me?**\n• I understand the abroad market\n• I speak Portuguese\n• Free consultation\n\nClick the button below and let's transform your business! 🚀",
+      experience: "🏆 We're the reference for Brazilians abroad:\n\n📊 **Impressive numbers:**\n• +10 years in the market\n• +100 delivered projects\n• 98% satisfaction\n• 300%+ average ROI\n\n🎯 **Specialization:**\n• Brazilians abroad\n• Markets: USA, Canada, UK, Portugal\n• Niches: restaurants, services, e-commerce\n\nWant to be our next success case?",
+      default: "🤖 Hi! How can I help you today?\n\n💡 **I can talk about:**\n• How to sell more abroad\n• Websites that convert visitors\n• Apps your customers love\n• Automation that scales sales\n• Prices and investments\n\n🎯 **Or tell me:**\n• What's your business?\n• Where do you live?\n• What's your biggest challenge?\n\nLet's chat! 😊"
     };
 
     // Seleciona as respostas baseadas no idioma atual
     const responses = t('language.current') === 'Idioma atual' ? responsesPT : responsesEN;
 
     // Respostas baseadas em palavras-chave (português e inglês)
-    if (message.includes("preço") || message.includes("valor") || message.includes("custo") ||
-        message.includes("price") || message.includes("cost") || message.includes("pricing")) {
+    if (message.includes("preço") || message.includes("valor") || message.includes("custo") || 
+        message.includes("quanto") || message.includes("investimento") || message.includes("orçamento") ||
+        message.includes("price") || message.includes("cost") || message.includes("pricing") || 
+        message.includes("how much") || message.includes("investment") || message.includes("quote")) {
       return responses.price;
     }
 
-    if (message.includes("serviço") || message.includes("fazem") || message.includes("oferecem") ||
-        message.includes("service") || message.includes("offer") || message.includes("provide")) {
+    if (message.includes("serviço") || message.includes("fazem") || message.includes("oferecem") || 
+        message.includes("site") || message.includes("app") || message.includes("bot") || 
+        message.includes("landing") || message.includes("ecommerce") || message.includes("sistema") ||
+        message.includes("service") || message.includes("offer") || message.includes("provide") || 
+        message.includes("website") || message.includes("application") || message.includes("landing page") ||
+        message.includes("e-commerce") || message.includes("system")) {
       return responses.services;
     }
 
@@ -101,8 +107,10 @@ const AIChat = () => {
       return responses.time;
     }
 
-    if (message.includes("contato") || message.includes("falar") || message.includes("whatsapp") ||
-        message.includes("contact") || message.includes("talk") || message.includes("reach")) {
+    if (message.includes("contato") || message.includes("falar") || message.includes("whatsapp") || 
+        message.includes("conversar") || message.includes("ajudar") || message.includes("duvida") ||
+        message.includes("contact") || message.includes("talk") || message.includes("reach") || 
+        message.includes("chat") || message.includes("help") || message.includes("question")) {
       return responses.contact;
     }
 
@@ -182,7 +190,7 @@ const AIChat = () => {
         {showAutoPrompt && (
           <div className="absolute bottom-full right-0 mb-3 opacity-100 transition-opacity duration-300 pointer-events-none">
             <div className="glass text-gray-800 dark:text-white text-sm px-4 py-3 rounded-2xl whitespace-nowrap shadow-glass border border-gray-200/20 dark:border-white/20 backdrop-blur-md">
-              👋 Como posso ajudar você hoje?
+              {t('chat.title')}
               <div className="absolute top-full right-6 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-200/20 dark:border-t-white/20"></div>
             </div>
           </div>

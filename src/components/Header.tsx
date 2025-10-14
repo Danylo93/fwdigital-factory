@@ -27,10 +27,10 @@ const Header = () => {
   };
 
   const menuItems = [
-    { label: t('nav.services'), id: 'services' },
-    { label: t('nav.solutions'), id: 'solutions' },
-    { label: t('nav.cases'), id: 'testimonials' },
-    { label: t('nav.contact'), id: 'contact' },
+    { label: t('nav.services'), id: 'our-offer' },
+    { label: t('nav.solutions'), id: 'our-offer' },
+    { label: t('nav.cases'), id: 'real-results' },
+    { label: t('nav.contact'), id: 'final-cta' },
   ];
 
   return (
@@ -46,9 +46,9 @@ const Header = () => {
             className="flex items-center gap-3 cursor-pointer group"
             onClick={() => scrollToSection('hero')}
           >
-            <img src={fwLogo} alt="Agência FW Digital" className="h-12 w-12 group-hover:scale-110 transition-transform" />
+            <img src={fwLogo} alt={t('alt.fw-logo')} className="h-12 w-12 group-hover:scale-110 transition-transform" />
             <span className="text-heading-md">
-              <span className="text-gradient-primary">Agência FW Digital</span>
+              <span className="text-gradient-primary">{t('company.name')}</span>
             </span>
           </div>
 
@@ -71,7 +71,7 @@ const Header = () => {
             <ThemeToggle />
             <Button
               variant="hero"
-              onClick={() => scrollToSection('contact')}
+              onClick={() => scrollToSection('final-cta')}
               className="rounded-2xl px-6 py-3 font-semibold hover-lift shadow-glass"
             >
               {t('header.cta')}
@@ -115,7 +115,7 @@ const Header = () => {
                 </div>
                 <Button
                   variant="hero"
-                  onClick={() => scrollToSection('contact')}
+                  onClick={() => scrollToSection('final-cta')}
                   className="w-full rounded-2xl py-3 font-semibold"
                 >
                   {t('header.cta')}

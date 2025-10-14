@@ -62,10 +62,10 @@ const Contact = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            {t('language.current') === 'Idioma atual' ? 'Vamos' : 'Let\'s'} <span className="bg-gradient-primary bg-clip-text text-transparent">{t('language.current') === 'Idioma atual' ? 'Conversar' : 'Talk'}</span>
+            {t('contact.title.vamos')} <span className="bg-gradient-primary bg-clip-text text-transparent">{t('contact.title.conversar')}</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            {t('language.current') === 'Idioma atual' ? 'Pronto para transformar sua ideia em realidade? Entre em contato conosco!' : 'Ready to turn your idea into reality? Contact us!'}
+            {t('contact.subtitle.ready')}
           </p>
         </div>
 
@@ -76,7 +76,7 @@ const Contact = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-2xl">
                   <Send className="h-6 w-6 text-primary" />
-                  {t('language.current') === 'Idioma atual' ? 'Solicitar Orçamento' : 'Request Quote'}
+                  {t('contact.form.request.title')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -122,37 +122,37 @@ const Contact = () => {
                           <SelectValue placeholder={t('contact.form.service.placeholder')} />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="app">App Mobile</SelectItem>
-                          <SelectItem value="system">Sistema Web</SelectItem>
-                          <SelectItem value="website">Site Profissional</SelectItem>
-                          <SelectItem value="landing">Landing Page</SelectItem>
-                          <SelectItem value="custom">Projeto Personalizado</SelectItem>
+                          <SelectItem value="app">{t('contact.form.service.app')}</SelectItem>
+                          <SelectItem value="system">{t('contact.form.service.system')}</SelectItem>
+                          <SelectItem value="website">{t('contact.form.service.website')}</SelectItem>
+                          <SelectItem value="landing">{t('contact.form.service.landing')}</SelectItem>
+                          <SelectItem value="custom">{t('contact.form.service.custom')}</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="budget">Orçamento Estimado</Label>
+                    <Label htmlFor="budget">{t('contact.form.budget.title')}</Label>
                     <Select name="budget">
                       <SelectTrigger className="bg-background">
-                        <SelectValue placeholder="Selecione uma faixa" />
+                        <SelectValue placeholder={t('contact.form.budget.placeholder')} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="1000-5000">R$ 1.000 - R$ 5.000</SelectItem>
-                        <SelectItem value="5000-15000">R$ 5.000 - R$ 15.000</SelectItem>
-                        <SelectItem value="15000-30000">R$ 15.000 - R$ 30.000</SelectItem>
-                        <SelectItem value="30000+">Acima de R$ 30.000</SelectItem>
+                        <SelectItem value="1000-5000">{t('contact.form.budget.1000-5000')}</SelectItem>
+                        <SelectItem value="5000-15000">{t('contact.form.budget.5000-15000')}</SelectItem>
+                        <SelectItem value="15000-30000">{t('contact.form.budget.15000-30000')}</SelectItem>
+                        <SelectItem value="30000+">{t('contact.form.budget.30000+')}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message">Mensagem *</Label>
+                    <Label htmlFor="message">{t('contact.form.message.title')} *</Label>
                     <Textarea 
                       id="message" 
                       name="message"
-                      placeholder="Descreva seu projeto com o máximo de detalhes possível..."
+                      placeholder={t('contact.form.message.placeholder')}
                       rows={4}
                       required 
                       className="bg-background"
@@ -166,7 +166,7 @@ const Contact = () => {
                     className="w-full"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? "Enviando..." : "Enviar Solicitação"}
+                    {isSubmitting ? t('contact.form.submit.sending') : t('contact.form.submit.text')}
                   </Button>
                 </form>
               </CardContent>
@@ -176,7 +176,7 @@ const Contact = () => {
           {/* Contact Info */}
           <div className="space-y-8 animate-scale-up" style={{ animationDelay: '0.2s' }}>
             <div>
-              <h3 className="text-2xl font-bold mb-6">Entre em Contato</h3>
+              <h3 className="text-2xl font-bold mb-6">{t('contact.info.title')}</h3>
               <div className="grid gap-6">
                 {contactInfo.map((info, index) => (
                   <a 
@@ -198,23 +198,23 @@ const Contact = () => {
 
             <Card className="bg-gradient-primary text-primary-foreground border-0 shadow-glow">
               <CardContent className="p-6">
-                <h4 className="text-xl font-bold mb-4">Por que escolher a Agência FW Digital?</h4>
+                <h4 className="text-xl font-bold mb-4">{t('contact.why.title')}</h4>
                 <ul className="space-y-3">
                   <li className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-primary-foreground rounded-full"></div>
-                    <span>Entrega rápida e dentro do prazo</span>
+                    <span>{t('contact.why.reason1')}</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-primary-foreground rounded-full"></div>
-                    <span>Suporte técnico 24/7</span>
+                    <span>{t('contact.why.reason2')}</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-primary-foreground rounded-full"></div>
-                    <span>Tecnologias modernas e seguras</span>
+                    <span>{t('contact.why.reason3')}</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-primary-foreground rounded-full"></div>
-                    <span>Garantia de satisfação</span>
+                    <span>{t('contact.why.reason4')}</span>
                   </li>
                 </ul>
               </CardContent>

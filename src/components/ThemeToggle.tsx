@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ThemeToggle = () => {
+  const { t } = useLanguage();
   const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
@@ -41,7 +43,7 @@ const ThemeToggle = () => {
       size="icon"
       onClick={toggleTheme}
       className="glass rounded-2xl p-3 hover-glass transition-glass border border-white/10"
-      aria-label={isDark ? "Mudar para tema claro" : "Mudar para tema escuro"}
+      aria-label={isDark ? t('theme.toggle.light') : t('theme.toggle.dark')}
     >
       {isDark ? (
         <Sun className="h-5 w-5 text-yellow-500 transition-transform hover:scale-110" />

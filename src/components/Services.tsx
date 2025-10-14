@@ -11,10 +11,10 @@ const Services = () => {
       title: t('services.websites.full.title'),
       description: t('services.websites.full.description'),
       features: [
-        t('language.current') === 'Idioma atual' ? "Design Responsivo" : "Responsive Design",
-        t('language.current') === 'Idioma atual' ? "SEO Otimizado" : "SEO Optimized",
-        t('language.current') === 'Idioma atual' ? "Alta Performance" : "High Performance",
-        t('language.current') === 'Idioma atual' ? "Certificado SSL" : "SSL Certificate"
+        t('services.features.responsive'),
+        t('services.features.seo'),
+        t('services.features.performance'),
+        t('services.features.ssl')
       ],
       popular: false,
     },
@@ -23,10 +23,10 @@ const Services = () => {
       title: t('services.apps.full.title'),
       description: t('services.apps.full.description'),
       features: [
-        "React Native / Flutter",
-        t('language.current') === 'Idioma atual' ? "UI/UX Premium" : "Premium UI/UX",
-        t('language.current') === 'Idioma atual' ? "Integração APIs" : "API Integration",
-        t('language.current') === 'Idioma atual' ? "Publicação nas Stores" : "Store Publishing"
+        t('services.features.react-native'),
+        t('services.features.ui-ux'),
+        t('services.features.api'),
+        t('services.features.stores')
       ],
       popular: false,
     },
@@ -35,10 +35,10 @@ const Services = () => {
       title: t('services.bots.full.title'),
       description: t('services.bots.full.description'),
       features: [
-        t('language.current') === 'Idioma atual' ? "Atendimento Automático" : "Automatic Support",
-        "IA OpenAI",
-        t('language.current') === 'Idioma atual' ? "Integração CRM" : "CRM Integration",
-        t('language.current') === 'Idioma atual' ? "Analytics Completo" : "Complete Analytics"
+        t('services.features.automation'),
+        t('services.features.openai'),
+        t('services.features.crm'),
+        t('services.features.analytics')
       ],
       popular: true,
     },
@@ -47,10 +47,10 @@ const Services = () => {
       title: t('services.systems.full.title'),
       description: t('services.systems.full.description'),
       features: [
-        t('language.current') === 'Idioma atual' ? "Dashboard Admin" : "Admin Dashboard",
-        t('language.current') === 'Idioma atual' ? "Banco de Dados" : "Database",
-        t('language.current') === 'Idioma atual' ? "Autenticação Segura" : "Secure Authentication",
-        t('language.current') === 'Idioma atual' ? "Relatórios Avançados" : "Advanced Reports"
+        t('services.features.dashboard'),
+        t('services.features.database'),
+        t('services.features.auth'),
+        t('services.features.reports')
       ],
       popular: false,
     },
@@ -66,7 +66,7 @@ const Services = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-fade-up">
           <h2 className="text-display-md mb-6">
-            {t('language.current') === 'Idioma atual' ? 'Nossos' : 'Our'} <span className="text-gradient-primary">{t('services.title').split(' ')[1]}</span>
+            {t('services.title')}
           </h2>
           <p className="text-body-lg text-muted-foreground max-w-2xl mx-auto">
             {t('services.subtitle')}
@@ -81,7 +81,7 @@ const Services = () => {
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
                     <div className="bg-gradient-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 shadow-glass">
                       <Star className="h-4 w-4" />
-                      Mais Popular
+                      {t('services.popular')}
                     </div>
                   </div>
                 )}

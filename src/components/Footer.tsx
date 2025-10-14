@@ -20,10 +20,10 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <img src={fwLogo} alt="Agência FW Digital" className="h-10 w-10" />
+              <img src={fwLogo} alt={t('alt.fw-logo')} className="h-10 w-10" />
               <div>
                 <div className="font-bold text-lg">
-                  Agência FW <span className="bg-gradient-primary bg-clip-text text-transparent">Digital</span>
+                  {t('company.name')}
                 </div>
               </div>
             </div>
@@ -37,24 +37,36 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground">{t('footer.services.title')}</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#services" className="text-muted-foreground hover:text-primary transition-colors">
+                <button
+                  onClick={() => scrollToSection('our-offer')}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   {t('footer.services.websites')}
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#services" className="text-muted-foreground hover:text-primary transition-colors">
+                <button
+                  onClick={() => scrollToSection('our-offer')}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   {t('footer.services.apps')}
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#services" className="text-muted-foreground hover:text-primary transition-colors">
+                <button
+                  onClick={() => scrollToSection('our-offer')}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   {t('footer.services.bots')}
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#services" className="text-muted-foreground hover:text-primary transition-colors">
+                <button
+                  onClick={() => scrollToSection('our-offer')}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   {t('footer.services.systems')}
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -65,7 +77,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li>
                 <button
-                  onClick={() => scrollToSection('services')}
+                  onClick={() => scrollToSection('our-offer')}
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {t('nav.services')}
@@ -73,7 +85,7 @@ const Footer = () => {
               </li>
               <li>
                 <button
-                  onClick={() => scrollToSection('solutions')}
+                  onClick={() => scrollToSection('our-offer')}
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {t('nav.solutions')}
@@ -81,7 +93,7 @@ const Footer = () => {
               </li>
               <li>
                 <button
-                  onClick={() => scrollToSection('testimonials')}
+                  onClick={() => scrollToSection('real-results')}
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {t('nav.cases')}
@@ -89,7 +101,7 @@ const Footer = () => {
               </li>
               <li>
                 <button
-                  onClick={() => scrollToSection('contact')}
+                  onClick={() => scrollToSection('final-cta')}
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {t('nav.contact')}

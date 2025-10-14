@@ -1,47 +1,49 @@
 import { Target, TrendingUp, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FaWhatsapp } from "react-icons/fa";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const HowItWorks = () => {
+  const { t } = useLanguage();
   const steps = [
     {
       icon: Target,
       number: "1",
-      title: "Captação",
-      description: "Entendemos o seu negócio e criamos uma presença digital feita para atrair clientes — no país onde você vive.",
+      title: t('how-it-works.step1.title'),
+      description: t('how-it-works.step1.description'),
       color: "from-blue-500 to-purple-600"
     },
     {
       icon: TrendingUp,
       number: "2", 
-      title: "Comercial",
-      description: "Desenvolvemos sites, automações e funis inteligentes que convertem visitantes em clientes todos os dias.",
+      title: t('how-it-works.step2.title'),
+      description: t('how-it-works.step2.description'),
       color: "from-purple-500 to-pink-600"
     },
     {
       icon: Rocket,
       number: "3",
-      title: "Entrega",
-      description: "Você recebe tudo pronto para operar, e nós seguimos cuidando da manutenção, IA e evolução da sua marca.",
+      title: t('how-it-works.step3.title'),
+      description: t('how-it-works.step3.description'),
       color: "from-pink-500 to-red-600"
     }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <section id="how-it-works" className="py-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-6 py-3 mb-6 font-medium">
               <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-              Nossa Metodologia
+              {t('how-it-works.badge')}
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
-              Como <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">funciona</span>
+              {t('how-it-works.title')} <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{t('how-it-works.highlight')}</span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Nossa estratégia comprovada em 3 etapas para transformar seu negócio em uma máquina de vendas digital
+              {t('how-it-works.subtitle')}
             </p>
           </div>
 
@@ -86,7 +88,7 @@ const HowItWorks = () => {
               onClick={() => window.open('https://wa.me/5511934079208?text=Olá! Quero dar o primeiro passo com a FW Digital.', '_blank')}
             >
               <FaWhatsapp className="mr-3 h-6 w-6 transition-transform group-hover:scale-110" />
-              Quero dar o primeiro passo
+              {t('how-it-works.cta')}
             </Button>
           </div>
         </div>

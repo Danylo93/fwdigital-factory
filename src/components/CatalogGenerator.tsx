@@ -2,78 +2,80 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Download, FileText } from "lucide-react";
 import jsPDF from 'jspdf';
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const CatalogGenerator = () => {
+  const { t } = useLanguage();
   const catalogData = [
     {
-      category: "Sites Profissionais",
+      category: t('catalog.category.websites'),
       icon: "🌐",
       plans: [
         {
-          name: "Landing Page",
-          features: ["Página única", "CTA WhatsApp", "SEO básico", "Responsivo"]
+          name: t('catalog.websites.landing.name'),
+          features: t('catalog.websites.landing.features').split(', ')
         },
         {
-          name: "Site Institucional",
-          features: ["3-5 páginas", "Formulário de contato", "Google Maps", "Blog"]
+          name: t('catalog.websites.institutional.name'),
+          features: t('catalog.websites.institutional.features').split(', ')
         },
         {
-          name: "Loja Virtual",
-          features: ["Carrinho de compras", "Pagamento integrado", "Gestão de produtos", "Relatórios"]
+          name: t('catalog.websites.ecommerce.name'),
+          features: t('catalog.websites.ecommerce.features').split(', ')
         }
       ]
     },
     {
-      category: "Aplicativos Mobile",
+      category: t('catalog.category.apps'),
       icon: "📱",
       plans: [
         {
-          name: "App Simples",
-          features: ["Catálogo digital", "Delivery local", "Push notifications", "iOS + Android"]
+          name: t('catalog.apps.simple.name'),
+          features: t('catalog.apps.simple.features').split(', ')
         },
         {
-          name: "App com Backend",
-          features: ["Sistema de login", "Chat integrado", "Notificações", "APIs personalizadas"]
+          name: t('catalog.apps.backend.name'),
+          features: t('catalog.apps.backend.features').split(', ')
         },
         {
-          name: "App Sob Medida",
-          features: ["Marketplace completo", "Gestão avançada", "Integrações complexas", "Suporte dedicado"]
+          name: t('catalog.apps.custom.name'),
+          features: t('catalog.apps.custom.features').split(', ')
         }
       ]
     },
     {
-      category: "Robôs WhatsApp com IA",
+      category: t('catalog.category.bots'),
       icon: "🤖",
       plans: [
         {
-          name: "Bot Básico",
-          features: ["Respostas automáticas", "Menu simples", "Horário de atendimento", "Relatórios básicos"]
+          name: t('catalog.bots.basic.name'),
+          features: t('catalog.bots.basic.features').split(', ')
         },
         {
-          name: "Bot com IA",
-          features: ["Atendimento inteligente", "OpenAI integrado", "Aprendizado contínuo", "Analytics avançado"]
+          name: t('catalog.bots.advanced.name'),
+          features: t('catalog.bots.advanced.features').split(', ')
         },
         {
-          name: "Bot Avançado",
-          features: ["Integração CRM", "APIs personalizadas", "Multi-atendente", "Dashboard completo"]
+          name: t('catalog.bots.custom.name'),
+          features: t('catalog.bots.custom.features').split(', ')
         }
       ]
     },
     {
-      category: "Combos Agência FW Digital",
+      category: t('solutions.combos.category'),
       icon: "🎁",
       plans: [
         {
-          name: "Presença Digital",
-          features: ["Site profissional", "Bot WhatsApp", "Google Meu Negócio", "Suporte mensal"]
+          name: t('solutions.combos.presence.name'),
+          features: t('solutions.combos.presence.features').split(', ')
         },
         {
-          name: "Automação Comercial",
-          features: ["Site + Bot IA", "CRM integrado", "Email marketing", "Gestão de leads"]
+          name: t('solutions.combos.automation.name'),
+          features: t('solutions.combos.automation.features').split(', ')
         },
         {
-          name: "Premium Empresarial",
-          features: ["App + Site + IA", "Automação completa", "Gestão de leads", "Suporte prioritário"]
+          name: t('solutions.combos.enterprise.name'),
+          features: t('solutions.combos.enterprise.features').split(', ')
         }
       ]
     }
@@ -218,18 +220,18 @@ const CatalogGenerator = () => {
       <CardHeader className="text-center">
         <CardTitle className="flex items-center justify-center gap-2">
           <FileText className="h-6 w-6 text-primary" />
-          Catálogo PDF
+          {t('catalog.title')}
         </CardTitle>
         <CardDescription>
-          Gere um catálogo completo com todos os serviços e soluções
+          {t('catalog.subtitle')}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="text-sm text-muted-foreground">
-          <p>• Sites Profissionais</p>
-          <p>• Aplicativos Mobile</p>
-          <p>• Robôs WhatsApp com IA</p>
-          <p>• Combos FW Digital</p>
+          <p>• {t('catalog.category.websites')}</p>
+          <p>• {t('catalog.category.apps')}</p>
+          <p>• {t('catalog.category.bots')}</p>
+          <p>• {t('solutions.combos.category')}</p>
         </div>
         <Button 
           onClick={generatePDF}
@@ -237,7 +239,7 @@ const CatalogGenerator = () => {
           size="lg"
         >
           <Download className="h-4 w-4 mr-2" />
-          Baixar Catálogo PDF
+          {t('catalog.button')}
         </Button>
       </CardContent>
     </Card>

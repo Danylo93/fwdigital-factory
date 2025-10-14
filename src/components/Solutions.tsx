@@ -11,16 +11,16 @@ const Solutions = () => {
       icon: "🌐",
       plans: [
         {
-          name: "Landing Page",
-          features: ["Página única", "CTA WhatsApp", "SEO básico", "Responsivo"]
+          name: t('solutions.websites.landing.name'),
+          features: t('solutions.websites.landing.features').split(', ')
         },
         {
-          name: "Site Institucional",
-          features: ["3-5 páginas", "Formulário de contato", "Google Maps", "Blog"]
+          name: t('solutions.websites.institutional.name'),
+          features: t('solutions.websites.institutional.features').split(', ')
         },
         {
-          name: "Loja Virtual",
-          features: ["Carrinho de compras", "Pagamento integrado", "Gestão de produtos", "Relatórios"]
+          name: t('solutions.websites.ecommerce.name'),
+          features: t('solutions.websites.ecommerce.features').split(', ')
         }
       ]
     },
@@ -29,16 +29,16 @@ const Solutions = () => {
       icon: "📱",
       plans: [
         {
-          name: "App Simples",
-          features: ["Catálogo digital", "Delivery local", "Push notifications", "iOS + Android"]
+          name: t('solutions.apps.simple.name'),
+          features: t('solutions.apps.simple.features').split(', ')
         },
         {
-          name: "App com Backend",
-          features: ["Sistema de login", "Chat integrado", "Notificações", "APIs personalizadas"]
+          name: t('solutions.apps.backend.name'),
+          features: t('solutions.apps.backend.features').split(', ')
         },
         {
-          name: "App Sob Medida",
-          features: ["Marketplace completo", "Gestão avançada", "Integrações complexas", "Suporte dedicado"]
+          name: t('solutions.apps.custom.name'),
+          features: t('solutions.apps.custom.features').split(', ')
         }
       ]
     },
@@ -47,16 +47,16 @@ const Solutions = () => {
       icon: "🤖",
       plans: [
         {
-          name: "Bot Básico",
-          features: ["Respostas automáticas", "Menu simples", "Horário de atendimento", "Relatórios básicos"]
+          name: t('solutions.bots.basic.name'),
+          features: t('solutions.bots.basic.features').split(', ')
         },
         {
-          name: "Bot com IA",
-          features: ["Atendimento inteligente", "OpenAI integrado", "Aprendizado contínuo", "Analytics avançado"]
+          name: t('solutions.bots.advanced.name'),
+          features: t('solutions.bots.advanced.features').split(', ')
         },
         {
-          name: "Bot Avançado",
-          features: ["Integração CRM", "APIs personalizadas", "Multi-atendente", "Dashboard completo"]
+          name: t('solutions.bots.enterprise.name'),
+          features: t('solutions.bots.enterprise.features').split(', ')
         }
       ]
     },
@@ -65,16 +65,16 @@ const Solutions = () => {
       icon: "🎁",
       plans: [
         {
-          name: "Presença Digital",
-          features: ["Site profissional", "Bot WhatsApp", "Google Meu Negócio", "Suporte mensal"]
+          name: t('solutions.combos.presence.name'),
+          features: t('solutions.combos.presence.features').split(', ')
         },
         {
-          name: "Automação Comercial",
-          features: ["Site + Bot IA", "CRM integrado", "Email marketing", "Gestão de leads"]
+          name: t('solutions.combos.automation.name'),
+          features: t('solutions.combos.automation.features').split(', ')
         },
         {
-          name: "Premium Empresarial",
-          features: ["App + Site + IA", "Automação completa", "Gestão de leads", "Suporte prioritário"]
+          name: t('solutions.combos.enterprise.name'),
+          features: t('solutions.combos.enterprise.features').split(', ')
         }
       ]
     }
@@ -94,7 +94,7 @@ const Solutions = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 animate-fade-up">
           <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            {t('language.current') === 'Idioma atual' ? 'Nossas' : 'Our'} <span className="bg-gradient-primary bg-clip-text text-transparent">{t('solutions.title').split(' ')[1]}</span>
+            {t('solutions.title')}
           </h2>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto mb-8 leading-relaxed">
             {t('solutions.subtitle')}

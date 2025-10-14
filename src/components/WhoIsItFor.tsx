@@ -1,58 +1,60 @@
 import { MapPin, Briefcase, Users, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FaWhatsapp } from "react-icons/fa";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const WhoIsItFor = () => {
+  const { t } = useLanguage();
   const targetAudiences = [
     {
       icon: MapPin,
-      title: "Brasileiros que vivem fora",
-      subtitle: "e têm negócio local",
-      description: "Você mora nos EUA, Canadá, Reino Unido ou Portugal e quer profissionalizar seu negócio com presença digital forte.",
-      examples: ["Restaurantes", "Serviços de limpeza", "Construção civil", "Estética e beleza"],
+      title: t('who-is-it-for.audience1.title'),
+      subtitle: t('who-is-it-for.audience1.subtitle'),
+      description: t('who-is-it-for.audience1.description'),
+      examples: t('who-is-it-for.examples1').split(', '),
       color: "from-blue-500 to-cyan-500"
     },
     {
       icon: Briefcase,
-      title: "Prestadores de serviço",
-      subtitle: "que querem crescer",
-      description: "Profissionais autônomos que precisam de mais clientes e querem automatizar processos de vendas.",
-      examples: ["Consultores", "Coaches", "Freelancers", "Técnicos especializados"],
+      title: t('who-is-it-for.audience2.title'),
+      subtitle: t('who-is-it-for.audience2.subtitle'),
+      description: t('who-is-it-for.audience2.description'),
+      examples: t('who-is-it-for.examples2').split(', '),
       color: "from-purple-500 to-pink-500"
     },
     {
       icon: Users,
-      title: "Pequenas empresas",
-      subtitle: "em expansão",
-      description: "Negócios que já funcionam mas precisam de uma presença digital profissional para crescer mais.",
-      examples: ["Lojas locais", "Clínicas", "Escritórios", "Academias"],
+      title: t('who-is-it-for.audience3.title'),
+      subtitle: t('who-is-it-for.audience3.subtitle'),
+      description: t('who-is-it-for.audience3.description'),
+      examples: t('who-is-it-for.examples3').split(', '),
       color: "from-green-500 to-emerald-500"
     },
     {
       icon: Truck,
-      title: "Delivery e E-commerce",
-      subtitle: "que querem vender mais",
-      description: "Empresas que vendem produtos ou serviços e precisam de automação para escalar as vendas.",
-      examples: ["Food trucks", "Lojas online", "Distribuidores", "Marketplaces"],
+      title: t('who-is-it-for.audience4.title'),
+      subtitle: t('who-is-it-for.audience4.subtitle'),
+      description: t('who-is-it-for.audience4.description'),
+      examples: t('who-is-it-for.examples4').split(', '),
       color: "from-orange-500 to-red-500"
     }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <section id="who-is-it-for" className="py-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-6 py-3 mb-6 font-medium">
               <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-              Público Ideal
+              {t('who-is-it-for.badge')}
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
-              Para <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">quem é</span>
+              {t('who-is-it-for.title')} <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{t('who-is-it-for.highlight')}</span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Nossas soluções são perfeitas para brasileiros empreendedores que querem dominar o mercado digital
+              {t('who-is-it-for.subtitle')}
             </p>
           </div>
 
@@ -81,7 +83,7 @@ const WhoIsItFor = () => {
                 {/* Examples */}
                 <div className="space-y-2">
                   <p className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
-                    Exemplos:
+                    {t('who-is-it-for.examples')}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {audience.examples.map((example, exampleIndex) => (
@@ -98,10 +100,10 @@ const WhoIsItFor = () => {
           {/* Bottom CTA */}
           <div className="text-center bg-gradient-to-r from-primary/10 to-secondary/10 rounded-3xl p-12">
             <h3 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
-              Se identificou com algum perfil?
+              {t('who-is-it-for.bottom.title')}
             </h3>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-              Vamos conversar sobre como podemos transformar seu negócio em uma máquina de vendas digital
+              {t('who-is-it-for.bottom.description')}
             </p>
             <Button 
               size="lg" 
@@ -109,7 +111,7 @@ const WhoIsItFor = () => {
               onClick={() => window.open('https://wa.me/5511934079208?text=Olá! Me identifiquei com o perfil e quero saber como vocês podem me ajudar.', '_blank')}
             >
               <FaWhatsapp className="mr-3 h-6 w-6 transition-transform group-hover:scale-110" />
-              Quero falar com um especialista
+              {t('who-is-it-for.cta')}
             </Button>
           </div>
         </div>

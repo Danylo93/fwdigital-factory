@@ -1,42 +1,44 @@
 import { TrendingUp, Users, DollarSign, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FaWhatsapp } from "react-icons/fa";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const RealResults = () => {
+  const { t } = useLanguage();
   const results = [
     {
-      before: "Página simples no Instagram",
-      after: "30 novos clientes por mês",
-      description: "Restaurante brasileiro em Toronto automatizou pedidos e triplicou vendas",
-      metric: "+200%",
-      metricLabel: "Aumento nas vendas",
+      before: t('real-results.result1.before'),
+      after: t('real-results.result1.after'),
+      description: t('real-results.result1.description'),
+      metric: t('real-results.result1.metric'),
+      metricLabel: t('real-results.result1.label'),
       icon: TrendingUp,
       color: "from-green-500 to-emerald-600"
     },
     {
-      before: "Atendimento manual no WhatsApp",
-      after: "Sistema automatizado 24/7",
-      description: "Empresa de limpeza em Miami reduziu tempo de resposta e aumentou conversões",
-      metric: "24/7",
-      metricLabel: "Atendimento automático",
+      before: t('real-results.result2.before'),
+      after: t('real-results.result2.after'),
+      description: t('real-results.result2.description'),
+      metric: t('real-results.result2.metric'),
+      metricLabel: t('real-results.result2.label'),
       icon: Clock,
       color: "from-blue-500 to-cyan-600"
     },
     {
-      before: "Sem presença digital",
-      after: "500+ leads qualificados/mês",
-      description: "Consultoria em Londres criou funil de vendas e explodiu o faturamento",
-      metric: "500+",
-      metricLabel: "Leads por mês",
+      before: t('real-results.result3.before'),
+      after: t('real-results.result3.after'),
+      description: t('real-results.result3.description'),
+      metric: t('real-results.result3.metric'),
+      metricLabel: t('real-results.result3.label'),
       icon: Users,
       color: "from-purple-500 to-pink-600"
     },
     {
-      before: "Vendas inconsistentes",
-      after: "Faturamento previsível",
-      description: "E-commerce de produtos brasileiros em Portugal estabilizou receita mensal",
-      metric: "R$ 50k",
-      metricLabel: "Faturamento mensal",
+      before: t('real-results.result4.before'),
+      after: t('real-results.result4.after'),
+      description: t('real-results.result4.description'),
+      metric: t('real-results.result4.metric'),
+      metricLabel: t('real-results.result4.label'),
       icon: DollarSign,
       color: "from-orange-500 to-red-600"
     }
@@ -44,40 +46,40 @@ const RealResults = () => {
 
   const testimonials = [
     {
-      name: "Carlos Silva",
-      business: "Restaurante Sabor Brasil - Toronto",
-      text: "A FW Digital transformou completamente meu negócio. Antes eu dependia só do boca a boca, agora tenho pedidos automatizados direto pelo site.",
-      result: "3x mais pedidos"
+      name: t('real-results.testimonial1.name'),
+      business: t('real-results.testimonial1.business'),
+      text: t('real-results.testimonial1.text'),
+      result: t('real-results.testimonial1.result')
     },
     {
-      name: "Ana Costa",
-      business: "Clean House Services - Miami",
-      text: "O chatbot da FW responde meus clientes mesmo quando estou trabalhando. Nunca mais perdi uma oportunidade de venda.",
-      result: "Zero leads perdidos"
+      name: t('real-results.testimonial2.name'),
+      business: t('real-results.testimonial2.business'),
+      text: t('real-results.testimonial2.text'),
+      result: t('real-results.testimonial2.result')
     },
     {
-      name: "Roberto Mendes",
-      business: "Consultoria RH - Londres",
-      text: "Em 6 meses saí de 5 clientes para mais de 50. O sistema de captação que eles criaram é impressionante.",
-      result: "10x mais clientes"
+      name: t('real-results.testimonial3.name'),
+      business: t('real-results.testimonial3.business'),
+      text: t('real-results.testimonial3.text'),
+      result: t('real-results.testimonial3.result')
     }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
+    <section id="real-results" className="py-20 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-6 py-3 mb-6 font-medium">
               <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-              Cases de Sucesso
+              {t('real-results.badge')}
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
-              Resultados <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Reais</span>
+              {t('real-results.title')} <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{t('real-results.highlight')}</span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Veja como transformamos negócios de brasileiros no exterior em máquinas de vendas digitais
+              {t('real-results.subtitle')}
             </p>
           </div>
 
@@ -127,7 +129,7 @@ const RealResults = () => {
           {/* Testimonials */}
           <div className="mb-16">
             <h3 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">
-              O que nossos clientes dizem
+              {t('real-results.testimonials.title')}
             </h3>
             <div className="grid md:grid-cols-3 gap-8">
               {testimonials.map((testimonial, index) => (
@@ -161,10 +163,10 @@ const RealResults = () => {
           {/* CTA */}
           <div className="text-center">
             <h3 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
-              Quer resultados como esses?
+              {t('real-results.cta.title')}
             </h3>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-              Vamos criar uma estratégia personalizada para o seu negócio
+              {t('real-results.cta.description')}
             </p>
             <Button 
               size="lg" 
@@ -172,7 +174,7 @@ const RealResults = () => {
               onClick={() => window.open('https://wa.me/5511934079208?text=Olá! Vi os resultados dos clientes e quero saber como conseguir os mesmos para meu negócio.', '_blank')}
             >
               <FaWhatsapp className="mr-3 h-6 w-6 transition-transform group-hover:scale-110" />
-              Quero resultados como esses
+              {t('real-results.cta.button')}
             </Button>
           </div>
         </div>
