@@ -18,7 +18,6 @@ const LOGO_PATH = "/fw-logo-BbOIj-TB.png"; // coloque o arquivo no public/ com e
 const catalogDataBRL_SUGGESTED = [
   {
     category: "Sites",
-    icon: "🌐",
     plans: [
       { name: "Landing Page", price: "R$ 1.990", features: ["Página única", "CTA WhatsApp", "SEO básico", "Responsivo"] },
       { name: "Site Institucional", price: "R$ 3.990", features: ["3-5 páginas", "Formulário de contato", "Google Maps", "Blog"] },
@@ -27,7 +26,6 @@ const catalogDataBRL_SUGGESTED = [
   },
   {
     category: "Apps",
-    icon: "📱",
     plans: [
       { name: "App Simples", price: "R$ 7.990", features: ["Catálogo digital", "Delivery local", "Push notifications", "iOS + Android"] },
       { name: "App com Backend", price: "R$ 10.990", features: ["Sistema de login", "Chat integrado", "Notificações", "APIs personalizadas"] },
@@ -36,7 +34,7 @@ const catalogDataBRL_SUGGESTED = [
   },
   {
     category: "Bots",
-    icon: "🤖",
+  
     plans: [
       { name: "Bot Básico", price: "R$ 599/mês", features: ["Respostas automáticas", "Menu simples", "Horário de atendimento", "Relatórios básicos"] },
       { name: "Bot com IA", price: "R$ 999/mês", features: ["IA OpenAI", "Aprendizado contínuo", "Múltiplos idiomas", "Relatórios avançados"] },
@@ -45,7 +43,7 @@ const catalogDataBRL_SUGGESTED = [
   },
   {
     category: "Combos",
-    icon: "🎁",
+   
     plans: [
       { name: "Combo Presença Digital", price: "R$ 5.990", features: ["Site Institucional", "Landing Page", "Google My Business", "Redes Sociais"] },
       { name: "Combo Automação", price: "R$ 9.990", features: ["Site + Bot IA", "CRM Integrado", "Automação de vendas", "Analytics"] },
@@ -57,7 +55,7 @@ const catalogDataBRL_SUGGESTED = [
 const catalogDataUSD_SUGGESTED = [
   {
     category: "Websites",
-    icon: "🌐",
+    
     plans: [
       { name: "Landing Page", price: "$450", features: ["Single page", "WhatsApp CTA", "Basic SEO", "Responsive"] },
       { name: "Institutional Website", price: "$750", features: ["3-5 pages", "Contact form", "Google Maps", "Blog"] },
@@ -66,7 +64,7 @@ const catalogDataUSD_SUGGESTED = [
   },
   {
     category: "Apps",
-    icon: "📱",
+   
     plans: [
       { name: "Simple App", price: "$1,500", features: ["Digital catalog", "Local delivery", "Push notifications", "iOS + Android"] },
       { name: "App with Backend", price: "$2,100", features: ["Login system", "Integrated chat", "Notifications", "Custom APIs"] },
@@ -75,7 +73,7 @@ const catalogDataUSD_SUGGESTED = [
   },
   {
     category: "Bots",
-    icon: "🤖",
+   
     plans: [
       { name: "Basic Bot", price: "$120/month", features: ["Automatic responses", "Simple menu", "Business hours", "Basic reports"] },
       { name: "AI Bot", price: "$199/month", features: ["OpenAI AI", "Continuous learning", "Multiple languages", "Advanced reports"] },
@@ -84,7 +82,7 @@ const catalogDataUSD_SUGGESTED = [
   },
   {
     category: "Combos",
-    icon: "🎁",
+   
     plans: [
       { name: "Digital Presence Combo", price: "$1,100", features: ["Institutional Website", "Landing Page", "Google My Business", "Social Media"] },
       { name: "Automation Combo", price: "$1,750", features: ["Website + AI Bot", "Integrated CRM", "Sales automation", "Analytics"] },
