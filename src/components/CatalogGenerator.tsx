@@ -5,14 +5,16 @@ import jsPDF from "jspdf";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 /**
- * Versão melhorada do gerador de PDF com quebra de página segura,
- * wrap de texto e layout mais profissional.
+ * Componente atualizado: adiciona logo no cabeçalho.
+ * Coloque o arquivo de logo na pasta `public/` com o nome exato:
+ *   /public/fw-logo-BbOIj-TB.png
  *
- * Ajustei também os preços para opções mais atrativas — veja `catalogDataBRL_SUGGESTED`
- * e `catalogDataUSD_SUGGESTED`. Use-os ou adapte conforme quiser.
+ * Se você preferir outro caminho, altere a constante LOGO_PATH abaixo.
  */
 
-/* ---------- Sugestão de preços (mais competitivos/atrativos) ---------- */
+const LOGO_PATH = "/fw-logo-BbOIj-TB.png"; // coloque o arquivo no public/ com esse nome
+
+/* ---------- Preços sugeridos (você pode trocar) ---------- */
 const catalogDataBRL_SUGGESTED = [
   {
     category: "Sites",
@@ -91,36 +93,62 @@ const catalogDataUSD_SUGGESTED = [
   }
 ];
 
-/* ---------- Helper functions e componente principal ---------- */
-
 const MARGIN = 20;
-const CARD_HEIGHT = 58; // altura padrão do card do plano (ajustável)
+const CARD_HEIGHT = 58;
 const FONT = "helvetica";
+
+/* ---------- util: converte URL de imagem para dataURL (base64) ---------- */
+async function imageUrlToDataUrl(url: string) {
+  const res = await fetch(url);
+  const blob = await res.blob();
+  return await new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(new Error("Erro ao ler imagem"));
+    reader.onload = () => resolve(reader.result as string);
+    reader.readAsDataURL(blob);
+  });
+}
 
 const CatalogGenerator = () => {
   const { t } = useLanguage();
 
-  const addHeader = (pdf: jsPDF, title: string, subtitle: string) => {
+  const addHeader = (pdf: jsPDF, subtitle: string, logoDataUrl?: string) => {
     const pageWidth = pdf.internal.pageSize.getWidth();
     // header background
-    pdf.setFillColor(24, 24, 81); // tom escuro elegante
-    pdf.rect(0, 0, pageWidth, 52, "F");
+    pdf.setFillColor(24, 24, 81);
+    pdf.rect(0, 0, pageWidth, 56, "F");
+
+    // draw logo se disponível (posicionado à direita)
+    if (logoDataUrl) {
+      // tenta encaixar o logo com largura máxima de 36mm mantendo proporção
+      const maxW = 36;
+      const maxH = 36;
+      // posição
+      const x = pageWidth - MARGIN - maxW;
+      const y = 10;
+      try {
+        pdf.addImage(logoDataUrl, "PNG", x, y, maxW, maxH, undefined, "FAST");
+      } catch (e) {
+        // fallback: ignora se falhar
+        // console.warn("Não foi possível adicionar logo:", e);
+      }
+    }
 
     // title
     pdf.setTextColor(255, 255, 255);
     pdf.setFont(FONT, "bold");
     pdf.setFontSize(20);
-    pdf.text("AGÊNCIA FW DIGITAL", MARGIN, 24);
+    pdf.text("AGÊNCIA FW DIGITAL", MARGIN, 26);
 
     // subtitle
     pdf.setFont(FONT, "normal");
     pdf.setFontSize(11);
-    pdf.text(subtitle, MARGIN, 36);
+    pdf.text(subtitle, MARGIN, 40);
 
-    // thin decorative line
+    // decorative line
     pdf.setDrawColor(255, 255, 255);
     pdf.setLineWidth(0.3);
-    pdf.line(MARGIN, 44, pageWidth - MARGIN, 44);
+    pdf.line(MARGIN, 46, pageWidth - MARGIN, 46);
   };
 
   const addFooter = (pdf: jsPDF, pageIndex: number, totalPages: number) => {
@@ -136,7 +164,6 @@ const CatalogGenerator = () => {
     pdf.text("Agência FW Digital - Fábrica de Software", MARGIN, pageHeight - 12);
     pdf.text("contato@agenciafwdigital.com.br | WhatsApp: (11) 93407-9208", MARGIN, pageHeight - 4);
 
-    // page number and generation date (aligned right)
     const date = new Date().toLocaleDateString("pt-BR");
     pdf.text(`Página ${pageIndex} / ${totalPages}`, pageWidth - MARGIN - 50, pageHeight - 12);
     pdf.text(`Gerado em: ${date}`, pageWidth - MARGIN - 50, pageHeight - 4);
@@ -146,23 +173,19 @@ const CatalogGenerator = () => {
     const pageHeight = pdf.internal.pageSize.getHeight();
     if (y + needed > pageHeight - 30) {
       pdf.addPage();
-      return 60; // y inicial após novo header (we'll set back in caller)
+      return 64; // y inicial após novo header (ajustável)
     }
     return y;
   };
 
   const renderCategory = (pdf: jsPDF, category: any, yRef: { y: number }) => {
     const pageWidth = pdf.internal.pageSize.getWidth();
-
-    // header box height
     const headerHeight = 18;
     yRef.y = ensureSpace(pdf, yRef.y, headerHeight + 10);
-    // draw background box
     pdf.setFillColor(250, 250, 252);
     pdf.setDrawColor(24, 24, 81);
     pdf.setLineWidth(0.7);
     pdf.rect(MARGIN, yRef.y - 6, pageWidth - MARGIN * 2, headerHeight, "F");
-    // title
     pdf.setFont(FONT, "bold");
     pdf.setFontSize(14);
     pdf.setTextColor(24, 24, 81);
@@ -173,7 +196,6 @@ const CatalogGenerator = () => {
   const renderPlan = (pdf: jsPDF, plan: any, yRef: { y: number }) => {
     const pageWidth = pdf.internal.pageSize.getWidth();
 
-    // calculate variable height based on features text (wrap)
     pdf.setFont(FONT, "normal");
     pdf.setFontSize(10);
     const featureLines: string[] = [];
@@ -186,10 +208,8 @@ const CatalogGenerator = () => {
     const titleHeight = 12;
     const featuresHeight = featureLines.length * 5 + 6;
     const totalNeeded = Math.max(CARD_HEIGHT, titleHeight + priceHeight + featuresHeight);
-
     yRef.y = ensureSpace(pdf, yRef.y, totalNeeded + 10);
 
-    // card
     pdf.setFillColor(255, 255, 255);
     pdf.setDrawColor(220, 220, 220);
     pdf.setLineWidth(0.4);
@@ -223,58 +243,63 @@ const CatalogGenerator = () => {
     yRef.y += totalNeeded + 8;
   };
 
-  const generatePDF = (catalogData: any[], currencyLabel: string) => {
+  /* ---------- geração principal (async para carregar logo) ---------- */
+  const generatePDF = async (catalogData: any[], currencyLabel: string) => {
     const pdf = new jsPDF("p", "mm", "a4");
-    const pageWidth = pdf.internal.pageSize.getWidth();
-
     const subtitle = currencyLabel === "BRL"
       ? "Catálogo de Serviços 2025 - Valores em Real (R$)"
       : "Services Catalog 2025 - Prices in US Dollars ($)";
 
-    addHeader(pdf, "AGÊNCIA FW DIGITAL", subtitle);
+    // carrega logo (converter para dataURL)
+    let logoDataUrl: string | undefined;
+    try {
+      logoDataUrl = await imageUrlToDataUrl(LOGO_PATH);
+    } catch (e) {
+      // se falhar ao carregar o logo, continuamos sem ele
+      logoDataUrl = undefined;
+      // console.warn("Logo não encontrada em", LOGO_PATH);
+    }
+
+    // adiciona header na primeira página (com logo se existir)
+    addHeader(pdf, subtitle, logoDataUrl);
 
     // start Y after header
-    let yRef = { y: 60 };
+    let yRef = { y: 64 }; // valor inicial (espaço suficiente para o header)
 
-    // iterate categories & plans
     catalogData.forEach((category) => {
-      // check space for category header; if not, add page and header
       if (yRef.y > pdf.internal.pageSize.getHeight() - 120) {
         pdf.addPage();
-        addHeader(pdf, "AGÊNCIA FW DIGITAL", subtitle);
-        yRef.y = 60;
+        addHeader(pdf, subtitle, logoDataUrl);
+        yRef.y = 64;
       }
       renderCategory(pdf, category, yRef);
 
       category.plans.forEach((plan: any) => {
-        // if not enough space for plan, add page with header
         if (yRef.y > pdf.internal.pageSize.getHeight() - 90) {
           pdf.addPage();
-          addHeader(pdf, "AGÊNCIA FW DIGITAL", subtitle);
-          yRef.y = 60;
+          addHeader(pdf, subtitle, logoDataUrl);
+          yRef.y = 64;
         }
         renderPlan(pdf, plan, yRef);
       });
 
-      // small gap after category
       yRef.y += 6;
     });
 
-    // finalize footers on every page
+    // finaliza rodapés
     const totalPages = pdf.internal.getNumberOfPages();
     for (let i = 1; i <= totalPages; i++) {
       pdf.setPage(i);
       addFooter(pdf, i, totalPages);
     }
 
-    // filename
     const dateStr = new Date().toLocaleDateString("pt-BR").replace(/\//g, "-");
     const fileName = `Catalogo-FW-Digital-${currencyLabel}-${dateStr}.pdf`;
     pdf.save(fileName);
   };
 
-  const generatePDFBRL = () => generatePDF(catalogDataBRL_SUGGESTED, "BRL");
-  const generatePDFUSD = () => generatePDF(catalogDataUSD_SUGGESTED, "USD");
+  const generatePDFBRL = async () => await generatePDF(catalogDataBRL_SUGGESTED, "BRL");
+  const generatePDFUSD = async () => await generatePDF(catalogDataUSD_SUGGESTED, "USD");
 
   return (
     <Card className="max-w-md mx-auto">
@@ -284,7 +309,7 @@ const CatalogGenerator = () => {
           Gerador de Catálogo PDF
         </CardTitle>
         <CardDescription>
-          Gere catálogos com valores em Real (R$) ou Dólar ($) — layout profissional
+          Gere catálogos com valores em Real (R$) ou Dólar ($) — layout profissional com logo
         </CardDescription>
       </CardHeader>
 
