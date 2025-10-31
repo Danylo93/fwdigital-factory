@@ -82,7 +82,6 @@ const catalogDataUSD_SUGGESTED = [
   },
   {
     category: "Combos",
-   
     plans: [
       { name: "Digital Presence Combo", price: "$1,100", features: ["Institutional Website", "Landing Page", "Google My Business", "Social Media"] },
       { name: "Automation Combo", price: "$1,750", features: ["Website + AI Bot", "Integrated CRM", "Sales automation", "Analytics"] },
@@ -187,7 +186,7 @@ const CatalogGenerator = () => {
     pdf.setFont(FONT, "bold");
     pdf.setFontSize(14);
     pdf.setTextColor(24, 24, 81);
-    pdf.text(`${category.icon} ${category.category}`, MARGIN + 6, yRef.y + 6);
+    pdf.text(` ${category.category}`, MARGIN + 6, yRef.y + 6);
     yRef.y += headerHeight + 8;
   };
 
