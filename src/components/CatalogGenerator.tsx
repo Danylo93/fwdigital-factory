@@ -5,14 +5,15 @@ import jsPDF from "jspdf";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 /**
- * Componente atualizado: adiciona logo no cabeçalho.
+ * Componente atualizado: adiciona logo no cabeçalho e inclui
+ * seção “Modelo de Contratação” com valores de implementação + recorrência.
  * Coloque o arquivo de logo na pasta `public/` com o nome exato:
  *   /public/fw-logo-BbOIj-TB.png
  *
- * Se você preferir outro caminho, altere a constante LOGO_PATH abaixo.
+ * Se quiser outro caminho, altere LOGO_PATH.
  */
 
-const LOGO_PATH = "/fw-logo-BbOIj-TB.png"; // coloque o arquivo no public/ com esse nome
+const LOGO_PATH = "/fw-logo-BbOIj-TB.png"; // caminho da logo no public/
 
 /* ---------- Preços sugeridos (você pode trocar) ---------- */
 const catalogDataBRL_SUGGESTED = [
@@ -34,7 +35,6 @@ const catalogDataBRL_SUGGESTED = [
   },
   {
     category: "Bots",
-  
     plans: [
       { name: "Bot Básico", price: "R$ 599/mês", features: ["Respostas automáticas", "Menu simples", "Horário de atendimento", "Relatórios básicos"] },
       { name: "Bot com IA", price: "R$ 999/mês", features: ["IA OpenAI", "Aprendizado contínuo", "Múltiplos idiomas", "Relatórios avançados"] },
@@ -43,7 +43,6 @@ const catalogDataBRL_SUGGESTED = [
   },
   {
     category: "Combos",
-   
     plans: [
       { name: "Combo Presença Digital", price: "R$ 5.990", features: ["Site Institucional", "Landing Page", "Google My Business", "Redes Sociais"] },
       { name: "Combo Automação", price: "R$ 9.990", features: ["Site + Bot IA", "CRM Integrado", "Automação de vendas", "Analytics"] },
@@ -55,25 +54,22 @@ const catalogDataBRL_SUGGESTED = [
 const catalogDataUSD_SUGGESTED = [
   {
     category: "Websites",
-    
     plans: [
       { name: "Landing Page", price: "$450", features: ["Single page", "WhatsApp CTA", "Basic SEO", "Responsive"] },
       { name: "Institutional Website", price: "$750", features: ["3-5 pages", "Contact form", "Google Maps", "Blog"] },
-      { name: "E-commerce Store", price: "$1,200", features: ["Shopping cart", "Integrated payment", "Product management", "Reports"] }
+      { name: "E-commerce Store", price: "$1.200", features: ["Shopping cart", "Integrated payment", "Product management", "Reports"] }
     ]
   },
   {
     category: "Apps",
-   
     plans: [
-      { name: "Simple App", price: "$1,500", features: ["Digital catalog", "Local delivery", "Push notifications", "iOS + Android"] },
-      { name: "App with Backend", price: "$2,100", features: ["Login system", "Integrated chat", "Notifications", "Custom APIs"] },
-      { name: "Custom App", price: "$3,200", features: ["Complete marketplace", "Advanced management", "Complex integrations", "Dedicated support"] }
+      { name: "Simple App", price: "$1.500", features: ["Digital catalog", "Local delivery", "Push notifications", "iOS + Android"] },
+      { name: "App with Backend", price: "$2.100", features: ["Login system", "Integrated chat", "Notifications", "Custom APIs"] },
+      { name: "Custom App", price: "$3.200", features: ["Complete marketplace", "Advanced management", "Complex integrations", "Dedicated support"] }
     ]
   },
   {
     category: "Bots",
-   
     plans: [
       { name: "Basic Bot", price: "$120/month", features: ["Automatic responses", "Simple menu", "Business hours", "Basic reports"] },
       { name: "AI Bot", price: "$199/month", features: ["OpenAI AI", "Continuous learning", "Multiple languages", "Advanced reports"] },
@@ -83,9 +79,9 @@ const catalogDataUSD_SUGGESTED = [
   {
     category: "Combos",
     plans: [
-      { name: "Digital Presence Combo", price: "$1,100", features: ["Institutional Website", "Landing Page", "Google My Business", "Social Media"] },
-      { name: "Automation Combo", price: "$1,750", features: ["Website + AI Bot", "Integrated CRM", "Sales automation", "Analytics"] },
-      { name: "Enterprise Combo", price: "$4,500", features: ["Complete Website", "Mobile App", "Advanced AI Bot", "Management System"] }
+      { name: "Digital Presence Combo", price: "$1.100", features: ["Institutional Website", "Landing Page", "Google My Business", "Social Media"] },
+      { name: "Automation Combo", price: "$1.750", features: ["Website + AI Bot", "Integrated CRM", "Sales automation", "Analytics"] },
+      { name: "Enterprise Combo", price: "$4.500", features: ["Complete Website", "Mobile App", "Advanced AI Bot", "Management System"] }
     ]
   }
 ];
@@ -117,17 +113,14 @@ const CatalogGenerator = () => {
 
     // draw logo se disponível (posicionado à direita)
     if (logoDataUrl) {
-      // tenta encaixar o logo com largura máxima de 36mm mantendo proporção
       const maxW = 36;
       const maxH = 36;
-      // posição
       const x = pageWidth - MARGIN - maxW;
       const y = 10;
       try {
         pdf.addImage(logoDataUrl, "PNG", x, y, maxW, maxH, undefined, "FAST");
       } catch (e) {
         // fallback: ignora se falhar
-        // console.warn("Não foi possível adicionar logo:", e);
       }
     }
 
@@ -170,9 +163,54 @@ const CatalogGenerator = () => {
     const pageHeight = pdf.internal.pageSize.getHeight();
     if (y + needed > pageHeight - 30) {
       pdf.addPage();
-      return 64; // y inicial após novo header (ajustável)
+      return 64; // y inicial após novo header
     }
     return y;
+  };
+
+  const renderModelSection = (pdf: jsPDF, yRef: { y: number }) => {
+    pdf.setFont(FONT, "bold");
+    pdf.setFontSize(14);
+    pdf.setTextColor(24, 24, 81);
+    yRef.y = ensureSpace(pdf, yRef.y, 50);
+    pdf.text("Nosso Modelo de Contratação", MARGIN, yRef.y);
+    yRef.y += 8;
+
+    pdf.setFont(FONT, "normal");
+    pdf.setFontSize(10);
+    pdf.setTextColor(60, 60, 60);
+    pdf.text("Na AGÊNCIA FW DIGITAL, trabalhamos com uma estrutura simples e eficiente:", MARGIN, yRef.y);
+    yRef.y += 6;
+    pdf.text("1. Implementação: primeiro, criamos toda a base digital do seu negócio (site, app, automação, marca).", MARGIN, yRef.y);
+    yRef.y += 6;
+    pdf.text("2. Recorrência: depois seguimos com a manutenção e crescimento contínuo, garantindo resultados reais mês após mês.", MARGIN, yRef.y);
+    yRef.y += 10;
+
+    pdf.setFont(FONT, "bold");
+    pdf.text("Valores sugeridos:", MARGIN, yRef.y);
+    yRef.y += 6;
+
+    pdf.setFont(FONT, "normal");
+    pdf.text("(Implementação) Plano Básico: R$ 2.500 / US$ 450", MARGIN, yRef.y);
+    yRef.y += 5;
+    pdf.text("(Implementação) Plano Médio: R$ 4.500 / US$ 750", MARGIN, yRef.y);
+    yRef.y += 5;
+    pdf.text("(Implementação) Plano Premium: R$ 7.500 / US$ 1.200", MARGIN, yRef.y);
+    yRef.y += 8;
+
+    pdf.text("(Recorrência) Básica: R$ 599/mês / US$ 120/mês", MARGIN, yRef.y);
+    yRef.y += 5;
+    pdf.text("(Recorrência) Padrão: R$ 999/mês / US$ 199/mês", MARGIN, yRef.y);
+    yRef.y += 5;
+    pdf.text("(Recorrência) Premium: R$ 1.799/mês / US$ 349/mês", MARGIN, yRef.y);
+    yRef.y += 12;
+
+    // adiciona linha decorativa para separar
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    pdf.setDrawColor(220, 220, 220);
+    pdf.setLineWidth(0.2);
+    pdf.line(MARGIN, yRef.y, pageWidth - MARGIN, yRef.y);
+    yRef.y += 8;
   };
 
   const renderCategory = (pdf: jsPDF, category: any, yRef: { y: number }) => {
@@ -186,7 +224,7 @@ const CatalogGenerator = () => {
     pdf.setFont(FONT, "bold");
     pdf.setFontSize(14);
     pdf.setTextColor(24, 24, 81);
-    pdf.text(` ${category.category}`, MARGIN + 6, yRef.y + 6);
+    pdf.text(`${category.icon ?? ""} ${category.category}`, MARGIN + 6, yRef.y + 6);
     yRef.y += headerHeight + 8;
   };
 
@@ -240,34 +278,33 @@ const CatalogGenerator = () => {
     yRef.y += totalNeeded + 8;
   };
 
-  /* ---------- geração principal (async para carregar logo) ---------- */
+  /* ---------- geração principal (async) ---------- */
   const generatePDF = async (catalogData: any[], currencyLabel: string) => {
     const pdf = new jsPDF("p", "mm", "a4");
     const subtitle = currencyLabel === "BRL"
       ? "Catálogo de Serviços 2025 - Valores em Real (R$)"
       : "Services Catalog 2025 - Prices in US Dollars ($)";
 
-    // carrega logo (converter para dataURL)
     let logoDataUrl: string | undefined;
     try {
       logoDataUrl = await imageUrlToDataUrl(LOGO_PATH);
     } catch (e) {
-      // se falhar ao carregar o logo, continuamos sem ele
       logoDataUrl = undefined;
-      // console.warn("Logo não encontrada em", LOGO_PATH);
     }
 
-    // adiciona header na primeira página (com logo se existir)
     addHeader(pdf, subtitle, logoDataUrl);
 
-    // start Y after header
-    let yRef = { y: 64 }; // valor inicial (espaço suficiente para o header)
+    let yRef = { y: 64 };
+
+    // Renderização da seção de modelo antes das categorias
+    renderModelSection(pdf, yRef);
 
     catalogData.forEach((category) => {
       if (yRef.y > pdf.internal.pageSize.getHeight() - 120) {
         pdf.addPage();
         addHeader(pdf, subtitle, logoDataUrl);
         yRef.y = 64;
+        // repetir seção de modelo se quiser (opcional)
       }
       renderCategory(pdf, category, yRef);
 
@@ -283,7 +320,6 @@ const CatalogGenerator = () => {
       yRef.y += 6;
     });
 
-    // finaliza rodapés
     const totalPages = pdf.internal.getNumberOfPages();
     for (let i = 1; i <= totalPages; i++) {
       pdf.setPage(i);
@@ -306,7 +342,7 @@ const CatalogGenerator = () => {
           Gerador de Catálogo PDF
         </CardTitle>
         <CardDescription>
-          Gere catálogos com valores em Real (R$) ou Dólar ($) — layout profissional com logo
+          Gere catálogos com valores em Real (R$) ou Dólar ($) — layout profissional com logo e modelo de contratação
         </CardDescription>
       </CardHeader>
 
