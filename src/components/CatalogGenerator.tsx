@@ -1,87 +1,189 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Download, FileText } from "lucide-react";
+import { Download, FileText, DollarSign } from "lucide-react";
 import jsPDF from 'jspdf';
 import { useLanguage } from "@/contexts/LanguageContext";
 
+// Valores em Real (R$)
+const catalogDataBRL = [
+  {
+    category: 'Sites',
+    icon: "🌐",
+    plans: [
+      {
+        name: 'Landing Page',
+        price: 'R$ 2.500',
+        features: ['Página única', 'CTA WhatsApp', 'SEO básico', 'Responsivo']
+      },
+      {
+        name: 'Site Institucional',
+        price: 'R$ 4.500',
+        features: ['3-5 páginas', 'Formulário de contato', 'Google Maps', 'Blog']
+      },
+      {
+        name: 'Loja Virtual',
+        price: 'R$ 7.500',
+        features: ['Carrinho de compras', 'Pagamento integrado', 'Gestão de produtos', 'Relatórios']
+      }
+    ]
+  },
+  {
+    category: 'Apps',
+    icon: "📱",
+    plans: [
+      {
+        name: 'App Simples',
+        price: 'R$ 8.500',
+        features: ['Catálogo digital', 'Delivery local', 'Push notifications', 'iOS + Android']
+      },
+      {
+        name: 'App com Backend',
+        price: 'R$ 12.000',
+        features: ['Sistema de login', 'Chat integrado', 'Notificações', 'APIs personalizadas']
+      },
+      {
+        name: 'App Sob Medida',
+        price: 'R$ 18.000',
+        features: ['Marketplace completo', 'Gestão avançada', 'Integrações complexas', 'Suporte dedicado']
+      }
+    ]
+  },
+  {
+    category: 'Bots',
+    icon: "🤖",
+    plans: [
+      {
+        name: 'Bot Básico',
+        price: 'R$ 800/mês',
+        features: ['Respostas automáticas', 'Menu simples', 'Horário de atendimento', 'Relatórios básicos']
+      },
+      {
+        name: 'Bot com IA',
+        price: 'R$ 1.200/mês',
+        features: ['IA OpenAI', 'Aprendizado contínuo', 'Múltiplos idiomas', 'Relatórios avançados']
+      },
+      {
+        name: 'Bot Personalizado',
+        price: 'R$ 2.000/mês',
+        features: ['IA Avançada', 'CRM Integrado', 'Automação completa', 'Suporte prioritário']
+      }
+    ]
+  },
+  {
+    category: 'Combos',
+    icon: "🎁",
+    plans: [
+      {
+        name: 'Combo Presença Digital',
+        price: 'R$ 6.500',
+        features: ['Site Institucional', 'Landing Page', 'Google My Business', 'Redes Sociais']
+      },
+      {
+        name: 'Combo Automação',
+        price: 'R$ 10.000',
+        features: ['Site + Bot IA', 'CRM Integrado', 'Automação de vendas', 'Analytics']
+      },
+      {
+        name: 'Combo Empresarial',
+        price: 'R$ 25.000',
+        features: ['Site Completo', 'App Mobile', 'Bot IA Avançado', 'Sistema de Gestão']
+      }
+    ]
+  }
+];
+
+// Valores em Dólar ($)
+const catalogDataUSD = [
+  {
+    category: 'Websites',
+    icon: "🌐",
+    plans: [
+      {
+        name: 'Landing Page',
+        price: '$500',
+        features: ['Single page', 'WhatsApp CTA', 'Basic SEO', 'Responsive']
+      },
+      {
+        name: 'Institutional Website',
+        price: '$900',
+        features: ['3-5 pages', 'Contact form', 'Google Maps', 'Blog']
+      },
+      {
+        name: 'E-commerce Store',
+        price: '$1,500',
+        features: ['Shopping cart', 'Integrated payment', 'Product management', 'Reports']
+      }
+    ]
+  },
+  {
+    category: 'Apps',
+    icon: "📱",
+    plans: [
+      {
+        name: 'Simple App',
+        price: '$1,700',
+        features: ['Digital catalog', 'Local delivery', 'Push notifications', 'iOS + Android']
+      },
+      {
+        name: 'App with Backend',
+        price: '$2,400',
+        features: ['Login system', 'Integrated chat', 'Notifications', 'Custom APIs']
+      },
+      {
+        name: 'Custom App',
+        price: '$3,600',
+        features: ['Complete marketplace', 'Advanced management', 'Complex integrations', 'Dedicated support']
+      }
+    ]
+  },
+  {
+    category: 'Bots',
+    icon: "🤖",
+    plans: [
+      {
+        name: 'Basic Bot',
+        price: '$160/month',
+        features: ['Automatic responses', 'Simple menu', 'Business hours', 'Basic reports']
+      },
+      {
+        name: 'AI Bot',
+        price: '$240/month',
+        features: ['OpenAI AI', 'Continuous learning', 'Multiple languages', 'Advanced reports']
+      },
+      {
+        name: 'Custom Bot',
+        price: '$400/month',
+        features: ['Advanced AI', 'Integrated CRM', 'Complete automation', 'Priority support']
+      }
+    ]
+  },
+  {
+    category: 'Combos',
+    icon: "🎁",
+    plans: [
+      {
+        name: 'Digital Presence Combo',
+        price: '$1,300',
+        features: ['Institutional Website', 'Landing Page', 'Google My Business', 'Social Media']
+      },
+      {
+        name: 'Automation Combo',
+        price: '$2,000',
+        features: ['Website + AI Bot', 'Integrated CRM', 'Sales automation', 'Analytics']
+      },
+      {
+        name: 'Enterprise Combo',
+        price: '$5,000',
+        features: ['Complete Website', 'Mobile App', 'Advanced AI Bot', 'Management System']
+      }
+    ]
+  }
+];
+
 const CatalogGenerator = () => {
   const { t } = useLanguage();
-  const catalogData = [
-    {
-      category: t('catalog.category.websites'),
-      icon: "🌐",
-      plans: [
-        {
-          name: t('catalog.websites.landing.name'),
-          features: t('catalog.websites.landing.features').split(', ')
-        },
-        {
-          name: t('catalog.websites.institutional.name'),
-          features: t('catalog.websites.institutional.features').split(', ')
-        },
-        {
-          name: t('catalog.websites.ecommerce.name'),
-          features: t('catalog.websites.ecommerce.features').split(', ')
-        }
-      ]
-    },
-    {
-      category: t('catalog.category.apps'),
-      icon: "📱",
-      plans: [
-        {
-          name: t('catalog.apps.simple.name'),
-          features: t('catalog.apps.simple.features').split(', ')
-        },
-        {
-          name: t('catalog.apps.backend.name'),
-          features: t('catalog.apps.backend.features').split(', ')
-        },
-        {
-          name: t('catalog.apps.custom.name'),
-          features: t('catalog.apps.custom.features').split(', ')
-        }
-      ]
-    },
-    {
-      category: t('catalog.category.bots'),
-      icon: "🤖",
-      plans: [
-        {
-          name: t('catalog.bots.basic.name'),
-          features: t('catalog.bots.basic.features').split(', ')
-        },
-        {
-          name: t('catalog.bots.advanced.name'),
-          features: t('catalog.bots.advanced.features').split(', ')
-        },
-        {
-          name: t('catalog.bots.custom.name'),
-          features: t('catalog.bots.custom.features').split(', ')
-        }
-      ]
-    },
-    {
-      category: t('solutions.combos.category'),
-      icon: "🎁",
-      plans: [
-        {
-          name: t('solutions.combos.presence.name'),
-          features: t('solutions.combos.presence.features').split(', ')
-        },
-        {
-          name: t('solutions.combos.automation.name'),
-          features: t('solutions.combos.automation.features').split(', ')
-        },
-        {
-          name: t('solutions.combos.enterprise.name'),
-          features: t('solutions.combos.enterprise.features').split(', ')
-        }
-      ]
-    }
-  ];
 
-  const generatePDF = () => {
+  const generatePDF = (catalogData: typeof catalogDataBRL, currency: 'BRL' | 'USD') => {
     const pdf = new jsPDF('p', 'mm', 'a4');
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
@@ -104,7 +206,8 @@ const CatalogGenerator = () => {
     // Subtitle
     pdf.setFontSize(16);
     pdf.setFont('helvetica', 'normal');
-    pdf.text('Catálogo de Serviços 2025', 20, 42);
+    const subtitle = currency === 'BRL' ? 'Catálogo de Serviços 2025 - Valores em Real (R$)' : 'Services Catalog 2025 - Prices in US Dollars ($)';
+    pdf.text(subtitle, 20, 42);
 
     // Add a decorative line
     pdf.setDrawColor(255, 255, 255);
@@ -116,7 +219,7 @@ const CatalogGenerator = () => {
     // Content
     catalogData.forEach((category, categoryIndex) => {
       // Check if we need a new page
-      if (yPosition > pageHeight - 100) {
+      if (yPosition > pageHeight - 110) {
         pdf.addPage();
         yPosition = 30;
       }
@@ -139,19 +242,19 @@ const CatalogGenerator = () => {
 
       category.plans.forEach((plan, planIndex) => {
         // Check if we need a new page
-        if (yPosition > pageHeight - 70) {
+        if (yPosition > pageHeight - 80) {
           pdf.addPage();
           yPosition = 30;
         }
 
-        // Plan card with shadow effect
+        // Plan card with shadow effect (increased height for price)
         pdf.setFillColor(255, 255, 255);
-        pdf.rect(25, yPosition - 5, pageWidth - 50, 50, 'F');
+        pdf.rect(25, yPosition - 5, pageWidth - 50, 60, 'F');
 
         // Plan card border
         pdf.setDrawColor(220, 220, 220);
         pdf.setLineWidth(0.3);
-        pdf.rect(25, yPosition - 5, pageWidth - 50, 50);
+        pdf.rect(25, yPosition - 5, pageWidth - 50, 60);
 
         // Plan name with background
         pdf.setFillColor(138, 43, 226);
@@ -162,25 +265,34 @@ const CatalogGenerator = () => {
         pdf.setFont('helvetica', 'bold');
         pdf.text(plan.name, 30, yPosition + 5);
 
+        // Price with highlighted background
+        pdf.setFillColor(255, 248, 220);
+        pdf.rect(25, yPosition + 10, pageWidth - 50, 8, 'F');
+        
+        pdf.setTextColor(138, 43, 226);
+        pdf.setFontSize(16);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text(plan.price, pageWidth - 80, yPosition + 16);
+
         // Features with bullet points
         pdf.setTextColor(60, 60, 60);
         pdf.setFontSize(10);
         pdf.setFont('helvetica', 'normal');
 
-        let featureY = yPosition + 20;
+        let featureY = yPosition + 25;
         plan.features.forEach((feature, index) => {
-          if (index < 2) { // Show only first 2 features to fit in space
+          if (index < 3) { // Show first 3 features
             pdf.text(`• ${feature}`, 30, featureY);
             featureY += 5;
           }
         });
 
-        if (plan.features.length > 2) {
+        if (plan.features.length > 3) {
           pdf.setTextColor(100, 100, 100);
-          pdf.text(`+ ${plan.features.length - 2} recursos adicionais`, 30, featureY);
+          pdf.text(`+ ${plan.features.length - 3} recursos adicionais`, 30, featureY);
         }
 
-        yPosition += 60;
+        yPosition += 70;
       });
 
       yPosition += 15;
@@ -211,8 +323,17 @@ const CatalogGenerator = () => {
     }
 
     // Save the PDF
-    const fileName = `Catalogo-FW-Digital-${new Date().toLocaleDateString('pt-BR').replace(/\//g, '-')}.pdf`;
+    const currencyLabel = currency === 'BRL' ? 'Real' : 'Dolar';
+    const fileName = `Catalogo-FW-Digital-${currencyLabel}-${new Date().toLocaleDateString('pt-BR').replace(/\//g, '-')}.pdf`;
     pdf.save(fileName);
+  };
+
+  const generatePDFBRL = () => {
+    generatePDF(catalogDataBRL, 'BRL');
+  };
+
+  const generatePDFUSD = () => {
+    generatePDF(catalogDataUSD, 'USD');
   };
 
   return (
@@ -220,27 +341,39 @@ const CatalogGenerator = () => {
       <CardHeader className="text-center">
         <CardTitle className="flex items-center justify-center gap-2">
           <FileText className="h-6 w-6 text-primary" />
-          {t('catalog.title')}
+          Gerador de Catálogo PDF
         </CardTitle>
         <CardDescription>
-          {t('catalog.subtitle')}
+          Gere catálogos com valores em Real (R$) ou Dólar ($)
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="text-sm text-muted-foreground">
-          <p>• {t('catalog.category.websites')}</p>
-          <p>• {t('catalog.category.apps')}</p>
-          <p>• {t('catalog.category.bots')}</p>
-          <p>• {t('solutions.combos.category')}</p>
+          <p>• Sites (Landing Page, Institucional, E-commerce)</p>
+          <p>• Apps (Simples, com Backend, Sob Medida)</p>
+          <p>• Bots (Básico, com IA, Personalizado)</p>
+          <p>• Combos (Presença Digital, Automação, Empresarial)</p>
         </div>
-        <Button 
-          onClick={generatePDF}
-          className="w-full"
-          size="lg"
-        >
-          <Download className="h-4 w-4 mr-2" />
-          {t('catalog.button')}
-        </Button>
+        <div className="space-y-3">
+          <Button 
+            onClick={generatePDFBRL}
+            className="w-full"
+            size="lg"
+            variant="default"
+          >
+            <Download className="h-4 w-4 mr-2" />
+            Gerar PDF em Real (R$)
+          </Button>
+          <Button 
+            onClick={generatePDFUSD}
+            className="w-full"
+            size="lg"
+            variant="outline"
+          >
+            <DollarSign className="h-4 w-4 mr-2" />
+            Gerar PDF em Dólar ($)
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );
