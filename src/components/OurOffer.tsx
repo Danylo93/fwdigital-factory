@@ -1,126 +1,94 @@
 import { Globe, Smartphone, Bot, TrendingUp, Shield, Headphones } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { FaWhatsapp } from "react-icons/fa";
 import { useLanguage } from "@/contexts/LanguageContext";
+import Reveal from "./motion/Reveal";
+import SectionHeading from "./motion/SectionHeading";
+import SpotlightCard from "./motion/SpotlightCard";
+import WhatsAppCTA from "./WhatsAppCTA";
 
 const OurOffer = () => {
   const { t } = useLanguage();
+
   const benefits = [
-    {
-      icon: Globe,
-      title: t('our-offer.benefit1.title'),
-      description: t('our-offer.benefit1.description')
-    },
-    {
-      icon: Bot,
-      title: t('our-offer.benefit2.title'),
-      description: t('our-offer.benefit2.description')
-    },
-    {
-      icon: TrendingUp,
-      title: t('our-offer.benefit3.title'),
-      description: t('our-offer.benefit3.description')
-    },
-    {
-      icon: Shield,
-      title: t('our-offer.benefit4.title'),
-      description: t('our-offer.benefit4.description')
-    },
-    {
-      icon: Smartphone,
-      title: t('our-offer.benefit5.title'),
-      description: t('our-offer.benefit5.description')
-    },
-    {
-      icon: Headphones,
-      title: t('our-offer.benefit6.title'),
-      description: t('our-offer.benefit6.description')
-    }
+    { icon: Globe, title: t("our-offer.benefit1.title"), description: t("our-offer.benefit1.description") },
+    { icon: Bot, title: t("our-offer.benefit2.title"), description: t("our-offer.benefit2.description") },
+    { icon: TrendingUp, title: t("our-offer.benefit3.title"), description: t("our-offer.benefit3.description") },
+    { icon: Shield, title: t("our-offer.benefit4.title"), description: t("our-offer.benefit4.description") },
+    { icon: Smartphone, title: t("our-offer.benefit5.title"), description: t("our-offer.benefit5.description") },
+    { icon: Headphones, title: t("our-offer.benefit6.title"), description: t("our-offer.benefit6.description") },
+  ];
+
+  const flow = [
+    { step: "1", title: t("our-offer.step1.title"), description: t("our-offer.step1.description") },
+    { step: "2", title: t("our-offer.step2.title"), description: t("our-offer.step2.description") },
   ];
 
   return (
-    <section id="our-offer" className="py-20 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-6 py-3 mb-6 font-medium">
-              <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-              {t('our-offer.badge')}
-            </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-gray-900 dark:text-white">
-              {t('our-offer.title')} <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{t('our-offer.highlight')}</span>
-            </h2>
-          </div>
+    <section id="our-offer" className="relative space-section">
+      {/* Soft ambient glow */}
+      <div className="pointer-events-none absolute left-1/2 top-1/3 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]" />
 
-          {/* Main Content */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-            {/* Left Side - Explanation */}
-            <div className="space-y-8">
-              <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-100 dark:border-gray-700">
-                <h3 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-                  {t('our-offer.implementation.title')}
-                </h3>
-                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-                  {t('our-offer.implementation.description')}
-                </p>
-                
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <span className="text-white font-bold text-sm">1</span>
+      <div className="container-responsive relative">
+        <SectionHeading
+          eyebrow={t("our-offer.badge")}
+          title={t("our-offer.title")}
+          highlight={t("our-offer.highlight")}
+          subtitle={t("our-offer.implementation.description")}
+          className="mb-16"
+        />
+
+        <div className="grid gap-6 lg:grid-cols-5 lg:gap-8">
+          {/* Featured: implementation + recurrence flow */}
+          <Reveal direction="right" className="lg:col-span-2">
+            <SpotlightCard className="flex h-full flex-col p-8">
+              <h3 className="font-heading text-2xl uppercase tracking-tight text-foreground">
+                {t("our-offer.implementation.title")}
+              </h3>
+
+              <div className="mt-8 flex flex-col gap-8">
+                {flow.map((f, i) => (
+                  <div key={f.step} className="relative flex gap-4">
+                    {i < flow.length - 1 && (
+                      <span className="absolute left-[1.4rem] top-12 h-[calc(100%-1rem)] w-px bg-gradient-to-b from-primary/50 to-transparent" />
+                    )}
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-primary font-display text-lg font-bold text-primary-foreground shadow-glow">
+                      {f.step}
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{t('our-offer.step1.title')}</h4>
-                      <p className="text-gray-600 dark:text-gray-300">
-                        {t('our-offer.step1.description')}
+                      <h4 className="font-heading text-lg text-foreground">{f.title}</h4>
+                      <p className="mt-1.5 text-body-sm leading-relaxed text-muted-foreground">
+                        {f.description}
                       </p>
                     </div>
                   </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <span className="text-white font-bold text-sm">2</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{t('our-offer.step2.title')}</h4>
-                      <p className="text-gray-600 dark:text-gray-300">
-                        {t('our-offer.step2.description')}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
-            </div>
 
-            {/* Right Side - Benefits Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {benefits.map((benefit, index) => (
-                <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-gray-700 group">
-                  <div className="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <benefit.icon className="w-6 h-6 text-white" />
+              <div className="mt-auto pt-8">
+                <WhatsAppCTA
+                  message="Olá! Quero entender como a implementação + recorrência pode ajudar meu negócio."
+                  className="w-full"
+                >
+                  {t("our-offer.cta")}
+                </WhatsAppCTA>
+              </div>
+            </SpotlightCard>
+          </Reveal>
+
+          {/* Benefits bento grid */}
+          <div className="grid gap-5 sm:grid-cols-2 lg:col-span-3">
+            {benefits.map((benefit, index) => (
+              <Reveal key={benefit.title} delay={index * 0.07}>
+                <SpotlightCard className="h-full p-6">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-md border border-border/60 bg-muted/50 text-primary transition-colors group-hover:border-primary/40 group-hover:text-primary">
+                    <benefit.icon className="h-6 w-6" />
                   </div>
-                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-lg">
-                    {benefit.title}
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                  <h4 className="mt-5 font-heading text-base uppercase tracking-tight text-foreground">{benefit.title}</h4>
+                  <p className="mt-2 text-body-sm leading-relaxed text-muted-foreground">
                     {benefit.description}
                   </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* CTA */}
-          <div className="text-center">
-            <Button 
-              size="lg" 
-              className="bg-gradient-primary hover:bg-gradient-primary-hover text-white px-10 py-6 text-xl font-semibold rounded-2xl shadow-glow hover:shadow-glow-hover transition-all duration-300 hover:scale-105 group min-w-[280px]"
-              onClick={() => window.open('https://wa.me/5511934079208?text=Olá! Quero entender como a implementação + recorrência pode ajudar meu negócio.', '_blank')}
-            >
-              <FaWhatsapp className="mr-3 h-6 w-6 transition-transform group-hover:scale-110" />
-              {t('our-offer.cta')}
-            </Button>
+                </SpotlightCard>
+              </Reveal>
+            ))}
           </div>
         </div>
       </div>

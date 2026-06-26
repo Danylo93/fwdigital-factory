@@ -1,183 +1,162 @@
-import { TrendingUp, Users, DollarSign, Clock } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { FaWhatsapp } from "react-icons/fa";
+import { TrendingUp, Users, DollarSign, Clock, Quote, ArrowRight, Star } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import Reveal from "./motion/Reveal";
+import SectionHeading from "./motion/SectionHeading";
+import SpotlightCard from "./motion/SpotlightCard";
+import AnimatedCounter from "./motion/AnimatedCounter";
+import WhatsAppCTA from "./WhatsAppCTA";
 
 const RealResults = () => {
   const { t } = useLanguage();
+
   const results = [
     {
-      before: t('real-results.result1.before'),
-      after: t('real-results.result1.after'),
-      description: t('real-results.result1.description'),
-      metric: t('real-results.result1.metric'),
-      metricLabel: t('real-results.result1.label'),
       icon: TrendingUp,
-      color: "from-green-500 to-emerald-600"
+      before: t("real-results.result1.before"),
+      after: t("real-results.result1.after"),
+      description: t("real-results.result1.description"),
+      metric: t("real-results.result1.metric"),
+      metricLabel: t("real-results.result1.label"),
     },
     {
-      before: t('real-results.result2.before'),
-      after: t('real-results.result2.after'),
-      description: t('real-results.result2.description'),
-      metric: t('real-results.result2.metric'),
-      metricLabel: t('real-results.result2.label'),
       icon: Clock,
-      color: "from-blue-500 to-cyan-600"
+      before: t("real-results.result2.before"),
+      after: t("real-results.result2.after"),
+      description: t("real-results.result2.description"),
+      metric: t("real-results.result2.metric"),
+      metricLabel: t("real-results.result2.label"),
     },
     {
-      before: t('real-results.result3.before'),
-      after: t('real-results.result3.after'),
-      description: t('real-results.result3.description'),
-      metric: t('real-results.result3.metric'),
-      metricLabel: t('real-results.result3.label'),
       icon: Users,
-      color: "from-purple-500 to-pink-600"
+      before: t("real-results.result3.before"),
+      after: t("real-results.result3.after"),
+      description: t("real-results.result3.description"),
+      metric: t("real-results.result3.metric"),
+      metricLabel: t("real-results.result3.label"),
     },
     {
-      before: t('real-results.result4.before'),
-      after: t('real-results.result4.after'),
-      description: t('real-results.result4.description'),
-      metric: t('real-results.result4.metric'),
-      metricLabel: t('real-results.result4.label'),
       icon: DollarSign,
-      color: "from-orange-500 to-red-600"
-    }
+      before: t("real-results.result4.before"),
+      after: t("real-results.result4.after"),
+      description: t("real-results.result4.description"),
+      metric: t("real-results.result4.metric"),
+      metricLabel: t("real-results.result4.label"),
+    },
   ];
 
   const testimonials = [
     {
-      name: t('real-results.testimonial1.name'),
-      business: t('real-results.testimonial1.business'),
-      text: t('real-results.testimonial1.text'),
-      result: t('real-results.testimonial1.result')
+      name: t("real-results.testimonial1.name"),
+      business: t("real-results.testimonial1.business"),
+      text: t("real-results.testimonial1.text"),
+      result: t("real-results.testimonial1.result"),
     },
     {
-      name: t('real-results.testimonial2.name'),
-      business: t('real-results.testimonial2.business'),
-      text: t('real-results.testimonial2.text'),
-      result: t('real-results.testimonial2.result')
+      name: t("real-results.testimonial2.name"),
+      business: t("real-results.testimonial2.business"),
+      text: t("real-results.testimonial2.text"),
+      result: t("real-results.testimonial2.result"),
     },
     {
-      name: t('real-results.testimonial3.name'),
-      business: t('real-results.testimonial3.business'),
-      text: t('real-results.testimonial3.text'),
-      result: t('real-results.testimonial3.result')
-    }
+      name: t("real-results.testimonial3.name"),
+      business: t("real-results.testimonial3.business"),
+      text: t("real-results.testimonial3.text"),
+      result: t("real-results.testimonial3.result"),
+    },
   ];
 
   return (
-    <section id="real-results" className="py-20 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
-      <div className="container mx-auto px-4">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-6 py-3 mb-6 font-medium">
-              <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-              {t('real-results.badge')}
-            </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
-              {t('real-results.title')} <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{t('real-results.highlight')}</span>
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              {t('real-results.subtitle')}
-            </p>
-          </div>
+    <section id="real-results" className="relative space-section">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      <div className="container-responsive">
+        <SectionHeading
+          eyebrow={t("real-results.badge")}
+          title={t("real-results.title")}
+          highlight={t("real-results.highlight")}
+          subtitle={t("real-results.subtitle")}
+          className="mb-16"
+        />
 
-          {/* Results Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 mb-20">
-            {results.map((result, index) => (
-              <div key={index} className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 group">
-                {/* Icon and Metric */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className={`w-16 h-16 bg-gradient-to-r ${result.color} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                    <result.icon className="w-8 h-8 text-white" />
+        {/* Metrics */}
+        <div className="grid gap-6 md:grid-cols-2">
+          {results.map((result, index) => (
+            <Reveal key={result.metricLabel} delay={(index % 2) * 0.1}>
+              <SpotlightCard className="h-full p-8">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-md border border-border/60 bg-muted/50 text-primary">
+                    <result.icon className="h-6 w-6" />
                   </div>
                   <div className="text-right">
-                    <div className={`text-3xl font-bold bg-gradient-to-r ${result.color} bg-clip-text text-transparent`}>
-                      {result.metric}
-                    </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
-                      {result.metricLabel}
-                    </div>
+                    <AnimatedCounter
+                      value={result.metric}
+                      className="block font-display text-4xl font-bold text-gradient-brand"
+                    />
+                    <div className="text-xs text-muted-foreground">{result.metricLabel}</div>
                   </div>
                 </div>
 
-                {/* Before/After */}
-                <div className="space-y-4 mb-6">
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                    <span className="text-gray-600 dark:text-gray-400 line-through">
-                      {result.before}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    <span className="text-gray-900 dark:text-white font-semibold">
-                      {result.after}
-                    </span>
-                  </div>
+                <div className="mt-6 flex flex-col gap-2.5 rounded-md border border-border/50 bg-muted/30 p-4 sm:flex-row sm:items-center">
+                  <span className="text-sm text-muted-foreground line-through decoration-destructive/60">
+                    {result.before}
+                  </span>
+                  <ArrowRight className="hidden h-4 w-4 shrink-0 text-primary sm:block" />
+                  <span className="text-sm font-semibold text-foreground">{result.after}</span>
                 </div>
 
-                {/* Description */}
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p className="mt-5 text-body-sm leading-relaxed text-muted-foreground">
                   {result.description}
                 </p>
-              </div>
-            ))}
-          </div>
+              </SpotlightCard>
+            </Reveal>
+          ))}
+        </div>
 
-          {/* Testimonials */}
-          <div className="mb-16">
-            <h3 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">
-              {t('real-results.testimonials.title')}
-            </h3>
-            <div className="grid md:grid-cols-3 gap-8">
-              {testimonials.map((testimonial, index) => (
-                <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
-                  <div className="mb-4">
-                    <div className="flex items-center gap-1 mb-2">
-                      {[...Array(5)].map((_, i) => (
-                        <span key={i} className="text-yellow-400 text-lg">★</span>
-                      ))}
-                    </div>
-                    <p className="text-gray-600 dark:text-gray-300 italic leading-relaxed">
-                      "{testimonial.text}"
-                    </p>
-                  </div>
-                  <div className="border-t border-gray-100 dark:border-gray-700 pt-4">
-                    <div className="font-semibold text-gray-900 dark:text-white">
-                      {testimonial.name}
-                    </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
-                      {testimonial.business}
-                    </div>
-                    <div className="text-sm font-semibold text-primary mt-2">
-                      Resultado: {testimonial.result}
-                    </div>
+        {/* Testimonials */}
+        <Reveal className="mb-10 mt-24 text-center">
+          <h3 className="font-display text-2xl uppercase text-foreground sm:text-3xl">
+            {t("real-results.testimonials.title")}
+          </h3>
+        </Reveal>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {testimonials.map((testimonial, index) => (
+            <Reveal key={testimonial.name} delay={index * 0.1}>
+              <SpotlightCard className="flex h-full flex-col p-7">
+                <Quote className="h-8 w-8 text-primary/40" />
+                <div className="mt-3 flex gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-warning text-warning" />
+                  ))}
+                </div>
+                <p className="mt-4 flex-1 text-body-md italic leading-relaxed text-muted-foreground">
+                  "{testimonial.text}"
+                </p>
+                <div className="mt-6 border-t border-border/50 pt-5">
+                  <div className="font-heading text-foreground">{testimonial.name}</div>
+                  <div className="text-sm text-muted-foreground">{testimonial.business}</div>
+                  <div className="mt-3 inline-flex rounded-sm bg-success/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-success">
+                    {testimonial.result}
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* CTA */}
-          <div className="text-center">
-            <h3 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
-              {t('real-results.cta.title')}
-            </h3>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-              {t('real-results.cta.description')}
-            </p>
-            <Button 
-              size="lg" 
-              className="bg-gradient-primary hover:bg-gradient-primary-hover text-white px-10 py-6 text-xl font-semibold rounded-2xl shadow-glow hover:shadow-glow-hover transition-all duration-300 hover:scale-105 group min-w-[280px]"
-              onClick={() => window.open('https://wa.me/5511934079208?text=Olá! Vi os resultados dos clientes e quero saber como conseguir os mesmos para meu negócio.', '_blank')}
-            >
-              <FaWhatsapp className="mr-3 h-6 w-6 transition-transform group-hover:scale-110" />
-              {t('real-results.cta.button')}
-            </Button>
-          </div>
+              </SpotlightCard>
+            </Reveal>
+          ))}
         </div>
+
+        {/* CTA */}
+        <Reveal delay={0.1} className="mt-16 text-center">
+          <h3 className="font-display text-2xl uppercase text-foreground sm:text-3xl">
+            {t("real-results.cta.title")}
+          </h3>
+          <p className="mx-auto mt-4 max-w-2xl text-body-md text-muted-foreground">
+            {t("real-results.cta.description")}
+          </p>
+          <div className="mt-8 flex justify-center">
+            <WhatsAppCTA message="Olá! Vi os resultados dos clientes e quero saber como conseguir os mesmos para meu negócio.">
+              {t("real-results.cta.button")}
+            </WhatsAppCTA>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

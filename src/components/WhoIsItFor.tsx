@@ -1,120 +1,113 @@
 import { MapPin, Briefcase, Users, Truck } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { FaWhatsapp } from "react-icons/fa";
 import { useLanguage } from "@/contexts/LanguageContext";
+import Reveal from "./motion/Reveal";
+import SectionHeading from "./motion/SectionHeading";
+import SpotlightCard from "./motion/SpotlightCard";
+import WhatsAppCTA from "./WhatsAppCTA";
 
 const WhoIsItFor = () => {
   const { t } = useLanguage();
+
   const targetAudiences = [
     {
       icon: MapPin,
-      title: t('who-is-it-for.audience1.title'),
-      subtitle: t('who-is-it-for.audience1.subtitle'),
-      description: t('who-is-it-for.audience1.description'),
-      examples: t('who-is-it-for.examples1').split(', '),
-      color: "from-blue-500 to-cyan-500"
+      title: t("who-is-it-for.audience1.title"),
+      subtitle: t("who-is-it-for.audience1.subtitle"),
+      description: t("who-is-it-for.audience1.description"),
+      examples: t("who-is-it-for.examples1").split(", "),
+      gradient: "from-primary to-accent",
     },
     {
       icon: Briefcase,
-      title: t('who-is-it-for.audience2.title'),
-      subtitle: t('who-is-it-for.audience2.subtitle'),
-      description: t('who-is-it-for.audience2.description'),
-      examples: t('who-is-it-for.examples2').split(', '),
-      color: "from-purple-500 to-pink-500"
+      title: t("who-is-it-for.audience2.title"),
+      subtitle: t("who-is-it-for.audience2.subtitle"),
+      description: t("who-is-it-for.audience2.description"),
+      examples: t("who-is-it-for.examples2").split(", "),
+      gradient: "from-accent to-secondary",
     },
     {
       icon: Users,
-      title: t('who-is-it-for.audience3.title'),
-      subtitle: t('who-is-it-for.audience3.subtitle'),
-      description: t('who-is-it-for.audience3.description'),
-      examples: t('who-is-it-for.examples3').split(', '),
-      color: "from-green-500 to-emerald-500"
+      title: t("who-is-it-for.audience3.title"),
+      subtitle: t("who-is-it-for.audience3.subtitle"),
+      description: t("who-is-it-for.audience3.description"),
+      examples: t("who-is-it-for.examples3").split(", "),
+      gradient: "from-secondary to-primary",
     },
     {
       icon: Truck,
-      title: t('who-is-it-for.audience4.title'),
-      subtitle: t('who-is-it-for.audience4.subtitle'),
-      description: t('who-is-it-for.audience4.description'),
-      examples: t('who-is-it-for.examples4').split(', '),
-      color: "from-orange-500 to-red-500"
-    }
+      title: t("who-is-it-for.audience4.title"),
+      subtitle: t("who-is-it-for.audience4.subtitle"),
+      description: t("who-is-it-for.audience4.description"),
+      examples: t("who-is-it-for.examples4").split(", "),
+      gradient: "from-primary to-secondary",
+    },
   ];
 
   return (
-    <section id="who-is-it-for" className="py-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
-      <div className="container mx-auto px-4">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-6 py-3 mb-6 font-medium">
-              <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-              {t('who-is-it-for.badge')}
-            </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
-              {t('who-is-it-for.title')} <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{t('who-is-it-for.highlight')}</span>
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              {t('who-is-it-for.subtitle')}
-            </p>
-          </div>
+    <section id="who-is-it-for" className="relative space-section">
+      <div className="container-responsive">
+        <SectionHeading
+          eyebrow={t("who-is-it-for.badge")}
+          title={t("who-is-it-for.title")}
+          highlight={t("who-is-it-for.highlight")}
+          subtitle={t("who-is-it-for.subtitle")}
+          className="mb-16"
+        />
 
-          {/* Target Audiences Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 mb-16">
-            {targetAudiences.map((audience, index) => (
-              <div key={index} className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 group">
-                {/* Icon */}
-                <div className={`w-16 h-16 bg-gradient-to-r ${audience.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <audience.icon className="w-8 h-8 text-white" />
-                </div>
-                
-                {/* Title */}
-                <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">
-                  {audience.title}
-                </h3>
-                <p className="text-lg text-primary font-semibold mb-4">
-                  {audience.subtitle}
-                </p>
-                
-                {/* Description */}
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-                  {audience.description}
-                </p>
-                
-                {/* Examples */}
-                <div className="space-y-2">
-                  <p className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
-                    {t('who-is-it-for.examples')}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {audience.examples.map((example, exampleIndex) => (
-                      <span key={exampleIndex} className={`px-3 py-1 bg-gradient-to-r ${audience.color} text-white text-sm rounded-full font-medium`}>
-                        {example}
-                      </span>
-                    ))}
+        <div className="grid gap-6 md:grid-cols-2">
+          {targetAudiences.map((audience, index) => (
+            <Reveal key={audience.title} delay={(index % 2) * 0.1}>
+              <SpotlightCard className="h-full p-8">
+                <div className="flex items-start gap-5">
+                  <div
+                    className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-md bg-gradient-to-br ${audience.gradient} text-white shadow-lg`}
+                  >
+                    <audience.icon className="h-7 w-7" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading text-xl uppercase tracking-tight text-foreground">{audience.title}</h3>
+                    <p className="text-sm font-medium text-primary">{audience.subtitle}</p>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
 
-          {/* Bottom CTA */}
-          <div className="text-center bg-gradient-to-r from-primary/10 to-secondary/10 rounded-3xl p-12">
-            <h3 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
-              {t('who-is-it-for.bottom.title')}
-            </h3>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-              {t('who-is-it-for.bottom.description')}
-            </p>
-            <Button 
-              size="lg" 
-              className="bg-gradient-primary hover:bg-gradient-primary-hover text-white px-10 py-6 text-xl font-semibold rounded-2xl shadow-glow hover:shadow-glow-hover transition-all duration-300 hover:scale-105 group min-w-[280px]"
-              onClick={() => window.open('https://wa.me/5511934079208?text=Olá! Me identifiquei com o perfil e quero saber como vocês podem me ajudar.', '_blank')}
-            >
-              <FaWhatsapp className="mr-3 h-6 w-6 transition-transform group-hover:scale-110" />
-              {t('who-is-it-for.cta')}
-            </Button>
-          </div>
+                <p className="mt-5 text-body-md leading-relaxed text-muted-foreground">
+                  {audience.description}
+                </p>
+
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {audience.examples.map((example) => (
+                    <span
+                      key={example}
+                      className="rounded-sm border border-border/60 bg-muted/40 px-3 py-1 text-xs font-medium text-muted-foreground"
+                    >
+                      {example}
+                    </span>
+                  ))}
+                </div>
+              </SpotlightCard>
+            </Reveal>
+          ))}
         </div>
+
+        {/* Bottom CTA band */}
+        <Reveal delay={0.1} className="mt-10">
+          <div className="gradient-border relative overflow-hidden rounded-lg bg-card/50 p-10 text-center backdrop-blur-xl md:p-14">
+            <div className="pointer-events-none absolute inset-0 bg-grid mask-fade-edges opacity-60" />
+            <div className="relative">
+              <h3 className="font-display text-2xl uppercase text-foreground sm:text-3xl">
+                {t("who-is-it-for.bottom.title")}
+              </h3>
+              <p className="mx-auto mt-4 max-w-2xl text-body-md text-muted-foreground">
+                {t("who-is-it-for.bottom.description")}
+              </p>
+              <div className="mt-8 flex justify-center">
+                <WhatsAppCTA message="Olá! Me identifiquei com o perfil e quero saber como vocês podem me ajudar.">
+                  {t("who-is-it-for.cta")}
+                </WhatsAppCTA>
+              </div>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

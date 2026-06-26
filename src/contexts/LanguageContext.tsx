@@ -13,12 +13,13 @@ const translations: Translations = {
   // Header
   'nav.services': { pt: 'Serviços', en: 'Services' },
   'nav.solutions': { pt: 'Soluções', en: 'Solutions' },
+  'nav.how': { pt: 'Como funciona', en: 'How it works' },
   'nav.cases': { pt: 'Cases', en: 'Cases' },
   'nav.contact': { pt: 'Contato', en: 'Contact' },
   'header.cta': { pt: 'Orçamento Grátis', en: 'Free Quote' },
   
   // Hero
-  'hero.badge': { pt: '🚀 Especialistas em transformação digital', en: '🚀 Digital transformation specialists' },
+  'hero.badge': { pt: 'Especialistas em transformação digital', en: 'Digital transformation specialists' },
   'hero.title': { pt: 'Transformamos o seu negócio em uma', en: 'We transform your business into a' },
   'hero.highlight': { pt: 'marca digital lucrativa', en: 'profitable digital brand' },
   'hero.title.end': { pt: '— sites, apps e automações com IA', en: '— websites, apps and AI automation' },
@@ -29,6 +30,9 @@ const translations: Translations = {
   'hero.cta.quote': { pt: 'Orçamento Grátis', en: 'Free Quote' },
   'hero.cta.whatsapp': { pt: 'Falar no WhatsApp', en: 'Talk on WhatsApp' },
   'hero.cta.transform': { pt: 'Quero transformar meu negócio digitalmente', en: 'I want to digitally transform my business' },
+  'hero.cta.cases': { pt: 'Ver cases reais', en: 'See real cases' },
+  'hero.trust': { pt: '+100 negócios já transformados', en: '+100 businesses transformed' },
+  'tech.label': { pt: 'Tecnologias que dominamos', en: 'Technologies we master' },
   'hero.stats.projects': { pt: 'Projetos Entregues', en: 'Projects Delivered' },
   'hero.stats.experience': { pt: 'Anos de Experiência', en: 'Years of Experience' },
   'hero.stats.satisfaction': { pt: 'Satisfação', en: 'Satisfaction' },

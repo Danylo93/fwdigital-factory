@@ -14,8 +14,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        sans: ['Roboto', 'system-ui', 'sans-serif'],
+        display: ['Montserrat', 'Inter', 'sans-serif'],
+        heading: ['Montserrat', 'Inter', 'sans-serif'],
+        mono: ['Montserrat', 'monospace'],
       },
       fontSize: {
         'xs': ['0.75rem', { lineHeight: '1rem' }],
@@ -47,6 +49,10 @@ export default {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
           glow: "hsl(var(--secondary-glow))",
+        },
+        brand: {
+          DEFAULT: "hsl(var(--accent))",
+          glow: "hsl(var(--accent-glow))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -94,6 +100,7 @@ export default {
       },
       backgroundImage: {
         "gradient-primary": "var(--gradient-primary)",
+        "gradient-brand": "var(--gradient-brand)",
         "gradient-hero": "var(--gradient-hero)",
         "gradient-card": "var(--gradient-card)",
         "gradient-border": "var(--gradient-border)",
@@ -139,6 +146,28 @@ export default {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.5" },
         },
+        "marquee": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
+        "marquee-reverse": {
+          from: { transform: "translateX(-50%)" },
+          to: { transform: "translateX(0)" },
+        },
+        "gradient-x": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+        "shimmer": {
+          to: { backgroundPosition: "-200% 0" },
+        },
+        "border-beam": {
+          "100%": { "offset-distance": "100%" },
+        },
+        "pulse-ring": {
+          "0%": { transform: "scale(0.8)", opacity: "0.6" },
+          "100%": { transform: "scale(2.2)", opacity: "0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -148,6 +177,11 @@ export default {
         "scale-up": "scale-up 0.4s ease-out",
         "slide-up": "slide-up 0.3s ease-out",
         "glow": "glow 2s ease-in-out infinite",
+        "marquee": "marquee var(--marquee-duration, 40s) linear infinite",
+        "marquee-reverse": "marquee-reverse var(--marquee-duration, 40s) linear infinite",
+        "gradient-x": "gradient-x 6s ease infinite",
+        "shimmer": "shimmer 4.5s linear infinite",
+        "pulse-ring": "pulse-ring 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
     },
   },

@@ -4,12 +4,16 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
-import { useState } from "react";
+import { Suspense, lazy, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import LoadingScreen from "@/components/LoadingScreen";
 import Index from "./pages/Index";
-import Admin from "./pages/Admin";
-import NotFound from "./pages/NotFound";
+
+// Code-split routes that are not part of the main landing experience.
+// Keeps heavy deps (jsPDF / html2canvas used by the catalog generator)
+// out of the initial bundle.
+const Admin = lazy(() => import("./pages/Admin"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
@@ -31,16 +35,16 @@ const App = () => {
             {isLoading ? (
               <LoadingScreen onLoadingComplete={handleLoadingComplete} />
             ) : (
-              <>
-                <BrowserRouter>
+              <BrowserRouter>
+                <Suspense fallback={null}>
                   <Routes>
                     <Route path="/" element={<Index />} />
                     <Route path="/admin" element={<Admin />} />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>
-                </BrowserRouter>
-              </>
+                </Suspense>
+              </BrowserRouter>
             )}
           </AnimatePresence>
         </TooltipProvider>

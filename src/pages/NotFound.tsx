@@ -1,5 +1,8 @@
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Aurora from "@/components/Aurora";
 
 const NotFound = () => {
   const location = useLocation();
@@ -9,13 +12,28 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">404</h1>
-        <p className="mb-4 text-xl text-gray-600">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 underline hover:text-blue-700">
-          Return to Home
-        </a>
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-6">
+      <Aurora intensity="soft" />
+      <div className="relative text-center">
+        <p className="font-display text-[7rem] font-bold leading-none text-gradient-brand sm:text-[10rem]">
+          404
+        </p>
+        <h1 className="mt-2 font-heading text-2xl uppercase tracking-tight text-foreground sm:text-3xl">
+          Página não encontrada
+        </h1>
+        <p className="mx-auto mt-3 max-w-md text-body-md text-muted-foreground">
+          O link pode estar quebrado ou a página foi movida.
+        </p>
+        <Button
+          asChild
+          size="lg"
+          className="mt-8 rounded-sm bg-primary font-heading font-bold uppercase tracking-wide text-primary-foreground shadow-glow transition-all hover:-translate-y-0.5 hover:shadow-strong hover:brightness-110"
+        >
+          <Link to="/">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Voltar para o início
+          </Link>
+        </Button>
       </div>
     </div>
   );

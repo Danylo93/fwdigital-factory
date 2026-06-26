@@ -168,54 +168,47 @@ const AIChat = () => {
 
   if (!isOpen) {
     return (
-      <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-40">
+      <div className="group fixed bottom-5 right-5 z-40 sm:bottom-6 sm:right-6">
         <div className="relative">
+          {/* Pulse ring */}
+          <span className="absolute inset-0 -z-10 rounded-md bg-primary/40 animate-pulse-ring" />
           <button
             onClick={() => setIsOpen(true)}
-            className={`glass hover-glass text-primary rounded-2xl p-4 sm:p-5 shadow-glass hover:shadow-glow transition-glass hover-lift flex items-center justify-center group touch-manipulation min-h-[56px] min-w-[56px] border border-primary/20 backdrop-blur-md ${showAutoPrompt ? 'animate-bounce' : 'animate-pulse hover:animate-none'}`}
+            className="flex h-14 w-14 items-center justify-center rounded-md bg-primary text-primary-foreground shadow-glow transition-all duration-300 hover:-translate-y-0.5 hover:shadow-strong"
             aria-label="Abrir chat com IA"
           >
-            <Bot className="h-6 w-6 sm:h-7 sm:w-7 group-hover:scale-110 transition-transform" />
+            <Bot className="h-7 w-7 transition-transform group-hover:scale-110" />
           </button>
 
           {/* Notification dot when auto-prompt is active */}
           {showAutoPrompt && (
-            <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center animate-pulse">
-              <div className="w-2 h-2 bg-white rounded-full"></div>
-            </div>
+            <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-destructive">
+              <span className="h-1.5 w-1.5 rounded-full bg-white" />
+            </span>
           )}
         </div>
 
-        {/* Auto-prompt tooltip */}
-        {showAutoPrompt && (
-          <div className="absolute bottom-full right-0 mb-3 opacity-100 transition-opacity duration-300 pointer-events-none">
-            <div className="glass text-gray-800 dark:text-white text-sm px-4 py-3 rounded-2xl whitespace-nowrap shadow-glass border border-gray-200/20 dark:border-white/20 backdrop-blur-md">
-              {t('chat.title')}
-              <div className="absolute top-full right-6 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-200/20 dark:border-t-white/20"></div>
-            </div>
+        {/* Tooltip / auto-prompt */}
+        <div
+          className={`pointer-events-none absolute bottom-full right-0 mb-3 transition-opacity duration-300 ${
+            showAutoPrompt ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+          }`}
+        >
+          <div className="whitespace-nowrap rounded-2xl border border-border/60 bg-background/90 px-4 py-2.5 text-sm font-medium text-foreground shadow-glass backdrop-blur-xl">
+            {showAutoPrompt ? t("chat.title") : "Chat com IA — tire suas dúvidas"}
           </div>
-        )}
-
-        {/* Regular tooltip */}
-        {!showAutoPrompt && (
-          <div className="absolute bottom-full right-0 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-            <div className="glass text-gray-800 dark:text-white text-sm px-4 py-3 rounded-2xl whitespace-nowrap shadow-glass border border-gray-200/20 dark:border-white/20 backdrop-blur-md">
-              Chat com IA - Tire suas dúvidas
-              <div className="absolute top-full right-6 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-200/20 dark:border-t-white/20"></div>
-            </div>
-          </div>
-        )}
+        </div>
       </div>
     );
   }
 
   return (
-    <div className={`fixed bottom-4 right-4 z-40 transition-all duration-300 ${
-      isMinimized ? 'w-80 h-16' : 'w-80 sm:w-96 h-96 sm:h-[500px]'
+    <div className={`fixed bottom-5 right-5 z-40 transition-all duration-300 ${
+      isMinimized ? 'w-80 h-16' : 'w-[22rem] sm:w-96 h-[28rem] sm:h-[32rem]'
     }`}>
-      <div className="glass rounded-2xl shadow-glass border border-white/10 backdrop-blur-md h-full flex flex-col overflow-hidden">
+      <div className="flex h-full flex-col overflow-hidden rounded-md border border-border/60 bg-background/95 shadow-glass backdrop-blur-xl">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-white/10">
+        <div className="flex items-center justify-between border-b border-border/60 bg-muted/30 p-4">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full bg-gradient-primary flex items-center justify-center">
               <Bot className="h-4 w-4 text-white" />
@@ -257,9 +250,9 @@ const AIChat = () => {
                       {message.isUser ? <User className="h-3 w-3 text-white" /> : <Bot className="h-3 w-3 text-white" />}
                     </div>
                     <div className={`rounded-2xl p-3 ${
-                      message.isUser 
-                        ? 'bg-primary text-primary-foreground' 
-                        : 'glass border border-white/10'
+                      message.isUser
+                        ? 'bg-primary text-primary-foreground'
+                        : 'border border-border/60 bg-muted/50'
                     }`}>
                       <p className="text-sm whitespace-pre-line">{message.text}</p>
                     </div>
@@ -273,7 +266,7 @@ const AIChat = () => {
                     <div className="w-6 h-6 rounded-full bg-gradient-primary flex items-center justify-center">
                       <Bot className="h-3 w-3 text-white" />
                     </div>
-                    <div className="glass border border-white/10 rounded-2xl p-3">
+                    <div className="rounded-2xl border border-border/60 bg-muted/50 p-3">
                       <div className="flex space-x-1">
                         <div className="w-2 h-2 bg-primary rounded-full animate-bounce"></div>
                         <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
@@ -287,7 +280,7 @@ const AIChat = () => {
             </div>
 
             {/* Input */}
-            <div className="p-4 border-t border-white/10 space-y-3">
+            <div className="space-y-3 border-t border-border/60 p-4">
               <div className="flex gap-2">
                 <input
                   type="text"
@@ -295,7 +288,7 @@ const AIChat = () => {
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyDown={handleKeyPress}
                   placeholder={t('chat.placeholder')}
-                  className="flex-1 bg-background/50 border border-white/10 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                  className="flex-1 rounded-xl border border-border/60 bg-muted/40 px-3 py-2 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary/50"
                   disabled={isLoading}
                 />
                 <Button
