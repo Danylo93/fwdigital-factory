@@ -3,9 +3,15 @@
   "configurations": [
     {
       "name": "dev",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["serve.cjs", ".", "8080"],
+      "port": 8080
+    },
+    {
+      "name": "react-legacy",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
-      "port": 8080
+      "port": 5173
     }
   ]
 }

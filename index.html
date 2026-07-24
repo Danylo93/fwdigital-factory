@@ -1,65 +1,1054 @@
 <!doctype html>
-<html lang="en" class="light">
-  <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17691898873"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-17691898873');
-    </script>
+<html lang="pt-BR" class="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17691898873"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17691898873');
+  </script>
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Agência FW Digital - Fábrica de Software | Apps, Sistemas e Sites</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Agência FW Digital — Fábrica de Software | Sites, Apps e Automação com IA</title>
 
-    <!-- Favicon Configuration -->
-    <link rel="icon" type="image/x-icon" href="/fw-logo.ico" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/fw-logo.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/fw-logo.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/fw-logo.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#ed145b" />
+  <link rel="icon" type="image/x-icon" href="assets/brand/favicon.ico" />
+  <link rel="icon" type="image/png" href="assets/brand/fw-logo.png" />
+  <link rel="apple-touch-icon" href="assets/brand/fw-logo.png" />
+  <meta name="theme-color" content="#ed145b" />
 
-    <!-- Dark Theme Script - Prevents flash of light theme -->
-    <script>
-      (function() {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme !== 'light') {
-          document.documentElement.classList.add('dark');
-          if (!savedTheme) {
-            localStorage.setItem('theme', 'dark');
-          }
-        } else {
-          document.documentElement.classList.remove('dark');
-        }
-      })();
-    </script>
+  <meta name="description" content="Fábrica de software especializada em sites profissionais, aplicativos mobile nativos, sistemas personalizados e automação com IA no WhatsApp. Transformamos o seu negócio em uma marca digital lucrativa." />
+  <meta name="author" content="Agência FW Digital" />
 
-    <!-- Modern Typography System -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-    <meta name="description" content="Desenvolvimento de apps mobile, sistemas web, sites profissionais e landing pages. Fábrica de software especializada em soluções digitais inovadoras." />
-    <meta name="author" content="Agência FW Digital" />
-    <link rel="canonical" href="https://fwdigital.com.br" />
+  <meta property="og:title" content="Agência FW Digital — Fábrica de Software" />
+  <meta property="og:description" content="Sites, apps, sistemas e automações com IA que transformam negócios em marcas digitais lucrativas." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/brand/fw-logo.png" />
+  <meta property="og:locale" content="pt_BR" />
 
-    <meta property="og:title" content="Agência FW Digital - Fábrica de Software" />
-    <meta property="og:description" content="Desenvolvimento de apps mobile, sistemas web, sites profissionais e automações com IA. Soluções digitais que transformam negócios." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://fwdigital.com.br" />
-    <meta property="og:image" content="https://fwdigital.com.br/fw-logo.png" />
-    <meta property="og:locale" content="pt_BR" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,700;0,800;0,900;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Agência FW Digital - Fábrica de Software" />
-    <meta name="twitter:description" content="Apps, sistemas web, sites profissionais e automações com IA que transformam negócios." />
-    <meta name="twitter:image" content="https://fwdigital.com.br/fw-logo.png" />
-  </head>
+  <style>
+  /* ============================================================
+     FW Digital — Cinematic Landing (single file)
+     Graphite-black canvas · magenta #ed145b · Montserrat/Roboto
+     ============================================================ */
+  :root{
+    --bg:240 7% 5%;
+    --fg:0 0% 98%;
+    --card:240 7% 8%;
+    --muted:240 7% 13%;
+    --muted-fg:220 9% 64%;
+    --primary:340 86% 53%;
+    --primary-glow:340 92% 66%;
+    --secondary:330 84% 58%;
+    --accent:352 86% 60%;
+    --border:240 7% 15%;
+    --success:150 70% 45%;
+    --warning:40 96% 58%;
+    --radius:.4rem;
+    --header-h:74px;
+    --grad-brand:linear-gradient(100deg,hsl(340 92% 62%),hsl(352 92% 64%));
+    --grad-primary:linear-gradient(135deg,hsl(340 88% 55%),hsl(352 82% 46%));
+    --shadow-glow:0 0 70px hsl(340 92% 55% / .40);
+    --shadow-strong:0 28px 80px hsl(0 0% 0% / .75);
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  ::selection{background:hsl(var(--primary)/.35);color:hsl(var(--fg))}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  html.lenis,html.lenis body{height:auto}
+  .lenis.lenis-smooth{scroll-behavior:auto!important}
+  .lenis.lenis-stopped{overflow:hidden}
+  body{
+    font-family:'Roboto',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    background:hsl(var(--bg));color:hsl(var(--fg));
+    line-height:1.65;overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  a{color:inherit;text-decoration:none}
+  img,canvas,video{display:block;max-width:100%}
+  .font-display{font-family:'Montserrat',sans-serif;font-weight:800;letter-spacing:-.02em;line-height:1.02}
+  .font-heading{font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:-.01em;line-height:1.12}
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  .container{width:100%;max-width:1200px;margin:0 auto;padding:0 clamp(1.1rem,4vw,2rem)}
+  .section{padding:clamp(4.5rem,10vw,8.5rem) 0;position:relative}
+  .text-grad{background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-family:'Montserrat',sans-serif;font-weight:700;
+    font-size:.72rem;text-transform:uppercase;letter-spacing:.22em;color:hsl(var(--primary))}
+  .eyebrow .dot{width:6px;height:6px;border-radius:99px;background:hsl(var(--primary));box-shadow:0 0 12px hsl(var(--primary))}
+  .eyebrow.bordered{border:1px solid hsl(var(--primary)/.3);border-radius:.3rem;padding:.5rem .85rem}
+
+  h2.title{font-family:'Montserrat',sans-serif;font-weight:800;letter-spacing:-.02em;text-transform:uppercase;
+    font-size:clamp(2rem,5.2vw,3.6rem);line-height:1.03;margin:1.1rem 0 0}
+  .lead{color:hsl(var(--muted-fg));font-size:clamp(1rem,1.6vw,1.2rem);max-width:46rem;margin:1.3rem 0 0}
+  .section-head{max-width:52rem}
+  .section-head.center{margin-inline:auto;text-align:center}
+  .section-head.center .lead{margin-inline:auto}
+
+  /* ---- Buttons ---- */
+  .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.65rem;
+    font-family:'Montserrat',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.03em;
+    font-size:.9rem;line-height:1.15;padding:1.05rem 1.7rem;border-radius:.35rem;cursor:pointer;border:1px solid transparent;
+    transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s,color .3s,border-color .3s;text-align:center}
+  .btn svg{width:1.2em;height:1.2em;flex:none}
+  .btn-wa{background:hsl(var(--primary));color:#fff;box-shadow:var(--shadow-glow)}
+  .btn-wa:hover{transform:translateY(-2px);box-shadow:var(--shadow-strong);filter:brightness(1.08)}
+  .btn-light{background:#fff;color:hsl(var(--primary));box-shadow:var(--shadow-strong)}
+  .btn-light:hover{transform:translateY(-2px);background:#fff}
+  .btn-outline{border-color:hsl(var(--primary)/.6);color:hsl(var(--fg));background:transparent;overflow:hidden;z-index:0}
+  .btn-outline::before{content:"";position:absolute;inset:0;z-index:-1;background:hsl(var(--primary));
+    transform:scaleX(0);transform-origin:left center;transition:transform .4s var(--ease)}
+  .btn-outline:hover{color:#fff;border-color:hsl(var(--primary))}
+  .btn-outline:hover::before{transform:scaleX(1)}
+  .btn-block{width:100%}
+
+  /* ---- Cards ---- */
+  .card{position:relative;background:hsl(var(--card)/.55);border:1px solid hsl(var(--border));border-radius:var(--radius);
+    backdrop-filter:blur(10px);overflow:hidden;transition:transform .4s var(--ease),border-color .4s,box-shadow .4s}
+  .card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+    background:radial-gradient(340px circle at var(--mx,50%) var(--my,0%),hsl(var(--primary)/.14),transparent 60%);
+    opacity:0;transition:opacity .4s}
+  .card:hover{transform:translateY(-6px);border-color:hsl(var(--primary)/.4);box-shadow:0 20px 60px hsl(0 0% 0% /.5)}
+  .card:hover::after{opacity:1}
+  .card-pad{padding:clamp(1.5rem,3vw,2.1rem)}
+  .ico{display:flex;align-items:center;justify-content:center;width:3.1rem;height:3.1rem;border-radius:.45rem;
+    background:hsl(var(--muted)/.6);border:1px solid hsl(var(--border));color:hsl(var(--primary))}
+  .ico.solid{background:hsl(var(--primary));color:#fff;border:none;box-shadow:var(--shadow-glow)}
+  .ico svg{width:1.5rem;height:1.5rem}
+  .chip{display:inline-block;border:1px solid hsl(var(--border));background:hsl(var(--muted)/.4);
+    border-radius:.3rem;padding:.34rem .7rem;font-size:.78rem;color:hsl(var(--muted-fg));font-weight:500}
+
+  .bg-grid{background-image:linear-gradient(hsl(0 0% 100% /.04) 1px,transparent 1px),
+    linear-gradient(90deg,hsl(0 0% 100% /.04) 1px,transparent 1px);background-size:60px 60px}
+  .glow-blob{position:absolute;border-radius:99px;filter:blur(120px);opacity:.5;pointer-events:none;z-index:-1}
+
+  /* ============================================================ LOADER */
+  #loader{position:fixed;inset:0;z-index:200;background:hsl(var(--bg));display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:1.4rem;transition:opacity .8s ease,visibility .8s}
+  #loader.done{opacity:0;visibility:hidden}
+  #loader .mark{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.6rem;letter-spacing:-.02em}
+  #loader .bar{width:min(260px,60vw);height:3px;background:hsl(var(--border));border-radius:99px;overflow:hidden}
+  #loader .bar i{display:block;height:100%;width:0;background:var(--grad-brand);transition:width .2s ease}
+  #loader .pct{font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.25em;color:hsl(var(--muted-fg));text-transform:uppercase}
+
+  /* ============================================================ HEADER */
+  header{position:fixed;inset:0 0 auto;z-index:100;padding:.8rem clamp(1rem,4vw,2rem)}
+  .nav{max-width:1200px;margin:0 auto;height:calc(var(--header-h) - 18px);display:flex;align-items:center;
+    justify-content:space-between;gap:1rem;padding:0 .5rem 0 .9rem;border-radius:.9rem;border:1px solid transparent;
+    transition:background .35s,border-color .35s,box-shadow .35s,backdrop-filter .35s}
+  header.scrolled .nav{background:hsl(var(--bg)/.72);border-color:hsl(var(--border));
+    box-shadow:0 12px 40px hsl(0 0% 0%/.4);backdrop-filter:blur(16px)}
+  .brand{display:flex;align-items:center;gap:.6rem;font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.2rem}
+  .brand img{width:34px;height:34px;transition:transform .3s}
+  .brand:hover img{transform:rotate(4deg) scale(1.08)}
+  .nav-links{display:flex;align-items:center;gap:.2rem}
+  .nav-links a{position:relative;padding:.55rem .85rem;font-family:'Montserrat',sans-serif;font-weight:700;
+    font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:hsl(var(--muted-fg));transition:color .25s}
+  .nav-links a:hover,.nav-links a.active{color:hsl(var(--fg))}
+  .nav-links a.active::after{content:"";position:absolute;left:.85rem;right:.85rem;bottom:0;height:2px;
+    border-radius:99px;background:hsl(var(--primary))}
+  .nav-cta{display:flex;align-items:center;gap:.6rem}
+  .nav-cta .btn{padding:.7rem 1.2rem;font-size:.74rem}
+  .burger{display:none;background:none;border:none;color:hsl(var(--fg));cursor:pointer;padding:.5rem}
+  .burger svg{width:26px;height:26px}
+  #mobileMenu{display:none}
+
+  /* ============================================================ HERO / CINEMA */
+  .hero{position:relative;height:100vh;min-height:600px;width:100%;overflow:hidden;background:hsl(var(--bg))}
+  .hero-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0}
+  #cinema,#heroVideo{filter:saturate(1.06) contrast(1.04)}
+  html.mode-cinema #cinema{opacity:1}
+  html.mode-video #heroVideo{opacity:1}
+  html.mode-static #heroPoster{opacity:1}
+  .hero-scrim{position:absolute;inset:0;pointer-events:none;z-index:2;
+    background:
+      radial-gradient(135% 105% at 50% 42%,transparent 22%,hsl(var(--bg)/.5) 68%,hsl(var(--bg)) 100%),
+      linear-gradient(to top,hsl(var(--bg)) 3%,transparent 34%),
+      linear-gradient(to bottom,hsl(var(--bg)/.62) 0%,transparent 20%)}
+  .hero-grain{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:.5;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:150px 150px}
+  .hero-copy{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;text-align:center;padding:calc(var(--header-h) + .5rem) 1.2rem 3.4rem;will-change:transform,opacity}
+  .hero-copy .wrap{max-width:54rem;display:flex;flex-direction:column;align-items:center}
+  .hero-h1{font-family:'Montserrat',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;
+    line-height:1.04;font-size:clamp(1.7rem,4.15vw,3.3rem);margin:1rem 0 0}
+  .hero-h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .06em}
+  .hero-h1 .w>span{display:inline-block;will-change:transform}
+  .hero-tail{display:block;font-family:'Montserrat',sans-serif;font-weight:700;text-transform:none;letter-spacing:-.01em;
+    font-size:clamp(.95rem,2vw,1.4rem);color:hsl(var(--muted-fg));margin-top:.7rem}
+  .hero-sub{color:hsl(0 0% 92%);font-size:clamp(.98rem,1.5vw,1.2rem);max-width:38rem;margin:1.15rem 0 0;
+    text-shadow:0 2px 30px hsl(var(--bg))}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;margin-top:1.7rem}
+  .hero-trust{display:flex;align-items:center;gap:.7rem;color:hsl(var(--muted-fg));font-size:.88rem;margin-top:1.35rem}
+  .avatars{display:flex}
+  .avatars span{width:26px;height:26px;border-radius:99px;border:2px solid hsl(var(--bg));margin-left:-8px}
+  .avatars span:first-child{margin-left:0}
+  .hero-metrics{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.55rem 1rem;margin-top:1.7rem;
+    font-size:.88rem;color:hsl(0 0% 82%)}
+  .hero-metrics span{white-space:nowrap}
+  .hero-metrics b{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.12rem;
+    background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;color:transparent;margin-right:.1rem}
+  .hero-metrics>i{width:4px;height:4px;border-radius:99px;background:hsl(var(--primary)/.7)}
+  .scroll-cue{position:absolute;left:50%;bottom:1.4rem;transform:translateX(-50%);z-index:6;
+    display:flex;flex-direction:column;align-items:center;gap:.5rem;color:hsl(var(--muted-fg));font-size:.62rem;
+    text-transform:uppercase;letter-spacing:.2em;font-family:'Montserrat',sans-serif}
+  .scroll-cue .mouse{width:22px;height:34px;border:1px solid hsl(var(--border));border-radius:99px;display:flex;justify-content:center;padding-top:6px}
+  .scroll-cue .mouse i{width:5px;height:5px;border-radius:99px;background:hsl(var(--primary));animation:cue 1.6s infinite}
+  @keyframes cue{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(9px);opacity:.3}}
+
+  /* ============================================================ TECH MARQUEE */
+  .tech{border-block:1px solid hsl(var(--border));background:hsl(var(--muted)/.2);padding:2.6rem 0}
+  .tech p.lbl{text-align:center;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.72rem;
+    text-transform:uppercase;letter-spacing:.24em;color:hsl(var(--muted-fg));margin-bottom:1.6rem}
+  .marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .marquee-track{display:flex;gap:.8rem;width:max-content;animation:scrollx 42s linear infinite}
+  .marquee:hover .marquee-track{animation-play-state:paused}
+  @keyframes scrollx{to{transform:translateX(-50%)}}
+  .tech-item{display:flex;align-items:center;gap:.6rem;border:1px solid hsl(var(--border));background:hsl(var(--card)/.4);
+    border-radius:.35rem;padding:.7rem 1.15rem;color:hsl(var(--muted-fg));white-space:nowrap;transition:color .25s,border-color .25s}
+  .tech-item:hover{color:hsl(var(--fg));border-color:hsl(var(--primary)/.5)}
+  .tech-item svg{width:1.15rem;height:1.15rem}
+  .tech-item span{font-size:.9rem;font-weight:500}
+
+  /* ============================================================ SERVICE STORY SECTIONS */
+  .story{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+  .story.rev .story-visual{order:-1}
+  .feat-list{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.8rem}
+  .feat-list .chip{display:inline-flex;align-items:center;gap:.45rem;font-weight:500;color:hsl(var(--fg)/.85)}
+  .feat-list .chip svg{width:.95rem;height:.95rem;color:hsl(var(--primary))}
+  .story-cta{margin-top:2rem}
+  .visual-card{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid hsl(var(--border));
+    box-shadow:var(--shadow-strong);aspect-ratio:16/11;background:hsl(var(--card))}
+  .visual-card img{width:100%;height:100%;object-fit:cover;opacity:.92}
+  .visual-card .tag{position:absolute;left:1rem;bottom:1rem;z-index:2;display:inline-flex;align-items:center;gap:.5rem;
+    background:hsl(var(--bg)/.7);backdrop-filter:blur(8px);border:1px solid hsl(var(--border));border-radius:.35rem;
+    padding:.5rem .85rem;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em}
+  .visual-card .tag .dot{width:7px;height:7px;border-radius:99px;background:hsl(var(--success));box-shadow:0 0 10px hsl(var(--success))}
+  .visual-card .grad{position:absolute;inset:0;background:linear-gradient(120deg,hsl(var(--primary)/.18),transparent 55%);z-index:1}
+  /* faux browser / phone / dashboard visuals */
+  .mock{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .mock-browser{width:82%;border-radius:.6rem;overflow:hidden;border:1px solid hsl(var(--border));background:hsl(240 7% 10%);box-shadow:var(--shadow-strong)}
+  .mock-browser .bar{display:flex;gap:.4rem;padding:.6rem .8rem;background:hsl(240 7% 13%);border-bottom:1px solid hsl(var(--border))}
+  .mock-browser .bar i{width:9px;height:9px;border-radius:99px;background:hsl(var(--border))}
+  .mock-browser .bar i:first-child{background:hsl(var(--primary)/.7)}
+  .mock-body{padding:1.1rem;display:grid;gap:.6rem}
+  .mock-body .h{height:14px;border-radius:4px;background:var(--grad-brand);width:60%}
+  .mock-body .l{height:9px;border-radius:4px;background:hsl(var(--border))}
+  .mock-body .l.s{width:80%}.mock-body .l.xs{width:45%}
+  .mock-body .row{display:flex;gap:.6rem;margin-top:.3rem}
+  .mock-body .row .b{flex:1;height:46px;border-radius:6px;background:hsl(var(--muted)/.7);border:1px solid hsl(var(--border))}
+  .mock-chat{width:70%;max-width:270px;border-radius:1rem;overflow:hidden;border:1px solid hsl(var(--border));background:hsl(240 7% 9%);box-shadow:var(--shadow-strong)}
+  .mock-chat .top{display:flex;align-items:center;gap:.5rem;padding:.7rem .9rem;background:hsl(150 45% 20%/.5);border-bottom:1px solid hsl(var(--border))}
+  .mock-chat .top .av{width:26px;height:26px;border-radius:99px;background:hsl(var(--success))}
+  .mock-chat .top .nm{height:8px;width:70px;border-radius:4px;background:hsl(var(--border))}
+  .mock-chat .msgs{padding:.9rem;display:flex;flex-direction:column;gap:.6rem}
+  .bub{max-width:78%;padding:.6rem .7rem;border-radius:.7rem;font-size:0;line-height:0}
+  .bub .ln{height:7px;border-radius:4px;background:currentColor;opacity:.5}
+  .bub.in{align-self:flex-start;background:hsl(var(--muted));color:#fff;border-bottom-left-radius:.2rem}
+  .bub.out{align-self:flex-end;background:hsl(150 55% 30%);color:#fff;border-bottom-right-radius:.2rem}
+  .bub .ln+.ln{margin-top:5px}
+  .mock-phone{width:52%;max-width:210px;aspect-ratio:9/18.5;border-radius:1.4rem;border:6px solid hsl(240 7% 16%);
+    background:hsl(240 7% 9%);overflow:hidden;box-shadow:var(--shadow-strong);position:relative}
+  .mock-phone .scr{position:absolute;inset:0;padding:1.4rem .8rem .8rem;display:grid;gap:.5rem;align-content:start}
+  .mock-phone .hd{height:12px;width:55%;border-radius:4px;background:var(--grad-brand)}
+  .mock-phone .cardm{height:60px;border-radius:8px;background:hsl(var(--muted)/.7);border:1px solid hsl(var(--border))}
+  .mock-phone .bars{display:flex;gap:5px;align-items:flex-end;height:54px;margin-top:.3rem}
+  .mock-phone .bars i{flex:1;border-radius:3px 3px 0 0;background:var(--grad-primary)}
+  .notif{position:absolute;right:.7rem;top:.7rem;z-index:3;background:hsl(var(--bg)/.85);backdrop-filter:blur(6px);
+    border:1px solid hsl(var(--border));border-radius:.5rem;padding:.5rem .65rem;display:flex;align-items:center;gap:.5rem;box-shadow:var(--shadow-strong)}
+  .notif .d{width:8px;height:8px;border-radius:99px;background:hsl(var(--success));box-shadow:0 0 8px hsl(var(--success))}
+  .notif .t{height:7px;width:64px;border-radius:4px;background:hsl(var(--border))}
+
+  /* ============================================================ STEPS / GRID CARDS */
+  .grid{display:grid;gap:1.3rem}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  .grid-2{grid-template-columns:repeat(2,1fr)}
+  .steps{position:relative}
+  .step .num{font-family:'Montserrat',sans-serif;font-weight:800;font-size:3.4rem;color:hsl(var(--fg)/.08);line-height:1}
+  .step h3{font-family:'Montserrat',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;
+    font-size:1.3rem;margin:1.2rem 0 .6rem}
+  .step p,.svc p{color:hsl(var(--muted-fg))}
+  .svc h4{font-family:'Montserrat',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.02rem;margin:1.1rem 0 .5rem}
+  .cta-center{display:flex;justify-content:center;margin-top:2.6rem}
+
+  /* offer */
+  .offer{display:grid;grid-template-columns:2fr 3fr;gap:1.3rem}
+  .flow{display:flex;flex-direction:column;gap:1.8rem;margin-top:1.8rem}
+  .flow .item{display:flex;gap:1rem;position:relative}
+  .flow .item .n{flex:none;width:2.6rem;height:2.6rem;border-radius:.45rem;background:hsl(var(--primary));color:#fff;
+    display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:800;box-shadow:var(--shadow-glow)}
+  .flow .item h4{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.1rem}
+  .flow .item p{color:hsl(var(--muted-fg));font-size:.92rem;margin-top:.3rem}
+  .flow .item:not(:last-child)::before{content:"";position:absolute;left:1.28rem;top:2.9rem;bottom:-1.5rem;width:1px;
+    background:linear-gradient(hsl(var(--primary)/.5),transparent)}
+
+  /* audience */
+  .aud .head{display:flex;gap:1.1rem;align-items:flex-start}
+  .aud .ico.grad{background:var(--grad-primary);color:#fff;border:none;box-shadow:var(--shadow-strong)}
+  .aud h3{font-family:'Montserrat',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.2rem}
+  .aud .sub{color:hsl(var(--primary));font-size:.88rem;font-weight:500}
+  .aud .exs{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.3rem}
+
+  /* results */
+  .metric{display:flex;flex-direction:column;gap:1.1rem}
+  .metric .top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+  .metric .big{font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem);
+    background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;color:transparent;text-align:right;line-height:1}
+  .metric .big+span{font-size:.72rem;color:hsl(var(--muted-fg));display:block;text-align:right}
+  .ba{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;border:1px solid hsl(var(--border));background:hsl(var(--muted)/.3);
+    border-radius:.4rem;padding:.85rem}
+  .ba .before{color:hsl(var(--muted-fg));text-decoration:line-through;text-decoration-color:hsl(var(--accent)/.6);font-size:.88rem}
+  .ba .after{color:hsl(var(--fg));font-weight:600;font-size:.9rem}
+  .ba svg{width:1rem;height:1rem;color:hsl(var(--primary));flex:none}
+  .quote{display:flex;flex-direction:column;height:100%}
+  .quote .stars{display:flex;gap:2px;margin:.7rem 0}
+  .quote .stars svg{width:1rem;height:1rem;color:hsl(var(--warning));fill:hsl(var(--warning))}
+  .quote blockquote{font-style:italic;color:hsl(var(--muted-fg));flex:1;line-height:1.6}
+  .quote .who{border-top:1px solid hsl(var(--border));margin-top:1.3rem;padding-top:1.1rem}
+  .quote .who b{font-family:'Montserrat',sans-serif;font-weight:700}
+  .quote .who span{display:block;color:hsl(var(--muted-fg));font-size:.85rem}
+  .quote .res{display:inline-block;margin-top:.8rem;background:hsl(var(--success)/.12);color:hsl(var(--success));
+    border-radius:.3rem;padding:.3rem .7rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+
+  /* team / especialistas */
+  .team-grid{display:flex;justify-content:center;gap:1.3rem;max-width:46rem;margin:3.2rem auto 0}
+  .team-card{overflow:hidden;padding:0;max-width:22rem;width:100%}
+  .team-card .ph{position:relative;aspect-ratio:1;overflow:hidden}
+  .team-card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+  .team-card:hover .ph img{transform:scale(1.04)}
+  .team-card .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,hsl(var(--card)) 2%,transparent 40%),linear-gradient(120deg,hsl(var(--primary)/.12),transparent 55%)}
+  .team-card figcaption{padding:1.1rem 1.35rem 1.35rem;text-align:center}
+  .team-card figcaption b{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.15rem;display:block}
+  .team-card figcaption span{color:hsl(var(--primary));font-size:.85rem;font-weight:500}
+
+  /* final cta */
+  .final-wrap{position:relative;border-radius:1rem;overflow:hidden;border:1px solid hsl(0 0% 100%/.1);
+    background:var(--grad-primary);padding:clamp(2.5rem,6vw,5rem) clamp(1.4rem,5vw,3.5rem);text-align:center;color:#fff}
+  .final-wrap .bg-grid{position:absolute;inset:0;opacity:.18;mix-blend-mode:overlay}
+  .final-wrap .b1{position:absolute;left:-6rem;top:-6rem;width:18rem;height:18rem;background:#fff3;border-radius:99px;filter:blur(60px)}
+  .final-wrap .b2{position:absolute;right:-6rem;bottom:-6rem;width:20rem;height:20rem;background:#fff2;border-radius:99px;filter:blur(70px)}
+  .final-wrap .inner{position:relative;max-width:52rem;margin:0 auto}
+  .final-wrap h2{font-family:'Montserrat',sans-serif;font-weight:800;text-transform:uppercase;
+    font-size:clamp(2rem,5vw,3.4rem);line-height:1.04;margin-top:1.2rem}
+  .final-feats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.6rem;text-align:left}
+  .final-feats .f{border:1px solid #ffffff26;background:#ffffff1a;border-radius:.5rem;padding:1.3rem;backdrop-filter:blur(8px)}
+  .final-feats .f .ico{background:#ffffff26;color:#fff;border:none}
+  .final-feats .f h3{font-family:'Montserrat',sans-serif;font-weight:700;text-transform:uppercase;font-size:1rem;margin:1rem 0 .4rem}
+  .final-feats .f p{color:#ffffffcc;font-size:.88rem}
+  .final-trust{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;justify-content:center;margin-top:1.6rem;color:#fff;opacity:.9;font-size:.9rem}
+  .final-trust span{display:inline-flex;align-items:center;gap:.5rem}
+  .final-trust span::before{content:"";width:6px;height:6px;border-radius:99px;background:#fff}
+  .final-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.8rem;border-top:1px solid #ffffff26;padding-top:2rem}
+  .final-stats b{display:block;font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(1.5rem,3.5vw,2.2rem)}
+  .final-stats i{font-style:normal;font-size:.82rem;color:#fff;opacity:.75}
+
+  /* ============================================================ FOOTER */
+  footer{border-top:1px solid hsl(var(--border));background:hsl(var(--muted)/.15);padding:clamp(3rem,6vw,4.5rem) 0 2.2rem;position:relative}
+  .foot{display:grid;grid-template-columns:2fr 1.2fr 1fr 1.5fr;gap:2.5rem}
+  .foot .desc{color:hsl(var(--muted-fg));margin-top:1.2rem;max-width:22rem;font-size:.92rem}
+  .socials{display:flex;gap:.7rem;margin-top:1.4rem}
+  .socials a{width:2.5rem;height:2.5rem;border-radius:.4rem;border:1px solid hsl(var(--border));background:hsl(var(--card)/.5);
+    display:flex;align-items:center;justify-content:center;color:hsl(var(--muted-fg));transition:all .3s}
+  .socials a:hover{color:hsl(var(--primary));border-color:hsl(var(--primary)/.5);transform:translateY(-2px)}
+  .socials svg{width:1.15rem;height:1.15rem}
+  footer h4{font-family:'Montserrat',sans-serif;font-weight:700;text-transform:uppercase;font-size:.85rem;letter-spacing:.05em}
+  footer ul{list-style:none;margin-top:1.3rem;display:flex;flex-direction:column;gap:.8rem}
+  footer ul a,footer ul button{color:hsl(var(--muted-fg));font-size:.9rem;background:none;border:none;cursor:pointer;
+    text-align:left;font-family:inherit;transition:color .25s;display:inline-flex;align-items:center;gap:.55rem}
+  footer ul a:hover,footer ul button:hover{color:hsl(var(--primary))}
+  footer ul svg{width:1rem;height:1rem;color:hsl(var(--primary));flex:none}
+  .foot-bottom{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;
+    border-top:1px solid hsl(var(--border));margin-top:3rem;padding-top:1.8rem;color:hsl(var(--muted-fg));font-size:.85rem}
+
+  /* ============================================================ WHATSAPP FLOAT */
+  .wa-float{position:fixed;right:clamp(1rem,3vw,1.6rem);bottom:clamp(1rem,3vw,1.6rem);z-index:90;
+    width:58px;height:58px;border-radius:1.1rem;display:flex;align-items:center;justify-content:center;
+    background:hsl(var(--card)/.7);backdrop-filter:blur(12px);border:1px solid hsl(150 60% 45%/.3);
+    color:hsl(150 70% 55%);box-shadow:0 12px 40px hsl(0 0% 0%/.4);transition:transform .3s,box-shadow .3s,opacity .4s;
+    opacity:0;transform:translateY(20px) scale(.8);pointer-events:none}
+  .wa-float.show{opacity:1;transform:none;pointer-events:auto;animation:wapulse 2.6s ease-in-out infinite}
+  .wa-float:hover{transform:scale(1.08);box-shadow:var(--shadow-glow);animation:none}
+  .wa-float svg{width:28px;height:28px}
+  @keyframes wapulse{0%,100%{box-shadow:0 12px 40px hsl(0 0% 0%/.4)}50%{box-shadow:0 0 0 8px hsl(150 70% 45%/.12),0 12px 40px hsl(0 0% 0%/.4)}}
+
+  /* ============================================================ REVEAL */
+  [data-reveal]{opacity:0;transform:translateY(34px)}
+  html.no-anim [data-reveal]{opacity:1;transform:none}
+
+  /* ============================================================ RESPONSIVE */
+  @media (max-width:960px){
+    .story,.offer{grid-template-columns:1fr}
+    .story.rev .story-visual{order:0}
+    .grid-3{grid-template-columns:1fr}
+    .grid-2{grid-template-columns:1fr}
+    .final-feats{grid-template-columns:1fr}
+    .foot{grid-template-columns:1fr 1fr}
+    .nav-links{display:none}
+    .nav-cta .btn-outline{display:none}
+    .burger{display:block}
+    .final-stats{grid-template-columns:repeat(2,1fr)}
+    .visual-card{aspect-ratio:16/10}
+    .mock-browser{width:90%}
+    .mock-chat{width:78%;max-width:300px}
+    .mock-phone{width:58%;max-width:230px}
+  }
+  @media (max-width:768px){
+    .section{padding:clamp(3rem,8vw,5.5rem) 0}
+    h2.title{font-size:clamp(1.6rem,5vw,2.4rem)}
+    .lead{font-size:clamp(.92rem,1.4vw,1.08rem)}
+    .hero{min-height:100svh}
+    .hero-h1{font-size:clamp(1.4rem,5.5vw,2.2rem)}
+    .hero-sub{font-size:clamp(.9rem,1.3vw,1.05rem);max-width:28rem}
+    .hero-tail{font-size:clamp(.88rem,1.8vw,1.1rem)}
+    .hero-metrics{gap:.4rem .7rem;font-size:.8rem}
+    .hero-metrics b{font-size:.96rem}
+    .hero-copy{padding:calc(var(--header-h) + .5rem) 1rem 2.5rem}
+    .scroll-cue{display:none}
+    .offer{grid-template-columns:1fr}
+    .offer .grid-2{grid-template-columns:1fr}
+    .aud .head{flex-direction:column;gap:.7rem}
+    .visual-card{aspect-ratio:4/3}
+    .story-cta .btn{width:100%;text-align:center}
+    .card-pad{padding:clamp(1.1rem,3vw,1.6rem)}
+    .step h3{font-size:1.1rem}
+    .step .num{font-size:2.6rem}
+    .svc h4{font-size:.92rem}
+    .final-wrap{padding:clamp(2rem,5vw,3rem) clamp(1rem,4vw,2rem)}
+    .final-wrap h2{font-size:clamp(1.5rem,4.5vw,2.2rem)}
+    .final-stats{grid-template-columns:repeat(2,1fr);gap:.7rem}
+    .final-stats b{font-size:clamp(1.2rem,3vw,1.6rem)}
+    .final-stats i{font-size:.72rem}
+    .final-trust{font-size:.8rem;gap:.5rem 1rem}
+    .foot{grid-template-columns:1fr 1fr;gap:2rem}
+    footer h4{font-size:.78rem}
+    footer ul{gap:.6rem}
+    footer ul a,footer ul button{font-size:.85rem}
+    .foot-bottom{font-size:.78rem;flex-direction:column;text-align:center;gap:.5rem}
+    .btn{font-size:.82rem;padding:.9rem 1.4rem}
+    .btn-wa svg{width:1em;height:1em}
+    .nav-cta .btn{font-size:.7rem;padding:.6rem 1rem}
+    .wa-float{width:52px;height:52px;border-radius:1rem}
+    .wa-float svg{width:24px;height:24px}
+  }
+  @media (max-width:560px){
+    .container{padding:0 clamp(.8rem,3.5vw,1.2rem)}
+    .hero-stats{grid-template-columns:repeat(2,1fr);max-width:22rem}
+    .foot{grid-template-columns:1fr}
+    .hero-cta{flex-direction:column;width:100%;max-width:22rem}
+    .hero-cta .btn{width:100%}
+    .final-stats{grid-template-columns:repeat(2,1fr)}
+    .hero{min-height:100svh;min-height:-webkit-fill-available}
+    .hero-h1{font-size:clamp(1.25rem,6.5vw,1.8rem)}
+    .hero-sub{font-size:.9rem;margin-top:.8rem}
+    .hero-tail{font-size:.85rem}
+    .hero-trust{font-size:.78rem;flex-wrap:wrap;justify-content:center}
+    .hero-metrics{font-size:.75rem;gap:.3rem .5rem}
+    .hero-metrics b{font-size:.88rem}
+    .hero-metrics>i{width:3px;height:3px}
+    .hero-copy .wrap{padding:0 .2rem}
+    .eyebrow{font-size:.65rem;letter-spacing:.15em;gap:.4rem}
+    .eyebrow.bordered{padding:.4rem .65rem}
+    .eyebrow .dot{width:5px;height:5px}
+    h2.title{font-size:clamp(1.35rem,6vw,1.9rem)}
+    .lead{font-size:.9rem}
+    .btn{font-size:.78rem;padding:.85rem 1.2rem;gap:.5rem}
+    .feat-list{gap:.45rem}
+    .feat-list .chip{font-size:.72rem;padding:.25rem .55rem}
+    .chip{font-size:.72rem;padding:.28rem .55rem}
+    .card-pad{padding:clamp(1rem,3vw,1.4rem)}
+    .step h3{font-size:1rem;margin:.8rem 0 .4rem}
+    .step .num{font-size:2.2rem}
+    .step p,.svc p{font-size:.88rem}
+    .svc h4{font-size:.88rem}
+    .flow .item h4{font-size:.95rem}
+    .flow .item p{font-size:.85rem}
+    .metric .big{font-size:clamp(1.5rem,6vw,2rem)}
+    .ba{padding:.7rem;gap:.4rem;font-size:.82rem}
+    .ba .before{font-size:.78rem}
+    .ba .after{font-size:.82rem}
+    .quote blockquote{font-size:.88rem}
+    .quote .who b{font-size:.9rem}
+    .quote .who span{font-size:.78rem}
+    .final-feats .f{padding:1rem}
+    .final-feats .f h3{font-size:.88rem}
+    .final-feats .f p{font-size:.8rem}
+    .final-wrap h2{font-size:clamp(1.3rem,5.5vw,1.8rem)}
+    .final-wrap p{font-size:.92rem!important}
+    .final-trust{flex-direction:column;align-items:center;gap:.4rem}
+    .final-stats{gap:.5rem}
+    .foot .desc{font-size:.85rem}
+    .socials a{width:2.2rem;height:2.2rem}
+    .socials svg{width:1rem;height:1rem}
+    footer ul a,footer ul button{font-size:.82rem}
+    .foot-bottom span{font-size:.75rem}
+    .nav-cta .btn{font-size:.65rem;padding:.55rem .85rem}
+    .brand{font-size:1.05rem;gap:.45rem}
+    .brand img{width:28px;height:28px}
+    .tech p.lbl{font-size:.65rem}
+    .tech-item{padding:.55rem .85rem}
+    .tech-item span{font-size:.78rem}
+    .aud h3{font-size:1rem}
+    .aud .sub{font-size:.8rem}
+    .aud .exs{gap:.4rem}
+    .team-card{max-width:18rem}
+  }
+  @media (max-width:380px){
+    .container{padding:0 .7rem}
+    .hero-h1{font-size:clamp(1.1rem,7vw,1.5rem)}
+    .hero-sub{font-size:.82rem}
+    .hero-tail{font-size:.78rem}
+    .hero-cta{max-width:18rem}
+    h2.title{font-size:clamp(1.2rem,6.5vw,1.6rem)}
+    .btn{font-size:.72rem;padding:.75rem 1rem}
+    .final-stats{grid-template-columns:1fr 1fr}
+    .final-stats b{font-size:clamp(1rem,3vw,1.3rem)}
+    .nav-cta .btn{font-size:.6rem;padding:.5rem .7rem}
+    .brand{font-size:.95rem}
+    .brand img{width:24px;height:24px}
+  }
+  /* Mobile menu panel */
+  #mobileMenu.open{display:block;position:fixed;inset:var(--header-h) .8rem auto;z-index:99;
+    background:hsl(var(--bg)/.95);backdrop-filter:blur(18px);border:1px solid hsl(var(--border));border-radius:.9rem;
+    padding:.6rem;box-shadow:var(--shadow-strong)}
+  #mobileMenu a{display:block;padding:.9rem 1rem;border-left:2px solid transparent;font-family:'Montserrat',sans-serif;
+    font-weight:700;text-transform:uppercase;font-size:.82rem;letter-spacing:.08em;color:hsl(var(--muted-fg))}
+  #mobileMenu a:hover{color:hsl(var(--fg));border-color:hsl(var(--primary));background:hsl(var(--primary)/.08)}
+
+  /* Short viewports (laptops with toolbars, landscape) — keep the hero compact */
+  @media (min-width:1000px) and (max-height:730px){
+    .hero-h1{font-size:clamp(1.5rem,2.9vw,2.55rem);margin-top:.65rem}
+    .hero-tail{font-size:1.05rem;margin-top:.4rem}
+    .hero-sub{margin-top:.75rem;font-size:1rem}
+    .hero-cta{margin-top:1.15rem}
+    .hero-trust{margin-top:.85rem}
+    .hero-metrics{margin-top:1rem}
+    .hero-copy{padding-bottom:2.2rem}
+    .scroll-cue{display:none}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto!important}
+    .marquee-track{animation:none;transform:none}
+    .wa-float.show{animation:none}
+    .scroll-cue .mouse i{animation:none}
+  }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== LOADER ==================== -->
+  <div id="loader">
+    <div class="mark">FW<span class="text-grad">Digital</span></div>
+    <div class="bar"><i id="loadBar"></i></div>
+    <div class="pct" id="loadPct">Carregando experiência · 0%</div>
+  </div>
+
+  <!-- ==================== HEADER ==================== -->
+  <header id="header">
+    <nav class="nav">
+      <a href="#inicio" class="brand" data-nav aria-label="Agência FW Digital">
+        <img src="assets/brand/fw-logo.png" alt="Agência FW Digital" />
+        <span>FW<span class="text-grad">Digital</span></span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#sites" data-nav>Sites</a>
+        <a href="#automacao" data-nav>Automação IA</a>
+        <a href="#apps" data-nav>Apps</a>
+        <a href="#metodologia" data-nav>Metodologia</a>
+        <a href="#cases" data-nav>Cases</a>
+        <a href="#contato" data-nav>Contato</a>
+      </div>
+      <div class="nav-cta">
+        <a class="btn btn-wa" data-wa data-msg="Olá! Gostaria de um orçamento com a Agência FW Digital." href="#" target="_blank" rel="noopener">Orçamento Grátis</a>
+        <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </nav>
+    <div id="mobileMenu">
+      <a href="#sites" data-nav>Sites</a>
+      <a href="#automacao" data-nav>Automação com IA</a>
+      <a href="#apps" data-nav>Apps & Sistemas</a>
+      <a href="#metodologia" data-nav>Metodologia</a>
+      <a href="#oferta" data-nav>Oferta</a>
+      <a href="#cases" data-nav>Cases</a>
+      <a href="#contato" data-nav>Contato</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==================== HERO / CINEMA ==================== -->
+    <section id="inicio" class="hero">
+      <canvas id="cinema" class="hero-media"></canvas>
+      <video id="heroVideo" class="hero-media" muted loop playsinline preload="none" poster="assets/cinema/poster/hero.jpg">
+        <source src="assets/cinema/hero.mp4" type="video/mp4" />
+      </video>
+      <img id="heroPoster" class="hero-media" src="assets/cinema/poster/hero.jpg" alt="Estúdio de desenvolvimento da FW Digital" />
+      <div class="hero-scrim"></div>
+      <div class="hero-grain"></div>
+
+      <div class="hero-copy" id="heroCopy">
+        <div class="wrap">
+          <span class="eyebrow bordered" data-beat="eyebrow"><span class="dot"></span>Especialistas em transformação digital</span>
+          <h1 class="hero-h1" id="heroH1" aria-label="Transformamos o seu negócio em uma marca digital lucrativa">
+            <span class="w"><span>Transformamos</span></span>
+            <span class="w"><span>o</span></span>
+            <span class="w"><span>seu</span></span>
+            <span class="w"><span>negócio</span></span>
+            <span class="w"><span>em</span></span>
+            <span class="w"><span>uma</span></span>
+            <span class="w"><span class="text-grad">marca</span></span>
+            <span class="w"><span class="text-grad">digital</span></span>
+            <span class="w"><span class="text-grad">lucrativa</span></span>
+            <span class="hero-tail" data-beat="tail">— sites, apps e automações com IA</span>
+          </h1>
+          <p class="hero-sub" data-beat="sub">Soluções completas para empreendedores que querem vender mais com presença digital profissional.</p>
+          <div class="hero-cta" data-beat="cta">
+            <a class="btn btn-wa" data-wa data-msg="Olá! Quero transformar meu negócio digitalmente com a FW Digital." href="#" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1s-.5-.1-.7.2-.8 1-.9 1.1-.3.2-.6.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L8.9 7c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3A2.8 2.8 0 0 0 6.2 9c0 1.2.9 2.4 1 2.6s1.7 2.7 4.2 3.8a14 14 0 0 0 1.4.5 3.4 3.4 0 0 0 1.5.1c.5-.1 1.7-.7 1.9-1.4s.2-1.2.2-1.3-.2-.2-.4-.3zM12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg>
+              Quero transformar meu negócio
+            </a>
+            <a class="btn btn-outline" href="#cases" data-nav>Ver cases reais →</a>
+          </div>
+          <div class="hero-trust" data-beat="trust">
+            <span class="avatars"><span style="background:hsl(340 86% 53%)"></span><span style="background:hsl(330 84% 58%)"></span><span style="background:hsl(352 86% 60%)"></span></span>
+            <span>+100 negócios já transformados</span>
+          </div>
+          <div class="hero-metrics" data-beat="stats">
+            <span><b>100+</b> Projetos</span><i></i>
+            <span><b>98%</b> Satisfação</span><i></i>
+            <span><b>24/7</b> Suporte</span><i></i>
+            <span><b>10+</b> Anos</span>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-cue" id="scrollCue"><span class="mouse"><i></i></span>Role para descobrir</div>
+    </section>
+
+    <!-- ==================== TECH MARQUEE ==================== -->
+    <section class="tech" id="tecnologias">
+      <div class="container">
+        <p class="lbl">Tecnologias que dominamos</p>
+      </div>
+      <div class="marquee"><div class="marquee-track" id="techTrack"></div></div>
+    </section>
+
+    <!-- ==================== SITES ==================== -->
+    <section id="sites" class="section">
+      <div class="glow-blob" style="width:34rem;height:34rem;background:hsl(var(--primary)/.12);left:-10rem;top:20%"></div>
+      <div class="container story">
+        <div class="story-copy" data-reveal>
+          <span class="eyebrow"><span class="dot"></span>Criação de Sites</span>
+          <h2 class="title">Sites profissionais<br>que <span class="text-grad">convertem</span></h2>
+          <p class="lead">Sites institucionais, lojas virtuais e landing pages com design responsivo e otimizado para conversão — a base digital que transforma visitantes em clientes.</p>
+          <div class="feat-list">
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Design Responsivo</span>
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>SEO Otimizado</span>
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Alta Performance</span>
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Certificado SSL</span>
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>UI/UX Premium</span>
+          </div>
+          <div class="story-cta">
+            <a class="btn btn-wa" data-wa data-msg="Olá! Quero um site profissional com a Agência FW Digital." href="#" target="_blank" rel="noopener">Quero meu site profissional</a>
+          </div>
+        </div>
+        <div class="story-visual" data-reveal>
+          <div class="visual-card">
+            <div class="grad"></div>
+            <div class="mock">
+              <div class="mock-browser">
+                <div class="bar"><i></i><i></i><i></i></div>
+                <div class="mock-body">
+                  <div class="h"></div><div class="l s"></div><div class="l xs"></div>
+                  <div class="row"><div class="b"></div><div class="b"></div><div class="b"></div></div>
+                  <div class="l"></div><div class="l s"></div>
+                </div>
+              </div>
+            </div>
+            <span class="tag"><span class="dot"></span>Site no ar</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== AUTOMAÇÃO COM IA ==================== -->
+    <section id="automacao" class="section">
+      <div class="glow-blob" style="width:34rem;height:34rem;background:hsl(150 60% 40%/.10);right:-10rem;top:30%"></div>
+      <div class="container story rev">
+        <div class="story-copy" data-reveal>
+          <span class="eyebrow"><span class="dot"></span>Automação com IA</span>
+          <h2 class="title">Atendimento no<br>WhatsApp que <span class="text-grad">vende 24/7</span></h2>
+          <p class="lead">Chatbots inteligentes com IA que respondem, qualificam e vendem sozinhos — automação de atendimento que nunca perde uma oportunidade, de dia ou de madrugada.</p>
+          <div class="feat-list">
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Atendimento Automático</span>
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>IA OpenAI</span>
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Integração CRM</span>
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Multi-idioma</span>
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Analytics Completo</span>
+          </div>
+          <div class="story-cta">
+            <a class="btn btn-wa" data-wa data-msg="Olá! Quero automatizar meu atendimento no WhatsApp com IA da FW Digital." href="#" target="_blank" rel="noopener">Quero automatizar meu WhatsApp</a>
+          </div>
+        </div>
+        <div class="story-visual" data-reveal>
+          <div class="visual-card">
+            <div class="grad" style="background:linear-gradient(120deg,hsl(150 60% 40%/.18),transparent 55%)"></div>
+            <div class="mock">
+              <div class="mock-chat">
+                <div class="top"><span class="av"></span><span class="nm"></span></div>
+                <div class="msgs">
+                  <div class="bub in"><div class="ln" style="width:90px"></div><div class="ln" style="width:60px"></div></div>
+                  <div class="bub out"><div class="ln" style="width:80px"></div></div>
+                  <div class="bub in"><div class="ln" style="width:110px"></div><div class="ln" style="width:70px"></div></div>
+                  <div class="bub out"><div class="ln" style="width:95px"></div><div class="ln" style="width:50px"></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="notif"><span class="d"></span><span class="t"></span></div>
+            <span class="tag"><span class="dot"></span>Novo cliente respondido</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== APPS & SISTEMAS ==================== -->
+    <section id="apps" class="section">
+      <div class="glow-blob" style="width:34rem;height:34rem;background:hsl(var(--accent)/.12);left:-10rem;top:25%"></div>
+      <div class="container story">
+        <div class="story-copy" data-reveal>
+          <span class="eyebrow"><span class="dot"></span>Apps & Sistemas</span>
+          <h2 class="title">Apps mobile nativos<br>e sistemas <span class="text-grad">sob medida</span></h2>
+          <p class="lead">Aplicativos nativos e híbridos para iOS e Android, e plataformas web completas para gestão e automação — com dashboards que mostram vendas e resultados crescendo.</p>
+          <div class="feat-list">
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>React Native / Flutter</span>
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Publicação nas Stores</span>
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Dashboard Admin</span>
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Banco de Dados</span>
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Autenticação Segura</span>
+          </div>
+          <div class="story-cta">
+            <a class="btn btn-wa" data-wa data-msg="Olá! Quero desenvolver um app ou sistema com a Agência FW Digital." href="#" target="_blank" rel="noopener">Quero meu app ou sistema</a>
+          </div>
+        </div>
+        <div class="story-visual" data-reveal>
+          <div class="visual-card">
+            <div class="grad" style="background:linear-gradient(120deg,hsl(var(--accent)/.18),transparent 55%)"></div>
+            <div class="mock">
+              <div class="mock-phone">
+                <div class="scr">
+                  <div class="hd"></div>
+                  <div class="cardm"></div>
+                  <div class="bars"><i style="height:40%"></i><i style="height:65%"></i><i style="height:50%"></i><i style="height:85%"></i><i style="height:70%"></i><i style="height:100%"></i></div>
+                  <div class="cardm" style="height:34px"></div>
+                </div>
+              </div>
+            </div>
+            <span class="tag"><span class="dot"></span>Vendas +32% este mês</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== METODOLOGIA ==================== -->
+    <section id="metodologia" class="section">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow" data-reveal><span class="dot"></span>Nossa Metodologia</span>
+          <h2 class="title" data-reveal>Como <span class="text-grad">funciona</span></h2>
+          <p class="lead" data-reveal>Nossa estratégia comprovada em 3 etapas para transformar seu negócio em uma máquina de vendas digital.</p>
+        </div>
+        <div class="grid grid-3 steps" style="margin-top:3.5rem">
+          <div class="card card-pad step" data-reveal>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span class="ico solid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+              <span class="num">01</span>
+            </div>
+            <h3>Captação</h3>
+            <p>Entendemos o seu negócio e criamos uma presença digital feita para atrair clientes.</p>
+          </div>
+          <div class="card card-pad step" data-reveal>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span class="ico solid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></span>
+              <span class="num">02</span>
+            </div>
+            <h3>Comercial</h3>
+            <p>Desenvolvemos sites, automações e funis inteligentes que convertem visitantes em clientes todos os dias.</p>
+          </div>
+          <div class="card card-pad step" data-reveal>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span class="ico solid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2 0-2.8a2 2 0 0 0-3 0z"/><path d="M12 15l-3-3a22 22 0 0 1 8-10c2 0 4 2 4 4a22 22 0 0 1-10 8z"/><path d="M9 12H4s.5-3 2-4 5 0 5 0"/></svg></span>
+              <span class="num">03</span>
+            </div>
+            <h3>Entrega</h3>
+            <p>Você recebe tudo pronto para operar, e nós seguimos cuidando da manutenção, IA e evolução da sua marca.</p>
+          </div>
+        </div>
+        <div class="cta-center" data-reveal>
+          <a class="btn btn-wa" data-wa data-msg="Olá! Quero dar o primeiro passo com a FW Digital." href="#" target="_blank" rel="noopener">Quero dar o primeiro passo</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== OFERTA ==================== -->
+    <section id="oferta" class="section">
+      <div class="glow-blob" style="width:38rem;height:38rem;background:hsl(var(--primary)/.10);left:50%;top:30%;transform:translateX(-50%)"></div>
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow" data-reveal><span class="dot"></span>Modelo de Negócio</span>
+          <h2 class="title" data-reveal>Nossa <span class="text-grad">Oferta</span></h2>
+          <p class="lead" data-reveal>Na FW Digital, trabalhamos com uma estrutura simples e eficiente.</p>
+        </div>
+        <div class="offer" style="margin-top:3.5rem">
+          <div class="card card-pad" data-reveal>
+            <h3 class="font-heading" style="text-transform:uppercase;font-size:1.5rem">Implementação + Recorrência</h3>
+            <div class="flow">
+              <div class="item"><span class="n">1</span><div><h4>Implementação</h4><p>Primeiro criamos toda a base digital do seu negócio (site, app, automação, marca).</p></div></div>
+              <div class="item"><span class="n">2</span><div><h4>Recorrência</h4><p>Depois seguimos com a manutenção e crescimento contínuo, garantindo resultados reais mês após mês.</p></div></div>
+            </div>
+            <div style="margin-top:auto;padding-top:1.8rem">
+              <a class="btn btn-wa btn-block" data-wa data-msg="Olá! Quero entender como a implementação + recorrência pode ajudar meu negócio." href="#" target="_blank" rel="noopener">Quero saber mais sobre a oferta</a>
+            </div>
+          </div>
+          <div class="grid grid-2" data-reveal-group>
+            <div class="card card-pad svc" data-reveal><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20"/></svg></span><h4>Site profissional e moderno</h4><p>Design responsivo e otimizado para conversão.</p></div>
+            <div class="card card-pad svc" data-reveal><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4M8 16h.01M16 16h.01"/></svg></span><h4>Automação com IA no WhatsApp</h4><p>Chatbots inteligentes que vendem 24/7.</p></div>
+            <div class="card card-pad svc" data-reveal><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><h4>Suporte e otimização contínua</h4><p>Melhorias constantes baseadas em dados.</p></div>
+            <div class="card card-pad svc" data-reveal><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></span><h4>Crescimento previsível</h4><p>Estratégias que geram resultados consistentes.</p></div>
+            <div class="card card-pad svc" data-reveal><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></span><h4>Apps mobile nativos</h4><p>Presença completa em todas as plataformas.</p></div>
+            <div class="card card-pad svc" data-reveal><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span><h4>Suporte especializado</h4><p>Time dedicado ao seu sucesso.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PARA QUEM É ==================== -->
+    <section id="para-quem" class="section">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow" data-reveal><span class="dot"></span>Público Ideal</span>
+          <h2 class="title" data-reveal>Para <span class="text-grad">quem é</span></h2>
+          <p class="lead" data-reveal>Nossas soluções são perfeitas para empreendedores que querem dominar o mercado digital.</p>
+        </div>
+        <div class="grid grid-2" style="margin-top:3.5rem">
+          <div class="card card-pad aud" data-reveal>
+            <div class="head"><span class="ico grad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><h3>Empreendedores Digitais</h3><span class="sub">Que querem escalar vendas</span></div></div>
+            <p class="lead" style="margin-top:1.2rem">Profissionais que buscam automatizar processos e aumentar receita através da tecnologia.</p>
+            <div class="exs"><span class="chip">Consultores</span><span class="chip">Coaches</span><span class="chip">Mentores</span><span class="chip">Freelancers</span></div>
+          </div>
+          <div class="card card-pad aud" data-reveal>
+            <div class="head"><span class="ico grad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span><div><h3>Empresas Locais</h3><span class="sub">Que querem crescer online</span></div></div>
+            <p class="lead" style="margin-top:1.2rem">Negócios tradicionais que precisam de presença digital forte para competir no mercado.</p>
+            <div class="exs"><span class="chip">Restaurantes</span><span class="chip">Cafés</span><span class="chip">Lojas</span><span class="chip">Serviços</span></div>
+          </div>
+          <div class="card card-pad aud" data-reveal>
+            <div class="head"><span class="ico grad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><div><h3>Profissionais de Serviços</h3><span class="sub">Que querem mais clientes</span></div></div>
+            <p class="lead" style="margin-top:1.2rem">Consultores, freelancers e prestadores que querem atrair mais clientes qualificados.</p>
+            <div class="exs"><span class="chip">Advogados</span><span class="chip">Médicos</span><span class="chip">Contadores</span><span class="chip">Arquitetos</span></div>
+          </div>
+          <div class="card card-pad aud" data-reveal>
+            <div class="head"><span class="ico grad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/><circle cx="9" cy="20" r="1"/><circle cx="20" cy="20" r="1"/></svg></span><div><h3>E-commerce</h3><span class="sub">Que querem vender mais</span></div></div>
+            <p class="lead" style="margin-top:1.2rem">Lojas online que buscam aumentar conversões e otimizar a experiência do cliente.</p>
+            <div class="exs"><span class="chip">Moda</span><span class="chip">Beleza</span><span class="chip">Casa</span><span class="chip">Tecnologia</span></div>
+          </div>
+        </div>
+        <div class="card card-pad" data-reveal style="margin-top:1.3rem;text-align:center;padding-block:clamp(2.2rem,5vw,3.5rem)">
+          <h3 class="font-display" style="text-transform:uppercase;font-size:clamp(1.4rem,3vw,2rem)">Se identificou com algum perfil?</h3>
+          <p class="lead" style="margin-inline:auto">Vamos criar uma estratégia personalizada para transformar seu negócio em uma máquina de vendas digital.</p>
+          <div class="cta-center" style="margin-top:1.8rem">
+            <a class="btn btn-wa" data-wa data-msg="Olá! Me identifiquei com o perfil e quero saber como vocês podem me ajudar." href="#" target="_blank" rel="noopener">Quero uma estratégia personalizada</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CASES / RESULTADOS ==================== -->
+    <section id="cases" class="section">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow" data-reveal><span class="dot"></span>Cases de Sucesso</span>
+          <h2 class="title" data-reveal>Resultados <span class="text-grad">Reais</span></h2>
+          <p class="lead" data-reveal>Veja como transformamos negócios de brasileiros no exterior em máquinas de vendas digitais.</p>
+        </div>
+        <div class="grid grid-2" style="margin-top:3.5rem">
+          <div class="card card-pad metric" data-reveal>
+            <div class="top">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></span>
+              <div><span class="big" data-count="200" data-prefix="+" data-suffix="%">+200%</span><span>Aumento nas vendas</span></div>
+            </div>
+            <div class="ba"><span class="before">Página simples no Instagram</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="after">30 novos clientes por mês</span></div>
+            <p style="color:hsl(var(--muted-fg))">Restaurante brasileiro em Toronto automatizou pedidos e triplicou vendas.</p>
+          </div>
+          <div class="card card-pad metric" data-reveal>
+            <div class="top">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+              <div><span class="big">24/7</span><span>Atendimento automático</span></div>
+            </div>
+            <div class="ba"><span class="before">Atendimento manual no WhatsApp</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="after">Sistema automatizado 24/7</span></div>
+            <p style="color:hsl(var(--muted-fg))">Empresa de limpeza em Miami reduziu tempo de resposta e aumentou conversões.</p>
+          </div>
+          <div class="card card-pad metric" data-reveal>
+            <div class="top">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+              <div><span class="big" data-count="500" data-suffix="+">500+</span><span>Leads por mês</span></div>
+            </div>
+            <div class="ba"><span class="before">Sem presença digital</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="after">500+ leads qualificados/mês</span></div>
+            <p style="color:hsl(var(--muted-fg))">Consultoria em Londres criou funil de vendas e explodiu o faturamento.</p>
+          </div>
+          <div class="card card-pad metric" data-reveal>
+            <div class="top">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+              <div><span class="big">R$ 50k</span><span>Faturamento mensal</span></div>
+            </div>
+            <div class="ba"><span class="before">Vendas inconsistentes</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="after">Faturamento previsível</span></div>
+            <p style="color:hsl(var(--muted-fg))">E-commerce de produtos brasileiros em Portugal estabilizou receita mensal.</p>
+          </div>
+        </div>
+
+        <h3 class="font-display" data-reveal style="text-align:center;text-transform:uppercase;font-size:clamp(1.5rem,3.5vw,2.2rem);margin:5rem 0 2.6rem">O que nossos clientes dizem</h3>
+        <div class="grid grid-3">
+          <div class="card card-pad quote" data-reveal>
+            <svg viewBox="0 0 24 24" fill="hsl(var(--primary)/.4)" width="30" height="30"><path d="M10 11H6a1 1 0 0 1-1-1V7a3 3 0 0 1 3-3 1 1 0 0 0 0-2 5 5 0 0 0-5 5v8a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2zm10 0h-4a1 1 0 0 1-1-1V7a3 3 0 0 1 3-3 1 1 0 0 0 0-2 5 5 0 0 0-5 5v8a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2z"/></svg>
+            <div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg></div>
+            <blockquote>"A FW Digital transformou completamente meu negócio. Antes eu dependia só do boca a boca, agora tenho pedidos automatizados direto pelo site."</blockquote>
+            <div class="who"><b>Carlos Silva</b><span>Restaurante Sabor Brasil — Toronto</span><span class="res">3x mais pedidos</span></div>
+          </div>
+          <div class="card card-pad quote" data-reveal>
+            <svg viewBox="0 0 24 24" fill="hsl(var(--primary)/.4)" width="30" height="30"><path d="M10 11H6a1 1 0 0 1-1-1V7a3 3 0 0 1 3-3 1 1 0 0 0 0-2 5 5 0 0 0-5 5v8a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2zm10 0h-4a1 1 0 0 1-1-1V7a3 3 0 0 1 3-3 1 1 0 0 0 0-2 5 5 0 0 0-5 5v8a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2z"/></svg>
+            <div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg></div>
+            <blockquote>"O chatbot da FW responde meus clientes mesmo quando estou trabalhando. Nunca mais perdi uma oportunidade de venda."</blockquote>
+            <div class="who"><b>Ana Costa</b><span>Clean House Services — Miami</span><span class="res">Zero leads perdidos</span></div>
+          </div>
+          <div class="card card-pad quote" data-reveal>
+            <svg viewBox="0 0 24 24" fill="hsl(var(--primary)/.4)" width="30" height="30"><path d="M10 11H6a1 1 0 0 1-1-1V7a3 3 0 0 1 3-3 1 1 0 0 0 0-2 5 5 0 0 0-5 5v8a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2zm10 0h-4a1 1 0 0 1-1-1V7a3 3 0 0 1 3-3 1 1 0 0 0 0-2 5 5 0 0 0-5 5v8a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2z"/></svg>
+            <div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4-6.5 4 2-7L2 9h7z"/></svg></div>
+            <blockquote>"Em 6 meses saí de 5 clientes para mais de 50. O sistema de captação que eles criaram é impressionante."</blockquote>
+            <div class="who"><b>Roberto Mendes</b><span>Consultoria RH — Londres</span><span class="res">10x mais clientes</span></div>
+          </div>
+        </div>
+        <div class="section-head center" style="margin-top:4.5rem" data-reveal>
+          <h3 class="font-display" style="text-transform:uppercase;font-size:clamp(1.5rem,3.5vw,2.2rem)">Quer resultados como esses?</h3>
+          <p class="lead" style="margin-inline:auto">Vamos criar uma estratégia personalizada para o seu negócio.</p>
+          <div class="cta-center" style="margin-top:1.8rem">
+            <a class="btn btn-wa" data-wa data-msg="Olá! Vi os resultados dos clientes e quero saber como conseguir os mesmos para meu negócio." href="#" target="_blank" rel="noopener">Quero resultados como esses</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TIME / ESPECIALISTAS ==================== -->
+    <section id="time" class="section">
+      <div class="glow-blob" style="width:34rem;height:34rem;background:hsl(var(--primary)/.10);right:-10rem;top:20%"></div>
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow" data-reveal><span class="dot"></span>Especialistas FW</span>
+          <h2 class="title" data-reveal>Quem vai cuidar do <span class="text-grad">seu projeto</span></h2>
+          <p class="lead" data-reveal>Um time enxuto e sênior por trás de cada entrega — da estratégia ao código, cuidando do seu negócio de ponta a ponta.</p>
+        </div>
+        <div class="team-grid">
+          <figure class="card team-card" data-reveal>
+            <div class="ph"><img src="assets/team/danylo-oliveira.png" alt="Danylo Oliveira, Fundador e Head de Tecnologia da Agência FW Digital" loading="lazy" /></div>
+            <figcaption><b>Danylo Oliveira</b><span>Fundador &amp; Head de Tecnologia</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CONTATO / FINAL CTA ==================== -->
+    <section id="contato" class="section">
+      <div class="container">
+        <div class="final-wrap" data-reveal>
+          <div class="bg-grid"></div><div class="b1"></div><div class="b2"></div>
+          <div class="inner">
+            <span class="eyebrow" style="color:#fff"><span class="dot" style="background:#fff;box-shadow:none"></span>Última Chance</span>
+            <h2>Vamos criar algo <span style="color:#ffffffb3">incrível</span> pro seu negócio?</h2>
+            <p style="margin:1.4rem auto 0;max-width:40rem;color:#ffffffdb;font-size:1.1rem">Fale com um especialista e entenda como nossa implementação pode te levar mais longe.</p>
+            <div class="final-feats">
+              <div class="f"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2 0-2.8a2 2 0 0 0-3 0z"/><path d="M12 15l-3-3a22 22 0 0 1 8-10c2 0 4 2 4 4a22 22 0 0 1-10 8z"/></svg></span><h3>Implementação Rápida</h3><p>Seu projeto digital pronto em até 30 dias.</p></div>
+              <div class="f"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.4 8.4 0 0 1-3.8-.9L3 20l1.3-3.8A8.4 8.4 0 1 1 21 11.5z"/></svg></span><h3>Consultoria Gratuita</h3><p>Análise completa do seu negócio sem custo.</p></div>
+              <div class="f"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><h3>Suporte Contínuo</h3><p>Acompanhamento e otimizações mensais.</p></div>
+            </div>
+            <div class="cta-center" style="margin-top:2.6rem">
+              <a class="btn btn-light" data-wa data-msg="Olá! Quero falar com um especialista da FW Digital e entender como vocês podem transformar meu negócio." href="#" target="_blank" rel="noopener" style="font-size:1.05rem;padding:1.2rem 2.2rem">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1s-.5-.1-.7.2-.8 1-.9 1.1-.3.2-.6.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L8.9 7c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3A2.8 2.8 0 0 0 6.2 9c0 1.2.9 2.4 1 2.6s1.7 2.7 4.2 3.8a14 14 0 0 0 1.4.5 3.4 3.4 0 0 0 1.5.1c.5-.1 1.7-.7 1.9-1.4s.2-1.2.2-1.3-.2-.2-.4-.3zM12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg>
+                Quero falar com a FW Digital
+              </a>
+            </div>
+            <div class="final-trust"><span>Resposta em até 5 minutos</span><span>Consultoria 100% gratuita</span><span>Sem compromisso</span></div>
+            <div class="final-stats">
+              <div><b data-count="100" data-suffix="+">100+</b><i>Projetos Entregues</i></div>
+              <div><b data-count="98" data-suffix="%">98%</b><i>Satisfação</i></div>
+              <div><b>24/7</b><i>Suporte</i></div>
+              <div><b data-count="10" data-suffix="+">10+</b><i>Anos de Experiência</i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="container">
+      <div class="foot">
+        <div>
+          <a href="#inicio" class="brand" data-nav><img src="assets/brand/fw-logo.png" alt="Agência FW Digital"/><span>FW<span class="text-grad">Digital</span></span></a>
+          <p class="desc">Transformamos ideias em negócios digitais. Sites, Apps e Robôs de WhatsApp com IA.</p>
+          <div class="socials">
+            <a data-wa data-msg="Olá! Gostaria de saber mais sobre os serviços da Agência FW Digital." href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1s-.5-.1-.7.2-.8 1-.9 1.1-.3.2-.6.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L8.9 7c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3A2.8 2.8 0 0 0 6.2 9c0 1.2.9 2.4 1 2.6s1.7 2.7 4.2 3.8a14 14 0 0 0 1.4.5 3.4 3.4 0 0 0 1.5.1c.5-.1 1.7-.7 1.9-1.4s.2-1.2.2-1.3-.2-.2-.4-.3zM12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg></a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM2.4 9h5.2v12H2.4zM9.5 9h5v1.6h.1c.7-1.3 2.4-2.6 4.9-2.6 5.2 0 6.2 3.4 6.2 7.9V21h-5.2v-4.6c0-1.1 0-2.5-1.5-2.5s-1.8 1.2-1.8 2.4V21H9.5z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4>Serviços</h4>
+          <ul>
+            <li><a href="#sites" data-nav>Sites Profissionais</a></li>
+            <li><a href="#apps" data-nav>Apps Mobile</a></li>
+            <li><a href="#automacao" data-nav>Robôs WhatsApp IA</a></li>
+            <li><a href="#apps" data-nav>Sistemas Web</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Links Rápidos</h4>
+          <ul>
+            <li><a href="#oferta" data-nav>Soluções</a></li>
+            <li><a href="#metodologia" data-nav>Como funciona</a></li>
+            <li><a href="#cases" data-nav>Cases</a></li>
+            <li><a href="#contato" data-nav>Contato</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contato</h4>
+          <ul>
+            <li><a href="tel:+5511934079208"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg>(11) 93407-9208</a></li>
+            <li><a href="mailto:contato@agenciafwdigital.com.br" style="word-break:break-all"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>contato@agenciafwdigital.com.br</a></li>
+            <li><span style="display:inline-flex;align-items:center;gap:.55rem;color:hsl(var(--muted-fg))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:1rem;height:1rem;color:hsl(var(--primary))"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>São Paulo, SP</span></li>
+          </ul>
+          <a data-wa data-msg="Olá! Gostaria de um orçamento com a Agência FW Digital." href="#" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.4rem;margin-top:1.4rem;color:hsl(var(--primary));font-weight:600;font-size:.9rem">Orçamento Grátis →</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2025 Agência FW Digital. Todos os direitos reservados.</span>
+        <span>Sites · Apps · Sistemas · Automação com IA</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== WHATSAPP FLOAT ==================== -->
+  <a class="wa-float" id="waFloat" data-wa data-msg="Olá! Gostaria de saber mais sobre os serviços da Agência FW Digital." href="#" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1s-.5-.1-.7.2-.8 1-.9 1.1-.3.2-.6.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L8.9 7c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3A2.8 2.8 0 0 0 6.2 9c0 1.2.9 2.4 1 2.6s1.7 2.7 4.2 3.8a14 14 0 0 0 1.4.5 3.4 3.4 0 0 0 1.5.1c.5-.1 1.7-.7 1.9-1.4s.2-1.2.2-1.3-.2-.2-.4-.3z"/><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20z"/></svg>
+  </a>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <script src="assets/vendor/lenis.min.js"></script>
+  <script src="assets/app.js"></script>
+</body>
 </html>
