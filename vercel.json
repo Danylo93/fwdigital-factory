@@ -1,21 +1,12 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
+    { "src": "index.html", "use": "@vercel/static" },
+    { "src": "assets/**", "use": "@vercel/static" }
   ],
   "routes": [
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
+    { "handle": "filesystem" },
+    { "src": "/(.*)\\.(js|mjs|css|png|jpg|jpeg|webp|gif|svg|ico|mp4|webm|woff2?|json|txt|map)$", "status": 404 },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
