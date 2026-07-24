@@ -106,6 +106,38 @@
     });
   })();
 
+  /* ---------- Barra de progresso de leitura ---------- */
+  (function scrollProgress() {
+    var bar = document.getElementById("scrollProgress");
+    if (!bar) return;
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var p = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+      bar.style.transform = "scaleX(" + p + ")";
+    }
+    window.addEventListener("scroll", function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    }, { passive: true });
+    window.addEventListener("resize", update, { passive: true });
+    update();
+  })();
+
+  /* ---------- Spotlight nos cards (segue o cursor) ---------- */
+  (function cardSpotlight() {
+    if (reduced || !window.matchMedia("(hover: hover)").matches) return;
+    document.querySelectorAll(".card").forEach(function (card) {
+      card.addEventListener("pointermove", function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", ((e.clientX - r.left) / r.width) * 100 + "%");
+        card.style.setProperty("--my", ((e.clientY - r.top) / r.height) * 100 + "%");
+      });
+    });
+  })();
+
   /* ---------- WhatsApp float visibility ---------- */
   var waFloat = document.getElementById("waFloat");
   window.addEventListener("scroll", function () {

@@ -1,5 +1,4 @@
-Personas da agência (imagens geradas no Higgsfield, identidades fictícias):
-- felipe-werner.png  → Felipe Werner — Fundador & Head de Tecnologia (pessoa da cena final / clipe 5)
-- marina-alves.png   → Marina Alves — Head de Estratégia Digital
+Referência de identidade da agência (foto real, usada no site em assets/team/):
+- danylo.jpg → Danylo Oliveira — Fundador & Head de Tecnologia (pessoa da cena final / clipe 5)
 
 Use como identity reference (Seedance image_references) ao gerar o clipe 5 quando houver créditos.
