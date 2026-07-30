@@ -53,18 +53,37 @@ test.describe("Core Web Vitals", () => {
     expect(cls, `CLS de ${cls.toFixed(4)} (limiar "bom" = 0,1)`).toBeLessThan(0.1);
   });
 
-  test("a página responde ao clique sem travar (proxy de INP)", async ({ page }) => {
+  test("latência de interação dentro do limiar de INP (200 ms)", async ({ page }) => {
     await abrir(page);
     await ready(page);
-    await page.waitForTimeout(1200);
-    const alvo = page.locator("#faq details summary").first();
-    await alvo.scrollIntoViewIfNeeded();
-    const t0 = Date.now();
-    await alvo.click();
+    await page.waitForTimeout(1500);
+
+    // Mede pela Event Timing API — a mesma fonte de onde o INP é derivado.
+    // Cronometrar o `click()` do Playwright mediria a espera dele por
+    // "elemento estável", que o scroll suave do Lenis nunca satisfaz de
+    // imediato: seria a lentidão do harness, não a do site.
+    await page.evaluate(() => {
+      (window as any).__piorEvento = 0;
+      new PerformanceObserver((list) => {
+        for (const e of list.getEntries() as any[]) {
+          (window as any).__piorEvento = Math.max((window as any).__piorEvento, e.duration);
+        }
+      }).observe({ type: "event", durationThreshold: 16, buffered: true } as any);
+    });
+
+    // interações reais: abre e fecha itens do FAQ
+    for (let i = 0; i < 3; i++) {
+      const sum = page.locator("#faq details summary").nth(i);
+      await sum.scrollIntoViewIfNeeded();
+      await page.waitForTimeout(400); // deixa o scroll suave assentar
+      await sum.click({ force: true });
+      await page.waitForTimeout(250);
+    }
     await expect(page.locator("#faq details").first()).toHaveAttribute("open", "");
-    const ms = Date.now() - t0;
-    console.log(`Resposta ao clique: ${ms} ms`);
-    expect(ms, `${ms}ms para responder ao clique`).toBeLessThan(400);
+
+    const pior = await page.evaluate(() => (window as any).__piorEvento as number);
+    console.log(`Pior latência de evento: ${pior.toFixed(0)} ms`);
+    expect(pior, `evento mais lento levou ${pior.toFixed(0)}ms (limiar INP "bom" = 200ms)`).toBeLessThan(200);
   });
 
   test("o CTA principal está clicável desde o primeiro segundo", async ({ page }) => {

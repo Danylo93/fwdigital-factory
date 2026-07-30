@@ -53,9 +53,14 @@ test.describe("Responsabilidades funcionais", () => {
   test("clicar no menu leva à seção certa", async ({ page }) => {
     await abrir(page);
     await ready(page);
-    const link = page.locator('#navLinks a[href="#cases"], #mobileMenu a[href="#cases"]').first();
-    if (!(await link.isVisible())) await page.locator("#burger").click();
-    await page.locator('a[href="#cases"]').first().click();
+    // No mobile o #navLinks existe mas está display:none — é preciso abrir o
+    // menu e clicar no link realmente visível, não no primeiro do DOM.
+    const noHeader = page.locator('#navLinks a[href="#cases"]');
+    if (!(await noHeader.isVisible())) {
+      await page.locator("#burger").click();
+      await expect(page.locator("#mobileMenu")).toHaveClass(/open/);
+    }
+    await page.locator('a[href="#cases"]:visible').first().click();
     await page.waitForTimeout(2000);
     const visivel = await page.locator("#cases").evaluate((el) => {
       const r = el.getBoundingClientRect();

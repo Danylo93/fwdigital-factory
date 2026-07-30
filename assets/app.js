@@ -144,15 +144,39 @@
     update();
   })();
 
-  /* ---------- Spotlight nos cards (segue o cursor) ---------- */
+  /* ---------- Spotlight nos cards (segue o cursor) ----------
+     Ler getBoundingClientRect() a cada pointermove força layout síncrono e
+     trava a thread principal. O retângulo é medido uma vez ao entrar no card
+     e a escrita de estilo é agrupada num rAF. */
   (function cardSpotlight() {
     if (reduced || !window.matchMedia("(hover: hover)").matches) return;
     document.querySelectorAll(".card").forEach(function (card) {
+      var rect = null;
+      var pendente = false;
+      var px = 0, py = 0;
+
+      function aplicar() {
+        pendente = false;
+        if (!rect || !rect.width || !rect.height) return;
+        card.style.setProperty("--mx", ((px - rect.left) / rect.width) * 100 + "%");
+        card.style.setProperty("--my", ((py - rect.top) / rect.height) * 100 + "%");
+      }
+
+      card.addEventListener("pointerenter", function () {
+        rect = card.getBoundingClientRect();
+      }, { passive: true });
+
       card.addEventListener("pointermove", function (e) {
-        var r = card.getBoundingClientRect();
-        card.style.setProperty("--mx", ((e.clientX - r.left) / r.width) * 100 + "%");
-        card.style.setProperty("--my", ((e.clientY - r.top) / r.height) * 100 + "%");
-      });
+        px = e.clientX;
+        py = e.clientY;
+        if (pendente) return;
+        pendente = true;
+        requestAnimationFrame(aplicar);
+      }, { passive: true });
+
+      card.addEventListener("pointerleave", function () {
+        rect = null;
+      }, { passive: true });
     });
   })();
 
@@ -308,10 +332,15 @@
     var copy = document.getElementById("heroCopy");
     var cue = document.getElementById("scrollCue");
     var video = document.getElementById("heroVideo");
-    if (MODE === "video" && video) {
+    // No celular o vídeo do hero é o maior arquivo da página (~1 MB). Em modo
+    // economia ou rede lenta ele não se justifica: fica só o poster.
+    if (MODE === "video" && video && conexaoPermiteCinema()) {
       video.setAttribute("preload", "auto");
       var p = video.play();
       if (p && p.catch) p.catch(function () {});
+    } else if (MODE === "video") {
+      doc.classList.remove("mode-video");
+      doc.classList.add("mode-static");
     }
     // Make all hero copy visible
     var words = document.querySelectorAll("#heroH1 .w > span");
