@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://agenciafwdigital.com.br/sitemap.xml

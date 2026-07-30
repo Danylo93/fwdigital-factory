@@ -6,20 +6,37 @@
   "use strict";
 
   var PHONE = "5511934079208";
-  var FRAME_COUNT = 121;
+  var FRAME_COUNT = 61;
   var framePath = function (n) {
-    return "assets/cinema/frames/hero/f_" + String(n).padStart(4, "0") + ".jpg";
+    return "assets/cinema/frames/hero/w_" + String(n).padStart(4, "0") + ".webp";
   };
 
   var doc = document.documentElement;
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /** Conexão ruim ou modo economia: 1,4 MB de frames não se justifica. */
+  function conexaoPermiteCinema() {
+    var c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (!c) return true; // sem informação, assume que dá
+    if (c.saveData) return false;
+    return !/(^|-)(slow-)?2g$/.test(c.effectiveType || "");
+  }
+
   // Full frame-scrub cinema on wide viewports (desktop / large tablets).
   // Phones fall back to a light autoplay video; reduced-motion to a static poster.
   // Gated by width + reduced-motion (not pointer) so touch-laptops still get cinema.
-  var CINEMA = !reduced && window.innerWidth >= 1000;
+  var CINEMA = !reduced && window.innerWidth >= 1000 && conexaoPermiteCinema();
   var MODE = CINEMA ? "cinema" : reduced ? "static" : "video";
   doc.classList.add("mode-" + MODE);
   if (reduced) doc.classList.add("no-anim");
+
+  // Assim que o visitante rola, clica num link do menu ou usa o teclado, o
+  // layout não pode mais mudar debaixo dele.
+  var usuarioJaInteragiu = false;
+  function marcarInteracao() { usuarioJaInteragiu = true; }
+  ["wheel", "touchstart", "keydown", "pointerdown"].forEach(function (ev) {
+    window.addEventListener(ev, marcarInteracao, { passive: true, once: true });
+  });
 
   var hasGSAP = typeof window.gsap !== "undefined";
   var hasST = hasGSAP && typeof window.ScrollTrigger !== "undefined";
@@ -76,6 +93,7 @@
       var el = document.querySelector(id);
       if (!el) return;
       e.preventDefault();
+      marcarInteracao();
       closeMenu();
       var y = -66;
       if (lenis) lenis.scrollTo(el, { offset: y, duration: 1.2 });
@@ -204,8 +222,17 @@
     if (loadBar) loadBar.style.width = pct + "%";
     if (loadPct) loadPct.textContent = "Carregando experiência · " + pct + "%";
   }
+  var loaderHidden = false;
   function hideLoader() {
-    if (loader) loader.classList.add("done");
+    if (!loader || loaderHidden) return;
+    loaderHidden = true;
+    setProgress(1);
+    loader.classList.add("done");
+    // Tira do DOM assim que o fade termina: enquanto ele existir como overlay
+    // fixo, qualquer toque no topo da tela corre o risco de morrer nele.
+    setTimeout(function () {
+      if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
+    }, 900);
   }
 
   /* ---------- Reveals ---------- */
@@ -220,8 +247,10 @@
     });
   }
 
-  /* ---------- Hero cinema timeline ---------- */
-  function buildHeroTimeline() {
+  /* ---------- Hero cinema timeline ----------
+     comIntro=false quando o hero já foi apresentado no modo leve: aí só
+     montamos o scrub de scroll, sem reanimar a headline na cara do usuário. */
+  function buildHeroTimeline(comIntro) {
     var words = gsap.utils.toArray("#heroH1 .w > span");
     var beats = {
       eyebrow: document.querySelector('[data-beat="eyebrow"]'),
@@ -234,20 +263,22 @@
     var cue = document.getElementById("scrollCue");
     var copy = document.getElementById("heroCopy");
 
-    // initial hidden states (kept hidden behind the loader until ready)
-    gsap.set(words, { yPercent: 120 });
-    gsap.set([beats.eyebrow, beats.tail, beats.sub, beats.cta, beats.trust], { opacity: 0, y: 24 });
-    gsap.set(beats.stats, { opacity: 0, y: 24 });
+    if (comIntro) {
+      // initial hidden states (kept hidden behind the loader until ready)
+      gsap.set(words, { yPercent: 120 });
+      gsap.set([beats.eyebrow, beats.tail, beats.sub, beats.cta, beats.trust], { opacity: 0, y: 24 });
+      gsap.set(beats.stats, { opacity: 0, y: 24 });
 
-    // ---- Intro on load: hero copy composes in, timed with the loader fade ----
-    var intro = gsap.timeline({ delay: 0.25 });
-    intro.to(beats.eyebrow, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" })
-      .to(words, { yPercent: 0, duration: 0.95, stagger: 0.055, ease: "power4.out" }, 0.1)
-      .to(beats.tail, { opacity: 1, y: 0, duration: 0.5 }, 0.45)
-      .to(beats.sub, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 0.55)
-      .to(beats.cta, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0.72)
-      .to(beats.trust, { opacity: 1, y: 0, duration: 0.5 }, 0.85)
-      .to(beats.stats, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: "power2.out" }, 0.95);
+      // ---- Intro on load: hero copy composes in, timed with the loader fade ----
+      var intro = gsap.timeline({ delay: 0.25 });
+      intro.to(beats.eyebrow, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" })
+        .to(words, { yPercent: 0, duration: 0.95, stagger: 0.055, ease: "power4.out" }, 0.1)
+        .to(beats.tail, { opacity: 1, y: 0, duration: 0.5 }, 0.45)
+        .to(beats.sub, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 0.55)
+        .to(beats.cta, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0.72)
+        .to(beats.trust, { opacity: 1, y: 0, duration: 0.5 }, 0.85)
+        .to(beats.stats, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: "power2.out" }, 0.95);
+    }
 
     // ---- Scroll scrub: frame sequence + parallax + hand off into the screen ----
     var tl = gsap.timeline({
@@ -306,34 +337,66 @@
     gsap.ticker.lagSmoothing(0);
   }
 
-  /* ---------- Boot ---------- */
+  /* ---------- Âncoras vindas de fora ----------
+     Com o Lenis ativo, `scrollIntoView` e o pulo nativo do navegador são
+     desfeitos pelo loop dele. Sem isto, um link compartilhado como
+     /#cases, o botão voltar e o "localizar na página" caem no lugar errado. */
+  function irParaAncora(hash, imediato) {
+    if (!hash || hash.length < 2) return;
+    var alvo;
+    try { alvo = document.querySelector(hash); } catch (e) { return; }
+    if (!alvo) return;
+    if (lenis) {
+      lenis.scrollTo(alvo, { offset: -66, immediate: !!imediato });
+    } else {
+      var y = alvo.getBoundingClientRect().top + window.scrollY - 66;
+      window.scrollTo({ top: y, behavior: imediato || reduced ? "auto" : "smooth" });
+    }
+  }
+
+  function initDeepLinks() {
+    // Na carga: espera o layout assentar (o pin do hero muda as posições).
+    if (location.hash) {
+      marcarInteracao();
+      var alvo = location.hash;
+      requestAnimationFrame(function () {
+        setTimeout(function () { irParaAncora(alvo, true); }, 120);
+      });
+    }
+    window.addEventListener("hashchange", function () {
+      irParaAncora(location.hash, false);
+    });
+  }
+
+  /* ---------- Boot ----------
+     Regra: o site nunca espera os 121 frames (6,4 MB) para ficar utilizável.
+     Entra sempre pelo poster/vídeo — que já vem no preload do <head> — e o
+     frame-scrub é uma melhoria que entra depois, em segundo plano. */
   function boot() {
     if (hasST) gsap.registerPlugin(ScrollTrigger);
     initLenis();
 
-    if (CINEMA && ctx) {
-      sizeCanvas();
-      var loaded = 0;
-      for (var i = 0; i < FRAME_COUNT; i++) {
-        (function (idx) {
-          var img = new Image();
-          img.onload = img.onerror = function () {
-            loaded++;
-            setProgress(loaded / FRAME_COUNT);
-            if (loaded === FRAME_COUNT) onFramesReady();
-          };
-          img.src = framePath(idx + 1);
-          frames[idx] = img;
-        })(i);
-      }
-    } else {
-      // video / static modes: no frame preload
-      setProgress(1);
-      hideLoader();
-      initFallbackHero();
-      initReveals();
-      if (hasST) requestAnimationFrame(function () { ScrollTrigger.refresh(); });
+    // 1) libera a tela assim que o poster estiver pronto (é o LCP, já vem no
+    //    preload do <head>) — teto de 1,2 s para nunca virar espera.
+    var poster = document.getElementById("heroPoster");
+    var liberou = false;
+    function liberar() {
+      if (liberou) return;
+      liberou = true;
+      startLightHero();
+      initDeepLinks();
+      // 2) só então busca os frames, sem bloquear nada
+      if (CINEMA && ctx) preloadFramesInBackground();
     }
+    if (poster && poster.decode) {
+      poster.decode().then(liberar).catch(liberar);
+    } else if (poster && !poster.complete) {
+      poster.addEventListener("load", liberar);
+      poster.addEventListener("error", liberar);
+    } else {
+      liberar();
+    }
+    setTimeout(liberar, 1200);
 
     window.addEventListener("resize", function () {
       sizeCanvas();
@@ -342,33 +405,58 @@
     });
   }
 
-  function onFramesReady() {
-    sizeCanvas();
-    render();
-    hideLoader();
-    if (hasST) {
-      buildHeroTimeline();
-      initReveals();
-      requestAnimationFrame(function () { ScrollTrigger.refresh(); });
-    } else {
-      initFallbackHero();
+  /** Hero leve: poster (ou vídeo no celular). Site utilizável em ~1 s. */
+  function startLightHero() {
+    if (doc.classList.contains("mode-cinema")) {
+      doc.classList.remove("mode-cinema");
+      doc.classList.add(reduced ? "mode-static" : "mode-video");
     }
+    hideLoader();
+    initFallbackHero();
+    initReveals();
+    if (hasST) requestAnimationFrame(function () { ScrollTrigger.refresh(); });
   }
 
-  // Safety: never let a stuck asset hide the site behind the loader.
-  setTimeout(function () {
-    if (loader && !loader.classList.contains("done")) {
-      hideLoader();
-      if (CINEMA && !frames.some(function (f) { return f && f.complete; })) {
-        // frames failed → downgrade to static poster
-        doc.classList.remove("mode-cinema");
-        doc.classList.add("mode-static");
-        initFallbackHero();
-        initReveals();
-        if (hasST) ScrollTrigger.refresh();
-      }
+  /** Carrega os frames em segundo plano e promove para cinema quando der. */
+  function preloadFramesInBackground() {
+    sizeCanvas();
+    var loaded = 0;
+    var falhou = 0;
+    for (var i = 0; i < FRAME_COUNT; i++) {
+      (function (idx) {
+        var img = new Image();
+        // baixa prioridade: não disputa banda com o conteúdo real da página
+        if ("fetchPriority" in img) img.fetchPriority = "low";
+        img.decoding = "async";
+        img.onload = function () {
+          loaded++;
+          if (loaded + falhou === FRAME_COUNT) promoteToCinema();
+        };
+        img.onerror = function () {
+          falhou++;
+          if (loaded + falhou === FRAME_COUNT) promoteToCinema();
+        };
+        img.src = framePath(idx + 1);
+        frames[idx] = img;
+      })(i);
     }
-  }, 9000);
+
+    function promoteToCinema() {
+      // frames insuficientes → fica no poster mesmo, sem drama
+      if (loaded < FRAME_COUNT * 0.9 || !hasST) return;
+      // Promover depois que o usuário já se mexeu faria a página saltar: o pin
+      // do ScrollTrigger acrescenta ~3 alturas de tela e invalida qualquer
+      // rolagem em curso. Uma vez que houve interação, o hero fica como está.
+      if (usuarioJaInteragiu || window.scrollY > window.innerHeight * 0.25) return;
+      doc.classList.remove("mode-video", "mode-static");
+      doc.classList.add("mode-cinema");
+      sizeCanvas();
+      render();
+      buildHeroTimeline(false);
+      ScrollTrigger.refresh();
+      if (location.hash) irParaAncora(location.hash, true);
+    }
+  }
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", boot);

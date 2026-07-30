@@ -1,0 +1,12 @@
+Referência de identidade da agência (foto real, usada no site em assets/team/):
+- danylo.jpg → Danylo Oliveira — Fundador & Head de Tecnologia (pessoa da cena final / clipe 5)
+
+Use como identity reference (Seedance image_references) ao gerar o clipe 5 quando houver créditos.
+
+---
+Esta pasta NÃO é publicada (fica fora de assets/ e do vercel.json).
+Guarda originais e referências de trabalho:
+- hero.png            frame original do hero em alta
+- fw-logo-full.png    logo completo em alta
+- hero-first/last.jpg quadros extremos da sequência
+- referencia-danylo.jpg  referência de identidade para geração de vídeo

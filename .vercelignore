@@ -89,3 +89,10 @@ jspm_packages/
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+
+# Fontes de trabalho: não fazem parte do site publicado
+fontes-internas
+tests
+playwright.config.ts
+test-results
+playwright-report
