@@ -5,7 +5,7 @@
 (function () {
   "use strict";
 
-  var PHONE = "5511934079208";
+  var PHONE = "5511964891128";
   var FRAME_COUNT = 61;
   var framePath = function (n) {
     return "assets/cinema/frames/hero/w_" + String(n).padStart(4, "0") + ".webp";

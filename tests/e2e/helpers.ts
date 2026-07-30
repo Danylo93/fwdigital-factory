@@ -1,6 +1,6 @@
 import { Page, expect } from "@playwright/test";
 
-export const PHONE = "5511934079208";
+export const PHONE = "5511964891128";
 
 /**
  * Abre a página sem esperar o evento `load`.
