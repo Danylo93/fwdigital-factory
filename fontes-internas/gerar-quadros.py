@@ -26,7 +26,7 @@ from PIL import Image
 
 # Quantos quadros cada conjunto recebe. Mais quadros = rolagem mais fluida e
 # movimento ambiente mais convincente, ao custo de banda.
-QUADROS_DESKTOP = 61
+QUADROS_DESKTOP = 49
 QUADROS_MOBILE = 41
 
 # Altura máxima de cada conjunto. O celular em retrato precisa de bem mais
@@ -34,7 +34,7 @@ QUADROS_MOBILE = 41
 ALTURA_DESKTOP = 1080
 ALTURA_MOBILE = 1600
 
-QUALIDADE_DESKTOP = 80
+QUALIDADE_DESKTOP = 76
 QUALIDADE_MOBILE = 78
 
 

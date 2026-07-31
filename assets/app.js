@@ -7,12 +7,12 @@
 
   var PHONE = "5511964891128";
 
-  // Telas em retrato recebem um conjunto próprio de quadros: recorte 9:16 e
-  // resolução maior. A filmagem é em paisagem (1280x734) e, esticada para
-  // cobrir uma tela alta, era ampliada 3,45x — daí a impressão de baixa
-  // qualidade. Com o conjunto de retrato a ampliação cai para cerca de 1,2x.
+  // Telas em retrato recebem um conjunto próprio: recorte 9:16 da mesma
+  // filmagem, em 900x1600. A cena é rodada em paisagem (2560x1440) e, esticada
+  // para cobrir uma tela alta, seria muito ampliada — o recorte dedicado evita
+  // isso e ainda economiza os pixels que a cobertura descartaria.
   var ehRetrato = window.innerWidth < 1000 && window.innerHeight > window.innerWidth;
-  var FRAME_COUNT = ehRetrato ? 31 : 61;
+  var FRAME_COUNT = ehRetrato ? 41 : 49;
   var framePath = ehRetrato
     ? function (n) {
         return "assets/cinema/frames/hero-mobile/m_" + String(n).padStart(4, "0") + ".webp";
