@@ -346,6 +346,45 @@
     tl.to(copy, { opacity: 0, filter: "blur(5px)", ease: "power2.in", duration: 0.16 }, 0.8);
   }
 
+  /* ---------- Movimento ambiente antes da primeira rolagem ----------
+     A sequência é comandada pela rolagem: parado, ela fica num quadro só, e a
+     cena parece uma foto. Enquanto ninguém rolou, percorremos lentamente um
+     trecho curto da sequência, ida e volta. O movimento devagar disfarça o
+     espaçamento entre quadros e dá vida à cena; ao primeiro gesto, o controle
+     passa para o ScrollTrigger e isto nunca mais roda. */
+  function movimentoAmbiente() {
+    if (reduced || !ctx || !hasST) return;
+    var ativo = true;
+    var inicio = null;
+    var TRECHO = Math.max(4, Math.round((FRAME_COUNT - 1) * 0.22));
+    var CICLO = 5200; // ida e volta bem lenta
+
+    function encerrar() {
+      ativo = false;
+    }
+    window.addEventListener("wheel", encerrar, { passive: true, once: true });
+    window.addEventListener("touchstart", encerrar, { passive: true, once: true });
+    window.addEventListener("keydown", encerrar, { once: true });
+
+    function passo(ts) {
+      if (!ativo) return;
+      // qualquer rolagem real entrega o comando para o scrub
+      if (window.scrollY > 2) return;
+      if (inicio === null) inicio = ts;
+      // Aba esquecida aberta não pode ficar desenhando para sempre: depois de
+      // alguns ciclos sem ninguém interagir, o laço encerra e a cena descansa.
+      if (ts - inicio > CICLO * 5) return;
+      var p = ((ts - inicio) % CICLO) / CICLO;
+      var vaiVolta = p < 0.5 ? p * 2 : (1 - p) * 2;
+      // suaviza as pontas para não "bater" ao inverter o sentido
+      var suave = vaiVolta * vaiVolta * (3 - 2 * vaiVolta);
+      state.frame = suave * TRECHO;
+      render();
+      requestAnimationFrame(passo);
+    }
+    requestAnimationFrame(passo);
+  }
+
   /* ---------- Hero sem scrub (reduced-motion / conexão fraca) ---------- */
   function initFallbackHero() {
     var copy = document.getElementById("heroCopy");
@@ -475,6 +514,7 @@
       canvasVisivel = true;
       doc.classList.add("quadros-prontos");
       render();
+      movimentoAmbiente();
     }
 
     for (var i = 0; i < FRAME_COUNT; i++) {
