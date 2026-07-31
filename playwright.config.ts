@@ -19,11 +19,25 @@ export default defineConfig({
     baseURL: BASE_URL,
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
-    launchOptions: executablePath ? { executablePath } : {},
   },
   projects: [
-    { name: "desktop", use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } } },
-    { name: "mobile", use: { ...devices["Pixel 7"] } },
+    // E2E_CHROMIUM vale só para os projetos Chromium: aplicá-lo globalmente
+    // fazia o WebKit tentar subir um executável de Chromium e falhar na hora.
+    {
+      name: "desktop",
+      use: {
+        ...devices["Desktop Chrome"],
+        viewport: { width: 1440, height: 900 },
+        launchOptions: executablePath ? { executablePath } : {},
+      },
+    },
+    {
+      name: "mobile",
+      use: {
+        ...devices["Pixel 7"],
+        launchOptions: executablePath ? { executablePath } : {},
+      },
+    },
     // WebKit é o motor do Safari. Os defeitos de rolagem no iPhone não
     // aparecem no Chromium; só reproduzem aqui.
     { name: "ios", use: { ...devices["iPhone 14 Pro"] } },

@@ -225,12 +225,14 @@
      O ScrollTrigger só lê o progresso — sem pin, sem elemento espaçador e sem
      remedir nada quando a barra de URL do celular muda a altura da tela.
      Era o pin que abria faixa preta e deslocava o hero ao rolar de volta. */
-  .hero-track{position:relative;width:100%;height:calc(340svh);background:hsl(var(--bg))}
+  .hero-track{position:relative;width:100%;height:calc(460svh);background:hsl(var(--bg))}
   .hero{position:sticky;top:0;height:100vh;height:100svh;min-height:600px;width:100%;
     overflow:hidden;background:hsl(var(--bg))}
   @media (max-width:1000px){
     /* no toque cada gesto avança menos que a roda: trilha mais curta */
-    .hero-track{height:calc(220svh)}
+    /* quatro capítulos precisam de espaço: com a trilha curta demais cada um
+       passava rápido e o gesto de dedo atropelava a narrativa */
+    .hero-track{height:calc(440svh)}
   }
   .hero-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0}
   #cinema{filter:saturate(1.06) contrast(1.04)}
@@ -276,6 +278,24 @@
   .scroll-cue .mouse{width:22px;height:34px;border:1px solid hsl(var(--border));border-radius:99px;display:flex;justify-content:center;padding-top:6px}
   .scroll-cue .mouse i{width:5px;height:5px;border-radius:99px;background:hsl(var(--primary));animation:cue 1.6s infinite}
   @keyframes cue{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(9px);opacity:.3}}
+
+  /* Capítulos do hero: trocam conforme a rolagem, sobre a mesma cena.
+     Todos empilhados no mesmo lugar; a timeline com scrub controla quem
+     aparece. Como é scrub, subir desfaz a sequência sozinho. */
+  .hero-caps{position:absolute;inset:0;z-index:5;display:flex;align-items:center;justify-content:center;
+    padding:calc(var(--header-h) + 1rem) clamp(1.1rem,5vw,2rem) 4rem;pointer-events:none}
+  .hero-cap{position:absolute;max-width:44rem;text-align:center;opacity:0;will-change:transform,opacity}
+  .hero-cap .eyebrow{justify-content:center}
+  .hero-cap h2{font-family:'Montserrat','Segoe UI Variable Display','Segoe UI',Roboto,sans-serif;
+    font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:1.04;
+    font-size:clamp(1.7rem,4.6vw,3.4rem);margin:1rem 0 0;
+    text-shadow:0 2px 40px hsl(var(--bg)),0 0 90px hsl(var(--bg)/.9)}
+  .hero-cap p{color:hsl(0 0% 92%);font-size:clamp(.98rem,1.6vw,1.2rem);max-width:34rem;
+    margin:1.1rem auto 0;text-shadow:0 2px 30px hsl(var(--bg))}
+  @media (max-width:560px){
+    .hero-cap h2{font-size:clamp(1.4rem,7vw,2rem)}
+    .hero-cap p{font-size:.92rem}
+  }
 
   /* ============================================================ TECH MARQUEE */
   .tech{border-block:1px solid hsl(var(--border));background:hsl(var(--muted)/.2);padding:2.6rem 0}
@@ -861,6 +881,23 @@
             <span><b>10+</b> Anos</span>
           </div>
         </div>
+      </div>
+      <div class="hero-caps" id="heroCaps" aria-hidden="true">
+        <article class="hero-cap" data-cap>
+          <span class="eyebrow"><span class="idx">01</span><span class="rule"></span>Criação de Sites</span>
+          <h2>Sites profissionais<br>que <span class="text-grad">convertem</span></h2>
+          <p>Institucionais, lojas virtuais e landing pages com design responsivo e otimizado para conversão.</p>
+        </article>
+        <article class="hero-cap" data-cap>
+          <span class="eyebrow"><span class="idx">02</span><span class="rule"></span>Automação com IA</span>
+          <h2>Atendimento no WhatsApp<br>que <span class="text-grad">vende 24/7</span></h2>
+          <p>Chatbots inteligentes que respondem, qualificam e vendem sozinhos, de dia ou de madrugada.</p>
+        </article>
+        <article class="hero-cap" data-cap>
+          <span class="eyebrow"><span class="idx">03</span><span class="rule"></span>Apps &amp; Sistemas</span>
+          <h2>Apps mobile nativos<br>e sistemas <span class="text-grad">sob medida</span></h2>
+          <p>Aplicativos para iOS e Android e plataformas web completas para gestão e automação.</p>
+        </article>
       </div>
       <div class="scroll-cue" id="scrollCue"><span class="mouse"><i></i></span>Role para descobrir</div>
       </div>

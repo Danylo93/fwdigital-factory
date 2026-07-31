@@ -347,8 +347,23 @@
     tl.to(cue, { opacity: 0, duration: 0.04, ease: "none" }, 0.02);
     // Gentle upward parallax of the copy as the camera moves in
     tl.to(copy, { y: -60, ease: "none", duration: 1 }, 0);
-    // Near the end: fade the copy and push into the (now glowing) screen
-    tl.to(copy, { opacity: 0, filter: "blur(5px)", ease: "power2.in", duration: 0.16 }, 0.8);
+    // A copy de abertura sai cedo para dar lugar aos capítulos
+    tl.to(copy, { opacity: 0, filter: "blur(5px)", ease: "power2.in", duration: 0.08 }, 0.14);
+
+    // ---- Capítulos: o conteúdo troca conforme a cena avança ----
+    // Cada um entra e sai dentro da mesma timeline com scrub. Por ser scrub,
+    // rolar de volta desfaz a sequência na ordem inversa sem código extra.
+    var caps = gsap.utils.toArray("[data-cap]");
+    if (caps.length) {
+      var PRIMEIRO = 0.24;                     // depois que a abertura saiu
+      var VAO = (0.94 - PRIMEIRO) / caps.length;
+      caps.forEach(function (cap, i) {
+        var entra = PRIMEIRO + i * VAO;
+        gsap.set(cap, { opacity: 0, y: 34 });
+        tl.to(cap, { opacity: 1, y: 0, ease: "power2.out", duration: VAO * 0.28 }, entra)
+          .to(cap, { opacity: 0, y: -28, ease: "power2.in", duration: VAO * 0.26 }, entra + VAO * 0.7);
+      });
+    }
   }
 
   /* ---------- Movimento ambiente antes da primeira rolagem ----------
