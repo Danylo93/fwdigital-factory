@@ -220,7 +220,11 @@
   #mobileMenu{display:none}
 
   /* ============================================================ HERO / CINEMA */
-  .hero{position:relative;height:100vh;min-height:600px;width:100%;overflow:hidden;background:hsl(var(--bg))}
+  /* height em svh (viewport pequena) e não vh: no iOS o vh é a altura com a
+     barra de URL recolhida, então o hero ficava mais alto que a área visível
+     sempre que a barra reaparecia — e o pin do ScrollTrigger media contra a
+     altura errada, abrindo faixa preta ao rolar de volta. */
+  .hero{position:relative;height:100vh;height:100svh;min-height:600px;width:100%;overflow:hidden;background:hsl(var(--bg))}
   .hero-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0}
   #cinema{filter:saturate(1.06) contrast(1.04)}
   /* No modo cinema o poster é a camada base e o canvas entra por cima assim
@@ -529,7 +533,6 @@
     .section{padding:clamp(3rem,8vw,5.5rem) 0}
     h2.title{font-size:clamp(1.6rem,5vw,2.4rem)}
     .lead{font-size:clamp(.92rem,1.4vw,1.08rem)}
-    .hero{min-height:100svh}
     .hero-h1{font-size:clamp(1.4rem,5.5vw,2.2rem)}
     .hero-sub{font-size:clamp(.9rem,1.3vw,1.05rem);max-width:28rem}
     .hero-tail{font-size:clamp(.88rem,1.8vw,1.1rem)}
@@ -573,7 +576,6 @@
     .hero-cta{flex-direction:column;width:100%;max-width:22rem}
     .hero-cta .btn{width:100%}
     .final-stats{grid-template-columns:repeat(2,1fr)}
-    .hero{min-height:100svh;min-height:-webkit-fill-available}
     .hero-h1{font-size:clamp(1.25rem,6.5vw,1.8rem)}
     .hero-sub{font-size:.9rem;margin-top:.8rem}
     .hero-tail{font-size:.85rem}

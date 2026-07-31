@@ -223,10 +223,17 @@
   var state = { frame: 0 };
 
   function sizeCanvas() {
-    if (!canvas) return;
+    if (!canvas) return false;
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = Math.floor(canvas.clientWidth * dpr);
-    canvas.height = Math.floor(canvas.clientHeight * dpr);
+    var w = Math.floor(canvas.clientWidth * dpr);
+    var h = Math.floor(canvas.clientHeight * dpr);
+    // Atribuir width/height zera o bitmap mesmo quando o valor não muda. Como
+    // no iOS a barra de URL dispara resize em rajada, redimensionar sem
+    // necessidade apagava a cena a cada quadro da animação da barra.
+    if (w === canvas.width && h === canvas.height) return false;
+    canvas.width = w;
+    canvas.height = h;
+    return true;
   }
   /** Quadro pedido, ou o carregado mais próximo dele. */
   function quadroUtilizavel(alvo) {
@@ -452,7 +459,12 @@
      depois, então não há salto, e a trava por interação deixa de ser
      necessária. Os quadros entram por cima do poster conforme chegam. */
   function boot() {
-    if (hasST) gsap.registerPlugin(ScrollTrigger);
+    if (hasST) {
+      gsap.registerPlugin(ScrollTrigger);
+      // Não refazer as medidas quando o celular só muda de altura por causa
+      // da barra do navegador — é a trava do próprio GSAP para esse caso.
+      ScrollTrigger.config({ ignoreMobileResize: true });
+    }
     initLenis();
 
     // Libera a tela assim que o poster estiver pronto (é o LCP, já vem no
@@ -474,9 +486,25 @@
     }
     setTimeout(liberar, 1200);
 
+    // No celular, a barra de URL do navegador aparece e some conforme o
+    // sentido da rolagem e dispara resize só na altura. Tratar isso como
+    // mudança de layout recalcula o pin no meio do gesto e desloca a página —
+    // era daí que vinha a faixa preta e o hero sobrepondo a seção seguinte.
+    // Largura é o que realmente indica rotação ou janela redimensionada.
+    var larguraAnterior = window.innerWidth;
+    var alturaAnterior = window.innerHeight;
     window.addEventListener("resize", function () {
-      sizeCanvas();
-      render();
+      var larguraMudou = window.innerWidth !== larguraAnterior;
+      var saltoDeAltura = Math.abs(window.innerHeight - alturaAnterior) >
+        Math.max(120, alturaAnterior * 0.2);
+      larguraAnterior = window.innerWidth;
+      alturaAnterior = window.innerHeight;
+
+      // O canvas sempre acompanha o tamanho de exibição, mas só redesenha se
+      // de fato mudou de dimensão (sizeCanvas devolve false caso contrário).
+      if (sizeCanvas()) render();
+
+      if (!larguraMudou && !saltoDeAltura) return;
       if (hasST) ScrollTrigger.refresh();
     });
   }
