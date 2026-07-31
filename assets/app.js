@@ -410,8 +410,14 @@
 
   /* ---------- Lenis + GSAP ticker ---------- */
   function initLenis() {
-    // Desktop cinema only — mobile keeps native (lighter) scrolling.
-    if (!CINEMA || typeof window.Lenis === "undefined") return;
+    // Só no ponteiro fino (mouse). No toque, o Lenis sequestra a rolagem
+    // nativa e briga com o que o Safari do iPhone faz por conta própria:
+    // rubber-banding nas pontas e a barra de URL que recolhe conforme o
+    // sentido do gesto. O resultado é a rolagem "quebrada" ao subir. O
+    // scrub por rolagem continua valendo no celular — quem some é só a
+    // suavização artificial, que ali não faz falta.
+    var noToque = window.matchMedia("(pointer: coarse)").matches;
+    if (noToque || !CINEMA || typeof window.Lenis === "undefined") return;
     lenis = new window.Lenis({ lerp: 0.1, wheelMultiplier: 1, smoothWheel: true });
     if (hasST) lenis.on("scroll", ScrollTrigger.update);
     gsap.ticker.add(function (time) { lenis.raf(time * 1000); });

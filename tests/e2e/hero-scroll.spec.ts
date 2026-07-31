@@ -8,6 +8,16 @@ import { abrir, ready } from "./helpers";
  * sentido da rolagem, muda innerHeight e dispara resize no meio do gesto.
  */
 
+/**
+ * Rola de forma compatível com os três projetos: o WebKit móvel não tem roda
+ * de mouse, e com o Lenis desligado no toque a rolagem nativa responde direto.
+ */
+async function rolar(page: Page, delta: number) {
+  const temRoda = await page.evaluate(() => !matchMedia("(pointer: coarse)").matches);
+  if (temRoda) await page.mouse.wheel(0, delta);
+  else await page.evaluate((d) => window.scrollBy(0, d), delta);
+}
+
 /** O canvas está desenhando algo, ou é um retângulo preto liso? */
 async function canvasTemImagem(page: Page) {
   return page.evaluate(() => {
@@ -60,7 +70,7 @@ test.describe("Hero: rolagem de volta para cima", () => {
 
     // desce percorrendo todo o trecho fixado
     for (let i = 0; i < 8; i++) {
-      await page.mouse.wheel(0, 400);
+      await rolar(page, 400);
       await page.waitForTimeout(250);
     }
     await page.waitForTimeout(600);
@@ -68,7 +78,7 @@ test.describe("Hero: rolagem de volta para cima", () => {
     // sobe de volta conferindo a cada passo
     const falhas: string[] = [];
     for (let i = 0; i < 8; i++) {
-      await page.mouse.wheel(0, -400);
+      await rolar(page, -400);
       await page.waitForTimeout(400);
       const estado = await canvasTemImagem(page);
       const y = await page.evaluate(() => Math.round(window.scrollY));
@@ -89,11 +99,11 @@ test.describe("Hero: rolagem de volta para cima", () => {
     );
 
     for (let i = 0; i < 8; i++) {
-      await page.mouse.wheel(0, 400);
+      await rolar(page, 400);
       await page.waitForTimeout(220);
     }
     for (let i = 0; i < 10; i++) {
-      await page.mouse.wheel(0, -400);
+      await rolar(page, -400);
       await page.waitForTimeout(220);
     }
     await page.evaluate(() => window.scrollTo(0, 0));
@@ -138,7 +148,7 @@ test.describe("Hero: rolagem de volta para cima", () => {
     });
 
     for (let i = 0; i < 4; i++) {
-      await page.mouse.wheel(0, 400);
+      await rolar(page, 400);
       await page.waitForTimeout(200);
     }
 
@@ -193,7 +203,7 @@ test.describe("Hero: rolagem de volta para cima", () => {
     const vp = page.viewportSize()!;
 
     for (let i = 0; i < 6; i++) {
-      await page.mouse.wheel(0, 400);
+      await rolar(page, 400);
       await page.waitForTimeout(200);
     }
     // barra recolhe: viewport cresce
@@ -201,7 +211,7 @@ test.describe("Hero: rolagem de volta para cima", () => {
     await page.waitForTimeout(500);
 
     for (let i = 0; i < 6; i++) {
-      await page.mouse.wheel(0, -400);
+      await rolar(page, -400);
       await page.waitForTimeout(200);
     }
     // barra volta: viewport encolhe
@@ -216,4 +226,24 @@ test.describe("Hero: rolagem de volta para cima", () => {
     expect(pos.ok, `hero deslocado após a barra de URL mudar: ${JSON.stringify(pos)}`).toBe(true);
     expect(estado.pintado, `canvas liso após a barra de URL mudar: ${JSON.stringify(estado)}`).toBe(true);
   });
+});
+
+test.describe("Hero: gesto de dedo no iOS", () => {
+  test.skip(({ browserName }) => browserName !== "webkit", "só no motor do Safari");
+
+  test("nada intercepta a rolagem por toque", async ({ page }) => {
+    // O Lenis suaviza a roda do mouse, mas no toque ele sequestra a rolagem
+    // nativa e briga com o rubber-banding e a barra de URL do Safari — era a
+    // sensação de "quebrado" ao subir. No celular a rolagem tem que ser do
+    // sistema; o scrub por rolagem continua, só sem suavização artificial.
+    await abrir(page);
+    await ready(page);
+    const sequestrada = await page.evaluate(
+      () =>
+        document.documentElement.classList.contains("lenis") ||
+        document.documentElement.classList.contains("lenis-smooth"),
+    );
+    expect(sequestrada, "o Lenis está ativo num aparelho de toque").toBe(false);
+  });
+
 });
