@@ -220,11 +220,18 @@
   #mobileMenu{display:none}
 
   /* ============================================================ HERO / CINEMA */
-  /* height em svh (viewport pequena) e não vh: no iOS o vh é a altura com a
-     barra de URL recolhida, então o hero ficava mais alto que a área visível
-     sempre que a barra reaparecia — e o pin do ScrollTrigger media contra a
-     altura errada, abrindo faixa preta ao rolar de volta. */
-  .hero{position:relative;height:100vh;height:100svh;min-height:600px;width:100%;overflow:hidden;background:hsl(var(--bg))}
+  /* A fixação do hero é do navegador, não do JavaScript.
+     #inicio é uma trilha alta e .hero gruda no topo dela com position:sticky.
+     O ScrollTrigger só lê o progresso — sem pin, sem elemento espaçador e sem
+     remedir nada quando a barra de URL do celular muda a altura da tela.
+     Era o pin que abria faixa preta e deslocava o hero ao rolar de volta. */
+  .hero-track{position:relative;width:100%;height:calc(340svh);background:hsl(var(--bg))}
+  .hero{position:sticky;top:0;height:100vh;height:100svh;min-height:600px;width:100%;
+    overflow:hidden;background:hsl(var(--bg))}
+  @media (max-width:1000px){
+    /* no toque cada gesto avança menos que a roda: trilha mais curta */
+    .hero-track{height:calc(220svh)}
+  }
   .hero-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0}
   #cinema{filter:saturate(1.06) contrast(1.04)}
   /* No modo cinema o poster é a camada base e o canvas entra por cima assim
@@ -813,7 +820,8 @@
 
   <main id="main">
     <!-- ==================== HERO / CINEMA ==================== -->
-    <section id="inicio" class="hero">
+    <section id="inicio" class="hero-track">
+      <div class="hero">
       <canvas id="cinema" class="hero-media"></canvas>
       <img id="heroPoster" class="hero-media" src="assets/cinema/poster/hero.jpg" alt="Estúdio de desenvolvimento da FW Digital" width="1920" height="1080" fetchpriority="high" decoding="async" />
       <div class="hero-scrim"></div>
@@ -855,6 +863,7 @@
         </div>
       </div>
       <div class="scroll-cue" id="scrollCue"><span class="mouse"><i></i></span>Role para descobrir</div>
+      </div>
     </section>
 
     <!-- ==================== TECH MARQUEE ==================== -->

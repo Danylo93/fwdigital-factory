@@ -327,18 +327,16 @@
     }
 
     // ---- Scroll scrub: frame sequence + parallax + hand off into the screen ----
+    // Sem pin: quem segura o hero no lugar é o position:sticky do CSS. Aqui só
+    // lemos o progresso da trilha (#inicio), do começo ao fim dela. Assim não
+    // existe elemento espaçador para remedir, e a barra de URL do celular
+    // mudando a altura da tela não desloca mais nada.
     var tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#inicio",
         start: "top top",
-        // em retrato a jornada é mais curta: 3,4 telas de rolagem presa
-        // cansam no toque, onde cada gesto avança bem menos que a roda
-        end: function () {
-          return "+=" + Math.round(window.innerHeight * (ehRetrato ? 2.2 : 3.4));
-        },
+        end: "bottom bottom",
         scrub: 1,
-        pin: true,
-        anticipatePin: 1,
         invalidateOnRefresh: true
       }
     });

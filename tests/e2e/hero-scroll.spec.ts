@@ -33,8 +33,8 @@ async function canvasTemImagem(page: Page) {
 /** O hero cobre o topo da viewport, sem buraco entre ele e o cabeçalho? */
 async function heroPosicionado(page: Page) {
   return page.evaluate(() => {
-    const hero = document.getElementById("inicio");
-    if (!hero) return { ok: false, motivo: "sem #inicio" };
+    const hero = document.querySelector(".hero") as HTMLElement | null;
+    if (!hero) return { ok: false, motivo: "sem .hero" };
     const r = hero.getBoundingClientRect();
     return {
       ok: r.top <= 1 && r.bottom > window.innerHeight * 0.5,
@@ -142,20 +142,23 @@ test.describe("Hero: rolagem de volta para cima", () => {
       await page.waitForTimeout(200);
     }
 
-    const vp = page.viewportSize()!;
-    // rajada de alturas, como a animação da barra de URL do Safari
-    for (const dh of [20, 45, 70, 90, 70, 45, 20, 0]) {
-      await page.setViewportSize({ width: vp.width, height: vp.height + dh });
-      await page.waitForTimeout(90);
-    }
+    // Fiel ao iOS: a barra de URL dispara resize, mas o layout em svh NÃO
+    // muda de tamanho. (Mudar a viewport pelo Playwright mudaria o svh junto,
+    // o que no aparelho real não acontece.)
+    await page.evaluate(async () => {
+      for (let i = 0; i < 12; i++) {
+        window.dispatchEvent(new Event("resize"));
+        await new Promise((r) => setTimeout(r, 60));
+      }
+    });
     await page.waitForTimeout(600);
 
     const { zeradas, refreshes } = await page.evaluate(() => ({
       zeradas: (window as any).__zeradas as number,
       refreshes: (window as any).__refreshes as number,
     }));
-    expect(zeradas, `o bitmap do canvas foi zerado ${zeradas}x por mudanças só de altura`).toBe(0);
-    expect(refreshes, `o pin foi remedido ${refreshes}x por mudanças só de altura`).toBe(0);
+    expect(zeradas, `o bitmap do canvas foi zerado ${zeradas}x sem mudança de tamanho`).toBe(0);
+    expect(refreshes, `o ScrollTrigger remediu ${refreshes}x sem mudança de tamanho`).toBe(0);
   });
 
   test("a altura do hero não depende da barra do navegador", async ({ page }) => {
@@ -164,7 +167,7 @@ test.describe("Hero: rolagem de volta para cima", () => {
     await abrir(page);
     await ready(page);
     const medida = await page.evaluate(() => {
-      const h = document.getElementById("inicio")!;
+      const h = document.querySelector(".hero") as HTMLElement;
       return {
         altura: Math.round(h.getBoundingClientRect().height),
         viewport: window.innerHeight,
