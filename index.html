@@ -222,14 +222,13 @@
   /* ============================================================ HERO / CINEMA */
   .hero{position:relative;height:100vh;min-height:600px;width:100%;overflow:hidden;background:hsl(var(--bg))}
   .hero-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0}
-  #cinema,#heroVideo{filter:saturate(1.06) contrast(1.04)}
+  #cinema{filter:saturate(1.06) contrast(1.04)}
   /* No modo cinema o poster é a camada base e o canvas entra por cima assim
      que houver quadros suficientes. Assim a história por rolagem já funciona
      no primeiro segundo, sem tela preta enquanto a sequência carrega. */
   html.mode-cinema #heroPoster{opacity:1}
   html.mode-cinema #cinema{opacity:0;z-index:1;transition:opacity .55s ease}
   html.mode-cinema.quadros-prontos #cinema{opacity:1}
-  html.mode-video #heroVideo{opacity:1}
   html.mode-static #heroPoster{opacity:1}
   .hero-scrim{position:absolute;inset:0;pointer-events:none;z-index:2;
     background:
@@ -814,9 +813,6 @@
     <!-- ==================== HERO / CINEMA ==================== -->
     <section id="inicio" class="hero">
       <canvas id="cinema" class="hero-media"></canvas>
-      <video id="heroVideo" class="hero-media" muted loop playsinline preload="none" poster="assets/cinema/poster/hero.jpg">
-        <source src="assets/cinema/hero.mp4" type="video/mp4" />
-      </video>
       <img id="heroPoster" class="hero-media" src="assets/cinema/poster/hero.jpg" alt="Estúdio de desenvolvimento da FW Digital" width="1280" height="734" fetchpriority="high" decoding="async" />
       <div class="hero-scrim"></div>
       <div class="hero-grain"></div>

@@ -6,10 +6,20 @@
   "use strict";
 
   var PHONE = "5511964891128";
-  var FRAME_COUNT = 61;
-  var framePath = function (n) {
-    return "assets/cinema/frames/hero/w_" + String(n).padStart(4, "0") + ".webp";
-  };
+
+  // Telas em retrato recebem um conjunto próprio de quadros: recorte 9:16 e
+  // resolução maior. A filmagem é em paisagem (1280x734) e, esticada para
+  // cobrir uma tela alta, era ampliada 3,45x — daí a impressão de baixa
+  // qualidade. Com o conjunto de retrato a ampliação cai para cerca de 1,2x.
+  var ehRetrato = window.innerWidth < 1000 && window.innerHeight > window.innerWidth;
+  var FRAME_COUNT = ehRetrato ? 31 : 61;
+  var framePath = ehRetrato
+    ? function (n) {
+        return "assets/cinema/frames/hero-mobile/m_" + String(n).padStart(4, "0") + ".webp";
+      }
+    : function (n) {
+        return "assets/cinema/frames/hero/w_" + String(n).padStart(4, "0") + ".webp";
+      };
 
   var doc = document.documentElement;
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -22,11 +32,12 @@
     return !/(^|-)(slow-)?2g$/.test(c.effectiveType || "");
   }
 
-  // Full frame-scrub cinema on wide viewports (desktop / large tablets).
-  // Phones fall back to a light autoplay video; reduced-motion to a static poster.
-  // Gated by width + reduced-motion (not pointer) so touch-laptops still get cinema.
-  var CINEMA = !reduced && window.innerWidth >= 1000 && conexaoPermiteCinema();
-  var MODE = CINEMA ? "cinema" : reduced ? "static" : "video";
+  // A história por rolagem agora vale para celular também — antes o celular
+  // caía num vídeo em autoplay que rodava sozinho, desligado da rolagem (e que
+  // sequer chegava a carregar). Só ficam de fora quem pediu menos movimento e
+  // quem está em conexão ruim ou modo economia.
+  var CINEMA = !reduced && conexaoPermiteCinema();
+  var MODE = CINEMA ? "cinema" : "static";
   doc.classList.add("mode-" + MODE);
   if (reduced) doc.classList.add("no-anim");
 
@@ -313,7 +324,11 @@
       scrollTrigger: {
         trigger: "#inicio",
         start: "top top",
-        end: function () { return "+=" + Math.round(window.innerHeight * 3.4); },
+        // em retrato a jornada é mais curta: 3,4 telas de rolagem presa
+        // cansam no toque, onde cada gesto avança bem menos que a roda
+        end: function () {
+          return "+=" + Math.round(window.innerHeight * (ehRetrato ? 2.2 : 3.4));
+        },
         scrub: 1,
         pin: true,
         anticipatePin: 1,
@@ -331,21 +346,10 @@
     tl.to(copy, { opacity: 0, filter: "blur(5px)", ease: "power2.in", duration: 0.16 }, 0.8);
   }
 
-  /* ---------- Non-cinema hero (mobile video / static) ---------- */
+  /* ---------- Hero sem scrub (reduced-motion / conexão fraca) ---------- */
   function initFallbackHero() {
     var copy = document.getElementById("heroCopy");
     var cue = document.getElementById("scrollCue");
-    var video = document.getElementById("heroVideo");
-    // No celular o vídeo do hero é o maior arquivo da página (~1 MB). Em modo
-    // economia ou rede lenta ele não se justifica: fica só o poster.
-    if (MODE === "video" && video && conexaoPermiteCinema()) {
-      video.setAttribute("preload", "auto");
-      var p = video.play();
-      if (p && p.catch) p.catch(function () {});
-    } else if (MODE === "video") {
-      doc.classList.remove("mode-video");
-      doc.classList.add("mode-static");
-    }
     // Make all hero copy visible
     var words = document.querySelectorAll("#heroH1 .w > span");
     if (hasGSAP && !reduced) {
@@ -452,7 +456,7 @@
       preloadFramesInBackground();
     } else {
       doc.classList.remove("mode-cinema");
-      doc.classList.add(reduced ? "mode-static" : "mode-video");
+      doc.classList.add("mode-static");
       initFallbackHero();
     }
     if (hasST) requestAnimationFrame(function () { ScrollTrigger.refresh(); });
