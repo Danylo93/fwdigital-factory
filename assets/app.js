@@ -30,14 +30,6 @@
   doc.classList.add("mode-" + MODE);
   if (reduced) doc.classList.add("no-anim");
 
-  // Assim que o visitante rola, clica num link do menu ou usa o teclado, o
-  // layout não pode mais mudar debaixo dele.
-  var usuarioJaInteragiu = false;
-  function marcarInteracao() { usuarioJaInteragiu = true; }
-  ["wheel", "touchstart", "keydown", "pointerdown"].forEach(function (ev) {
-    window.addEventListener(ev, marcarInteracao, { passive: true, once: true });
-  });
-
   var hasGSAP = typeof window.gsap !== "undefined";
   var hasST = hasGSAP && typeof window.ScrollTrigger !== "undefined";
   var lenis = null;
@@ -93,7 +85,6 @@
       var el = document.querySelector(id);
       if (!el) return;
       e.preventDefault();
-      marcarInteracao();
       closeMenu();
       var y = -66;
       if (lenis) lenis.scrollTo(el, { offset: y, duration: 1.2 });
@@ -226,10 +217,23 @@
     canvas.width = Math.floor(canvas.clientWidth * dpr);
     canvas.height = Math.floor(canvas.clientHeight * dpr);
   }
+  /** Quadro pedido, ou o carregado mais próximo dele. */
+  function quadroUtilizavel(alvo) {
+    var direto = frames[alvo];
+    if (direto && direto.complete && direto.naturalWidth) return direto;
+    for (var d = 1; d < FRAME_COUNT; d++) {
+      var antes = frames[alvo - d];
+      if (antes && antes.complete && antes.naturalWidth) return antes;
+      var depois = frames[alvo + d];
+      if (depois && depois.complete && depois.naturalWidth) return depois;
+    }
+    return null;
+  }
+
   function render() {
     if (!ctx) return;
-    var img = frames[Math.round(state.frame)];
-    if (!img || !img.complete || !img.naturalWidth) return;
+    var img = quadroUtilizavel(Math.round(state.frame));
+    if (!img) return;
     var cw = canvas.width, ch = canvas.height;
     var iw = img.naturalWidth, ih = img.naturalHeight;
     var s = Math.max(cw / iw, ch / ih);
@@ -386,7 +390,6 @@
   function initDeepLinks() {
     // Na carga: espera o layout assentar (o pin do hero muda as posições).
     if (location.hash) {
-      marcarInteracao();
       var alvo = location.hash;
       requestAnimationFrame(function () {
         setTimeout(function () { irParaAncora(alvo, true); }, 120);
@@ -398,24 +401,25 @@
   }
 
   /* ---------- Boot ----------
-     Regra: o site nunca espera os 121 frames (6,4 MB) para ficar utilizável.
-     Entra sempre pelo poster/vídeo — que já vem no preload do <head> — e o
-     frame-scrub é uma melhoria que entra depois, em segundo plano. */
+     Duas regras que não podem se atropelar:
+     1) o site nunca espera os quadros para ficar utilizável;
+     2) a história por rolagem — o efeito principal do site — precisa existir
+        desde o começo, inclusive para quem rola no primeiro segundo.
+     Por isso o pin do ScrollTrigger é montado já no boot: o layout não muda
+     depois, então não há salto, e a trava por interação deixa de ser
+     necessária. Os quadros entram por cima do poster conforme chegam. */
   function boot() {
     if (hasST) gsap.registerPlugin(ScrollTrigger);
     initLenis();
 
-    // 1) libera a tela assim que o poster estiver pronto (é o LCP, já vem no
-    //    preload do <head>) — teto de 1,2 s para nunca virar espera.
+    // Libera a tela assim que o poster estiver pronto (é o LCP, já vem no
+    // preload do <head>) — teto de 1,2 s para nunca virar espera.
     var poster = document.getElementById("heroPoster");
     var liberou = false;
     function liberar() {
       if (liberou) return;
       liberou = true;
-      startLightHero();
-      initDeepLinks();
-      // 2) só então busca os frames, sem bloquear nada
-      if (CINEMA && ctx) preloadFramesInBackground();
+      iniciarHero();
     }
     if (poster && poster.decode) {
       poster.decode().then(liberar).catch(liberar);
@@ -434,23 +438,41 @@
     });
   }
 
-  /** Hero leve: poster (ou vídeo no celular). Site utilizável em ~1 s. */
-  function startLightHero() {
-    if (doc.classList.contains("mode-cinema")) {
+  function iniciarHero() {
+    hideLoader();
+    initDeepLinks();
+    initReveals();
+
+    if (CINEMA && ctx && hasST) {
+      // Cinema: pin e timeline montados agora, com o canvas ainda vazio por
+      // cima do poster. Rolar já conta a história desde o primeiro segundo;
+      // os quadros vão preenchendo o canvas em segundo plano.
+      sizeCanvas();
+      buildHeroTimeline(true);
+      preloadFramesInBackground();
+    } else {
       doc.classList.remove("mode-cinema");
       doc.classList.add(reduced ? "mode-static" : "mode-video");
+      initFallbackHero();
     }
-    hideLoader();
-    initFallbackHero();
-    initReveals();
     if (hasST) requestAnimationFrame(function () { ScrollTrigger.refresh(); });
   }
 
-  /** Carrega os frames em segundo plano e promove para cinema quando der. */
+  /** Baixa os quadros em segundo plano; o canvas aparece quando houver base. */
   function preloadFramesInBackground() {
-    sizeCanvas();
-    var loaded = 0;
-    var falhou = 0;
+    var carregados = 0;
+    var falhas = 0;
+    var canvasVisivel = false;
+
+    function talvezMostrarCanvas() {
+      // Espera uma base razoável para que a troca poster -> canvas não pisque
+      // exibindo um quadro distante do ponto onde a pessoa está.
+      if (canvasVisivel || carregados < FRAME_COUNT * 0.5) return;
+      canvasVisivel = true;
+      doc.classList.add("quadros-prontos");
+      render();
+    }
+
     for (var i = 0; i < FRAME_COUNT; i++) {
       (function (idx) {
         var img = new Image();
@@ -458,32 +480,20 @@
         if ("fetchPriority" in img) img.fetchPriority = "low";
         img.decoding = "async";
         img.onload = function () {
-          loaded++;
-          if (loaded + falhou === FRAME_COUNT) promoteToCinema();
+          carregados++;
+          // redesenha enquanto os quadros chegam, para o canvas acompanhar a
+          // posição atual de rolagem em vez de ficar preso num quadro antigo
+          if (canvasVisivel) render();
+          else talvezMostrarCanvas();
         };
         img.onerror = function () {
-          falhou++;
-          if (loaded + falhou === FRAME_COUNT) promoteToCinema();
+          falhas++;
+          // sequência inteira indisponível → o poster continua no lugar
+          if (falhas === FRAME_COUNT) doc.classList.remove("quadros-prontos");
         };
         img.src = framePath(idx + 1);
         frames[idx] = img;
       })(i);
-    }
-
-    function promoteToCinema() {
-      // frames insuficientes → fica no poster mesmo, sem drama
-      if (loaded < FRAME_COUNT * 0.9 || !hasST) return;
-      // Promover depois que o usuário já se mexeu faria a página saltar: o pin
-      // do ScrollTrigger acrescenta ~3 alturas de tela e invalida qualquer
-      // rolagem em curso. Uma vez que houve interação, o hero fica como está.
-      if (usuarioJaInteragiu || window.scrollY > window.innerHeight * 0.25) return;
-      doc.classList.remove("mode-video", "mode-static");
-      doc.classList.add("mode-cinema");
-      sizeCanvas();
-      render();
-      buildHeroTimeline(false);
-      ScrollTrigger.refresh();
-      if (location.hash) irParaAncora(location.hash, true);
     }
   }
 
