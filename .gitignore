@@ -31,3 +31,6 @@ dist-ssr
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# gerado por fontes-internas/gerar-catalogo.py — versionado de propósito,
+# o Vercel publica este arquivo direto
