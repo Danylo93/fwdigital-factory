@@ -8,6 +8,12 @@ import { abrir, ready } from "./helpers";
  * regressões grosseiras antes de irem para produção.
  */
 test.describe("Core Web Vitals", () => {
+  // Medida de tempo é sensível a CPU disputada: com os três motores rodando
+  // em paralelo, o WebKit chega a marcar 230 ms num site que sozinho marca
+  // 110 ms. O limiar continua o oficial (200 ms) — a repetição só descarta a
+  // amostra colhida com a máquina engasgada, em vez de baixar a régua.
+  test.describe.configure({ retries: 2 });
+
   test("LCP dentro do limiar de 2,5 s", async ({ page }) => {
     await abrir(page);
     await ready(page);

@@ -383,20 +383,57 @@
   .step .num{font-family:'Montserrat',sans-serif;font-weight:800;font-size:3.4rem;color:hsl(var(--fg)/.08);line-height:1}
   .step h3{font-family:'Montserrat',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;
     font-size:1.3rem;margin:1.2rem 0 .6rem}
-  .step p,.svc p{color:hsl(var(--muted-fg))}
-  .svc h4{font-family:'Montserrat',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.02rem;margin:1.1rem 0 .5rem}
+  .step p{color:hsl(var(--muted-fg))}
   .cta-center{display:flex;justify-content:center;margin-top:2.6rem}
 
-  /* offer */
-  .offer{display:grid;grid-template-columns:2fr 3fr;gap:1.3rem}
-  .flow{display:flex;flex-direction:column;gap:1.8rem;margin-top:1.8rem}
-  .flow .item{display:flex;gap:1rem;position:relative}
-  .flow .item .n{flex:none;width:2.6rem;height:2.6rem;border-radius:.45rem;background:hsl(var(--primary-solid));color:#fff;
-    display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:800;box-shadow:var(--shadow-glow)}
-  .flow .item h4{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.1rem}
-  .flow .item p{color:hsl(var(--muted-fg));font-size:.92rem;margin-top:.3rem}
-  .flow .item:not(:last-child)::before{content:"";position:absolute;left:1.28rem;top:2.9rem;bottom:-1.5rem;width:1px;
-    background:linear-gradient(hsl(var(--primary)/.5),transparent)}
+  /* ---- proposta: os dois tempos do contrato ---- */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem}
+  .mod{display:flex;flex-direction:column}
+  .mod .tag{display:inline-flex;align-items:center;gap:.5rem;align-self:flex-start;
+    border:1px solid hsl(var(--border));background:hsl(var(--muted)/.45);border-radius:.3rem;padding:.34rem .7rem;
+    font-family:'Montserrat',sans-serif;font-weight:700;font-size:.66rem;text-transform:uppercase;letter-spacing:.14em;
+    color:hsl(var(--muted-fg))}
+  .mod .tag .n{width:1.25rem;height:1.25rem;border-radius:.25rem;background:hsl(var(--primary-solid));color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:.66rem;font-weight:800}
+  .mod h3{font-family:'Montserrat',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.35rem;margin:1rem 0 .6rem}
+  .mod p{color:hsl(var(--muted-fg));font-size:.95rem}
+  .mod .price{margin-top:auto;padding-top:1.5rem}
+  .mod .price .de{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;
+    font-family:'Montserrat',sans-serif;font-weight:700;color:hsl(var(--muted-fg))}
+  .mod .price b{display:block;font-family:'Montserrat',sans-serif;font-weight:800;line-height:1.05;
+    font-size:clamp(2rem,4.4vw,2.7rem);color:hsl(var(--fg));margin-top:.25rem;font-variant-numeric:tabular-nums}
+  .mod .price b small{font-size:.42em;font-weight:700;color:hsl(var(--muted-fg));letter-spacing:0}
+  .mod .price .nota{display:block;margin-top:.5rem;font-size:.82rem;color:hsl(var(--muted-fg))}
+
+  /* ---- faixas de preço por frente ---- */
+  .tier{display:flex;flex-direction:column}
+  .tier .top{display:flex;align-items:center;gap:.9rem}
+  .tier h4{font-family:'Montserrat',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.05rem}
+  .tier .desde{font-size:.78rem;color:hsl(var(--muted-fg));margin-top:.15rem}
+  .tier .desde b{color:hsl(var(--primary));font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;
+    font-variant-numeric:tabular-nums}
+  .tier ul{list-style:none;margin-top:1.4rem;border-top:1px solid hsl(var(--border))}
+  .tier li{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+    padding:.72rem 0;border-bottom:1px solid hsl(var(--border));font-size:.9rem}
+  .tier li span{color:hsl(var(--fg)/.88)}
+  .tier li b{flex:none;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.92rem;
+    color:hsl(var(--fg));font-variant-numeric:tabular-nums}
+  .tier .pe{margin-top:1.1rem;font-size:.82rem;color:hsl(var(--muted-fg))}
+
+  /* ---- combos e o que sempre acompanha ---- */
+  .combo{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem 1.6rem;justify-content:space-between}
+  .combo .rot{font-family:'Montserrat',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+    font-size:.74rem;color:hsl(var(--muted-fg))}
+  .combo .lista{display:flex;flex-wrap:wrap;gap:.6rem}
+  .combo .lista .chip b{color:hsl(var(--fg));font-family:'Montserrat',sans-serif;font-weight:800;
+    font-variant-numeric:tabular-nums}
+  .incluso h4{font-family:'Montserrat',sans-serif;font-weight:700;text-transform:uppercase;font-size:1rem}
+  .incluso .feat-list{margin-top:1.1rem}
+  .oferta-cta{display:grid;grid-template-columns:1.2fr .8fr;gap:1.6rem;align-items:center}
+  .oferta-cta h3{font-family:'Montserrat',sans-serif;font-weight:700;text-transform:uppercase;
+    font-size:clamp(1.2rem,2.6vw,1.6rem)}
+  .oferta-cta p{color:hsl(var(--muted-fg));margin-top:.6rem}
+  .oferta-cta .acoes{display:flex;flex-direction:column;gap:.7rem}
 
   /* audience */
   .aud .head{display:flex;gap:1.1rem;align-items:flex-start}
@@ -448,16 +485,17 @@
   .founder{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(1.6rem,4.5vw,3.6rem);align-items:center;margin-top:3.4rem}
   .founder-ph{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid hsl(var(--border));
     aspect-ratio:4/5;box-shadow:var(--shadow-strong);background:hsl(var(--card))}
-  .founder-ph img{width:100%;height:100%;object-fit:cover;filter:grayscale(.9) contrast(1.06);
-    transition:transform .8s var(--ease),filter .6s var(--ease)}
-  .founder-ph:hover img{transform:scale(1.045);filter:grayscale(0) contrast(1)}
-  /* duotone de marca — vira colorido no hover */
-  .founder-ph::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:var(--grad-primary);
-    mix-blend-mode:color;opacity:.42;transition:opacity .6s var(--ease)}
-  .founder-ph:hover::before{opacity:0}
+  /* Sem duotone. O tingimento magenta distorcia o tom de pele, e como no
+     celular não existe hover ele nunca saía: o fundador ficava permanentemente
+     alterado. Retrato de pessoa real tem que parecer a pessoa. */
+  .founder-ph img{width:100%;height:100%;object-fit:cover;
+    transition:transform .8s var(--ease)}
+  .founder-ph:hover img{transform:scale(1.045)}
+  /* Vinheta que integra o fundo claro do estúdio à página escura, sem mexer
+     na cor da pele: escurece só as bordas e a base. */
   .founder-ph::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-    background:radial-gradient(115% 85% at 50% 32%,transparent 38%,hsl(var(--bg)/.62) 100%),
-      linear-gradient(to top,hsl(var(--bg)/.88) 1%,transparent 48%)}
+    background:radial-gradient(120% 78% at 50% 30%,transparent 30%,hsl(var(--bg)/.35) 72%,hsl(var(--bg)/.82) 100%),
+      linear-gradient(to top,hsl(var(--bg)) 0%,hsl(var(--bg)/.55) 16%,transparent 46%)}
   .founder-ph .badge{position:absolute;left:1rem;bottom:1rem;z-index:2;display:inline-flex;align-items:center;gap:.5rem;
     background:hsl(var(--bg)/.72);backdrop-filter:blur(10px);border:1px solid hsl(var(--border));border-radius:.35rem;
     padding:.5rem .85rem;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.7rem;text-transform:uppercase;letter-spacing:.12em}
@@ -536,7 +574,7 @@
 
   /* ============================================================ RESPONSIVE */
   @media (max-width:960px){
-    .story,.offer{grid-template-columns:1fr}
+    .story,.duo,.oferta-cta{grid-template-columns:1fr}
     .story.rev .story-visual{order:0}
     .grid-3{grid-template-columns:1fr}
     .grid-2{grid-template-columns:1fr}
@@ -567,15 +605,16 @@
     .hero-metrics b{font-size:.96rem}
     .hero-copy{padding:calc(var(--header-h) + .5rem) 1rem 2.5rem}
     .scroll-cue{display:none}
-    .offer{grid-template-columns:1fr}
-    .offer .grid-2{grid-template-columns:1fr}
+    .mod h3{font-size:1.15rem}
+    .tier li{font-size:.86rem}
+    .combo{flex-direction:column;align-items:flex-start}
+    .oferta-cta .acoes .btn{width:100%;text-align:center}
     .aud .head{flex-direction:column;gap:.7rem}
     .visual-card{aspect-ratio:4/3}
     .story-cta .btn{width:100%;text-align:center}
     .card-pad{padding:clamp(1.1rem,3vw,1.6rem)}
     .step h3{font-size:1.1rem}
     .step .num{font-size:2.6rem}
-    .svc h4{font-size:.92rem}
     .final-wrap{padding:clamp(2rem,5vw,3rem) clamp(1rem,4vw,2rem)}
     .final-wrap h2{font-size:clamp(1.5rem,4.5vw,2.2rem)}
     .final-stats{grid-template-columns:repeat(2,1fr);gap:.7rem}
@@ -623,8 +662,7 @@
     .card-pad{padding:clamp(1rem,3vw,1.4rem)}
     .step h3{font-size:1rem;margin:.8rem 0 .4rem}
     .step .num{font-size:2.2rem}
-    .step p,.svc p{font-size:.88rem}
-    .svc h4{font-size:.88rem}
+    .step p{font-size:.88rem}
     .flow .item h4{font-size:.95rem}
     .flow .item p{font-size:.85rem}
     .metric .big{font-size:clamp(1.5rem,6vw,2rem)}
@@ -748,10 +786,33 @@
       "@type": "OfferCatalog",
       "name": "Serviços",
       "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Criação de sites profissionais" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Automação de atendimento com IA no WhatsApp" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Desenvolvimento de aplicativos mobile" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sistemas web sob medida" } }
+        {
+          "@type": "Offer",
+          "itemOffered": { "@type": "Service", "name": "Criação de sites profissionais" },
+          "priceSpecification": { "@type": "PriceSpecification", "minPrice": 1990, "priceCurrency": "BRL" }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": { "@type": "Service", "name": "Automação de atendimento com IA no WhatsApp" },
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "minPrice": 599,
+            "priceCurrency": "BRL",
+            "unitText": "mês",
+            "billingDuration": 1,
+            "billingIncrement": 1
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": { "@type": "Service", "name": "Desenvolvimento de aplicativos mobile" },
+          "priceSpecification": { "@type": "PriceSpecification", "minPrice": 7990, "priceCurrency": "BRL" }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": { "@type": "Service", "name": "Sistemas web sob medida" },
+          "priceSpecification": { "@type": "PriceSpecification", "minPrice": 16900, "priceCurrency": "BRL" }
+        }
       ]
     }
   }
@@ -762,6 +823,11 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Quanto custa um projeto com vocês?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sites começam em R$ 1.990, aplicativos em R$ 7.990 e a automação com IA no WhatsApp em R$ 599 por mês. O valor exato sai depois do diagnóstico, porque depende do escopo — e vai fechado por escrito antes de começar. O catálogo completo com todos os planos está disponível para download nesta página." }
+      },
       {
         "@type": "Question",
         "name": "Quanto tempo leva para o meu projeto ficar pronto?",
@@ -1074,30 +1140,105 @@
         <div class="section-head center">
           <span class="eyebrow" data-reveal><span class="idx">05</span><span class="rule"></span>Modelo de Negócio</span>
           <h2 class="title" data-reveal>Nossa <span class="text-grad">Oferta</span></h2>
-          <p class="lead" data-reveal>Na FW Digital, trabalhamos com uma estrutura simples e eficiente.</p>
+          <p class="lead" data-reveal>Implementação uma vez, recorrência todo mês. Preço fechado por escrito antes de começar — sem orçamento surpresa.</p>
         </div>
-        <div class="offer" style="margin-top:3.5rem">
-          <div class="card card-pad" data-reveal>
-            <h3 class="font-heading" style="text-transform:uppercase;font-size:1.5rem">Implementação + Recorrência</h3>
-            <div class="flow">
-              <div class="item"><span class="n">1</span><div><h4>Implementação</h4><p>Primeiro criamos toda a base digital do seu negócio (site, app, automação, marca).</p></div></div>
-              <div class="item"><span class="n">2</span><div><h4>Recorrência</h4><p>Depois seguimos com a manutenção e crescimento contínuo, garantindo resultados reais mês após mês.</p></div></div>
-            </div>
-            <div style="margin-top:auto;padding-top:1.8rem">
-              <a class="btn btn-wa btn-block" data-wa data-msg="Olá! Quero entender como a implementação + recorrência pode ajudar meu negócio." href="#" target="_blank" rel="noopener">Quero saber mais sobre a oferta</a>
-              <a class="btn btn-outline btn-block" href="/catalogo.pdf" target="_blank" rel="noopener" style="margin-top:.7rem">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>
-                Ver catálogo com preços
-              </a>
+
+        <!-- Os dois tempos do contrato, cada um com sua âncora de preço. Mostrar
+             valor de entrada é o padrão de quem está bem posicionado no mercado:
+             filtra quem não tem orçamento e dá autoridade para quem tem. -->
+        <div class="duo" style="margin-top:3.5rem" data-reveal-group>
+          <div class="card card-pad mod" data-reveal>
+            <span class="tag"><span class="n">1</span>Pagamento único</span>
+            <h3>Implementação</h3>
+            <p>Construímos a base digital do seu negócio: site, aplicativo, sistema ou automação. Escopo, prazo e valor fechados antes da primeira linha de código.</p>
+            <div class="price">
+              <span class="de">A partir de</span>
+              <b>R$ 1.990</b>
+              <span class="nota">Entrega em até 30 dias, com acompanhamento no caminho.</span>
             </div>
           </div>
-          <div class="grid grid-2" data-reveal-group>
-            <div class="card card-pad svc" data-reveal><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20"/></svg></span><h4>Site profissional e moderno</h4><p>Design responsivo e otimizado para conversão.</p></div>
-            <div class="card card-pad svc" data-reveal><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4M8 16h.01M16 16h.01"/></svg></span><h4>Automação com IA no WhatsApp</h4><p>Chatbots inteligentes que vendem 24/7.</p></div>
-            <div class="card card-pad svc" data-reveal><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><h4>Suporte e otimização contínua</h4><p>Melhorias constantes baseadas em dados.</p></div>
-            <div class="card card-pad svc" data-reveal><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></span><h4>Crescimento previsível</h4><p>Estratégias que geram resultados consistentes.</p></div>
-            <div class="card card-pad svc" data-reveal><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></span><h4>Apps mobile nativos</h4><p>Presença completa em todas as plataformas.</p></div>
-            <div class="card card-pad svc" data-reveal><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span><h4>Suporte especializado</h4><p>Time dedicado ao seu sucesso.</p></div>
+          <div class="card card-pad mod" data-reveal>
+            <span class="tag"><span class="n">2</span>Mensal</span>
+            <h3>Recorrência</h3>
+            <p>Depois do ar: manutenção, suporte, otimização contínua e o atendimento automatizado rodando no WhatsApp todo dia.</p>
+            <div class="price">
+              <span class="de">Planos mensais a partir de</span>
+              <b>R$ 599<small>/mês</small></b>
+              <span class="nota">Contratável junto com o projeto ou depois, separado.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Faixas por frente de trabalho: os mesmos valores do catálogo em PDF. -->
+        <div class="grid grid-3" style="margin-top:1.3rem" data-reveal-group>
+          <div class="card card-pad tier" data-reveal>
+            <div class="top">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20"/></svg></span>
+              <div><h4>Sites</h4><span class="desde">a partir de <b>R$ 1.990</b></span></div>
+            </div>
+            <ul>
+              <li><span>Landing Page</span><b>R$ 1.990</b></li>
+              <li><span>Site Institucional</span><b>R$ 3.990</b></li>
+              <li><span>Loja Virtual</span><b>R$ 6.990</b></li>
+            </ul>
+            <p class="pe">Página única, site completo ou e-commerce com pagamento e estoque.</p>
+          </div>
+          <div class="card card-pad tier" data-reveal>
+            <div class="top">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></span>
+              <div><h4>Apps &amp; Sistemas</h4><span class="desde">a partir de <b>R$ 7.990</b></span></div>
+            </div>
+            <ul>
+              <li><span>App Simples</span><b>R$ 7.990</b></li>
+              <li><span>App com Backend</span><b>R$ 10.990</b></li>
+              <li><span>App Sob Medida</span><b>R$ 16.900</b></li>
+            </ul>
+            <p class="pe">iOS e Android publicados nas duas lojas, com painel de gestão.</p>
+          </div>
+          <div class="card card-pad tier" data-reveal>
+            <div class="top">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4M8 16h.01M16 16h.01"/></svg></span>
+              <div><h4>Automação com IA</h4><span class="desde">a partir de <b>R$ 599/mês</b></span></div>
+            </div>
+            <ul>
+              <li><span>Bot Básico</span><b>R$ 599/mês</b></li>
+              <li><span>Bot com IA</span><b>R$ 999/mês</b></li>
+              <li><span>Bot Personalizado</span><b>R$ 1.799/mês</b></li>
+            </ul>
+            <p class="pe">Atendimento no WhatsApp que responde, qualifica e agenda sozinho.</p>
+          </div>
+        </div>
+
+        <div class="card card-pad combo" data-reveal style="margin-top:1.3rem">
+          <span class="rot">Combos — mais barato que contratar avulso</span>
+          <div class="lista">
+            <span class="chip">Presença Digital <b>R$ 5.990</b></span>
+            <span class="chip">Automação <b>R$ 9.990</b></span>
+            <span class="chip">Empresarial <b>R$ 22.500</b></span>
+          </div>
+        </div>
+
+        <div class="card card-pad incluso" data-reveal style="margin-top:1.3rem">
+          <h4>Incluso em todo projeto, sem custo extra</h4>
+          <div class="feat-list">
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Design responsivo em celular, tablet e desktop</span>
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Certificado SSL e hospedagem monitorada</span>
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Otimização de performance e SEO técnico</span>
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Treinamento de uso e suporte pós-entrega</span>
+          </div>
+        </div>
+
+        <div class="card card-pad oferta-cta" data-reveal style="margin-top:1.3rem">
+          <div>
+            <h3>Quer o valor exato do seu caso?</h3>
+            <p>O diagnóstico é gratuito: a gente conversa, entende o objetivo e devolve a proposta com escopo, prazo e valor por escrito. Sem compromisso.</p>
+          </div>
+          <div class="acoes">
+            <a class="btn btn-wa" data-wa data-msg="Olá! Quero um diagnóstico e uma proposta para o meu negócio." href="#" target="_blank" rel="noopener">Pedir proposta no WhatsApp</a>
+            <a class="btn btn-outline" href="/catalogo.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>
+              Baixar catálogo completo
+            </a>
           </div>
         </div>
       </div>
@@ -1268,6 +1409,10 @@
           <p class="lead" data-reveal>As perguntas que mais recebemos de quem está avaliando contratar.</p>
         </div>
         <div class="faq" data-reveal>
+          <details>
+            <summary>Quanto custa um projeto com vocês?<span class="sign"></span></summary>
+            <p class="answer">Sites começam em R$ 1.990, aplicativos em R$ 7.990 e a automação com IA no WhatsApp em R$ 599 por mês. O valor exato sai depois do diagnóstico, porque depende do escopo — e vai fechado por escrito antes de começar. O catálogo completo com todos os planos está disponível para download nesta página.</p>
+          </details>
           <details>
             <summary>Quanto tempo leva para o meu projeto ficar pronto?<span class="sign"></span></summary>
             <p class="answer">A implementação é entregue em até 30 dias. O prazo exato depende do escopo — sites institucionais saem mais rápido que sistemas sob medida e aplicativos.</p>
