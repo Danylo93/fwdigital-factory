@@ -25,6 +25,12 @@ async function rolar(page: import("@playwright/test").Page, delta: number) {
   else await page.evaluate((d) => window.scrollBy(0, d), delta);
 }
 
+// Este teste espera 1,4 MB de quadros carregarem e depois mede opacidade em
+// pontos fixos da rolagem. Com os três motores disputando CPU, o scrub do
+// GSAP atrasa e a leitura cai entre dois capítulos. Sozinho ele passa sempre;
+// a repetição descarta a amostra colhida com a máquina engasgada.
+test.describe.configure({ retries: 2 });
+
 test("os capítulos avançam ao descer e desfazem ao subir", async ({ page }) => {
   await abrir(page);
   await ready(page);

@@ -20,9 +20,20 @@
     {
       "src": "assets/**",
       "use": "@vercel/static"
+    },
+    {
+      "src": "api/proposta.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
+    {
+      "src": "/api/(.*)",
+      "headers": {
+        "Cache-Control": "no-store"
+      },
+      "continue": true
+    },
     {
       "src": "/assets/(.*)\\.(png|jpg|jpeg|webp|gif|svg|ico|mp4|webm|woff2?)$",
       "headers": {

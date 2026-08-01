@@ -96,13 +96,18 @@ test.describe("Core Web Vitals", () => {
     await abrir(page);
     await ready(page);
     // Sem espera artificial: se algum overlay engolir o clique, isto reprova.
-    const cta = page.locator("header a[data-wa]").first();
-    const quemRecebe = await page.evaluate(() => {
-      const el = document.querySelector("header a[data-wa]") as HTMLElement;
+    // O seletor é o do botão do cabeçalho, não o do seu destino: o CTA já foi
+    // para o WhatsApp e hoje vai para o formulário — o que não pode mudar é
+    // ele estar clicável.
+    const SEL = "header .nav-cta a.btn";
+    const cta = page.locator(SEL).first();
+    await expect(cta, "o cabeçalho perdeu o CTA principal").toHaveCount(1);
+    const quemRecebe = await page.evaluate((sel) => {
+      const el = document.querySelector(sel) as HTMLElement;
       const r = el.getBoundingClientRect();
       const alvo = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
-      return alvo ? (alvo.closest("a[data-wa]") ? "cta" : (alvo.id || alvo.className || alvo.tagName)) : "nada";
-    });
+      return alvo ? (alvo.closest(sel) ? "cta" : (alvo.id || alvo.className || alvo.tagName)) : "nada";
+    }, SEL);
     expect(quemRecebe, `o clique no CTA está sendo interceptado por: ${quemRecebe}`).toBe("cta");
     await expect(cta).toBeVisible();
   });

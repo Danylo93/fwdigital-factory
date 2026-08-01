@@ -528,10 +528,179 @@
     });
   }
 
+  /* ---------- Proposta sob medida ----------
+     O formulário posta em /api/proposta, que dispara o e-mail. Se o endpoint
+     não responder — função fora do ar, rede caindo, chave de e-mail ausente —
+     nada é perdido: os mesmos dados vão para o WhatsApp já formatados. Um
+     lead custa caro demais para morrer num erro de rede. */
+  function initProposta() {
+    var form = document.getElementById("formProposta");
+    if (!form) return;
+    var botao = document.getElementById("btnProposta");
+    var status = document.getElementById("statusProposta");
+
+    var REGRAS = [
+      { campo: "pNome", erro: "errNome", vale: function (v) { return v.trim().length >= 2; },
+        recado: "Me diz como devo te chamar." },
+      { campo: "pEmail", erro: "errEmail", vale: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); },
+        recado: "Confere o e-mail — é para lá que a proposta vai." },
+      { campo: "pZap", erro: "errZap", vale: function (v) { return (v.replace(/\D/g, "").length >= 10); },
+        recado: "Preciso do WhatsApp com DDD." },
+      { campo: "pNegocio", erro: "errNegocio", vale: function (v) { return v.trim().length >= 2; },
+        recado: "Qual é o ramo do negócio?" },
+      { campo: "pEstagio", erro: "errEstagio", vale: function (v) { return !!v; },
+        recado: "Escolhe o ponto em que você está." },
+    ];
+
+    function marcar(regra, ok) {
+      var el = document.getElementById(regra.campo);
+      var msg = document.getElementById(regra.erro);
+      el.setAttribute("aria-invalid", ok ? "false" : "true");
+      if (ok) {
+        msg.hidden = true;
+        el.removeAttribute("aria-describedby");
+      } else {
+        msg.textContent = regra.recado;
+        msg.hidden = false;
+        el.setAttribute("aria-describedby", regra.erro);
+      }
+      return ok;
+    }
+
+    function servicos() {
+      return Array.prototype.slice
+        .call(form.querySelectorAll('input[name="servico"]:checked'))
+        .map(function (i) { return i.value; });
+    }
+
+    function validar() {
+      var primeiroRuim = null;
+      REGRAS.forEach(function (r) {
+        var el = document.getElementById(r.campo);
+        if (!marcar(r, r.vale(el.value)) && !primeiroRuim) primeiroRuim = el;
+      });
+      var msgServ = document.getElementById("errServico");
+      if (!servicos().length) {
+        msgServ.textContent = "Marca pelo menos uma opção — se estiver em dúvida, use “Ainda não sei”.";
+        msgServ.hidden = false;
+        if (!primeiroRuim) primeiroRuim = form.querySelector('input[name="servico"]');
+      } else {
+        msgServ.hidden = true;
+      }
+      return primeiroRuim;
+    }
+
+    // Só valida em tempo real depois do primeiro envio: corrigir alguém que
+    // ainda está digitando o próprio e-mail é hostil.
+    var jaTentou = false;
+    REGRAS.forEach(function (r) {
+      var el = document.getElementById(r.campo);
+      el.addEventListener("blur", function () { if (jaTentou) marcar(r, r.vale(el.value)); });
+      el.addEventListener("input", function () { if (jaTentou && r.vale(el.value)) marcar(r, true); });
+    });
+
+    function dados() {
+      return {
+        nome: form.nome.value.trim(),
+        email: form.email.value.trim(),
+        whatsapp: form.whatsapp.value.trim(),
+        negocio: form.negocio.value.trim(),
+        estagio: form.estagio.value,
+        servico: servicos(),
+        mensagem: form.mensagem.value.trim(),
+        site: form.site.value, // isca
+      };
+    }
+
+    /** Mesmo conteúdo do e-mail, em texto, para o caminho do WhatsApp. */
+    function comoTexto(d) {
+      var l = [
+        "Olá! Quero uma proposta para o meu negócio.",
+        "",
+        "Nome: " + d.nome,
+        "E-mail: " + d.email,
+        "Tipo de negócio: " + d.negocio,
+        "Momento: " + d.estagio,
+        "Busco: " + d.servico.join(", "),
+      ];
+      if (d.mensagem) l.push("", d.mensagem);
+      return l.join("\n");
+    }
+
+    function dizer(texto, classe) {
+      status.textContent = texto;
+      status.className = "status " + classe;
+      status.hidden = false;
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      jaTentou = true;
+      var ruim = validar();
+      if (ruim) {
+        ruim.focus();
+        dizer("Faltou preencher alguma coisa — está marcado em vermelho aí em cima.", "ruim");
+        return;
+      }
+
+      var d = dados();
+      botao.setAttribute("aria-busy", "true");
+      botao.textContent = "Enviando…";
+      status.hidden = true;
+
+      // Sem um corte de tempo, uma função pendurada deixaria o botão em
+      // "Enviando…" para sempre e o lead nunca chegaria a lugar nenhum.
+      var ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
+      var corta = setTimeout(function () { if (ctrl) ctrl.abort(); }, 12000);
+
+      fetch("/api/proposta", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(d),
+        signal: ctrl ? ctrl.signal : undefined,
+      })
+        .then(function (r) {
+          if (!r.ok) throw new Error("http " + r.status);
+          return r.json();
+        })
+        .then(function () {
+          clearTimeout(corta);
+          dizer(
+            "Recebido, " + d.nome.split(" ")[0] + ". Vou ler o seu caso e responder no " +
+            d.email + " com a estratégia, o prazo e o valor — junto com o catálogo completo.",
+            "ok",
+          );
+          form.reset();
+          botao.textContent = "Proposta solicitada";
+          botao.setAttribute("aria-busy", "true"); // segue travado: já enviou
+        })
+        .catch(function () {
+          clearTimeout(corta);
+          // Plano B: leva os mesmos dados para o WhatsApp, sem perder o lead.
+          var url = "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(comoTexto(d));
+          dizer("O envio por e-mail falhou aqui. Abri o WhatsApp com os seus dados já preenchidos — é só mandar.", "ruim");
+          botao.removeAttribute("aria-busy");
+          botao.textContent = "Receber minha proposta";
+          window.open(url, "_blank", "noopener");
+        });
+    });
+
+    // Âncoras que levam ao formulário já deixam o cursor no primeiro campo.
+    document.querySelectorAll("[data-ancora]").forEach(function (a) {
+      a.addEventListener("click", function () {
+        setTimeout(function () {
+          var alvo = document.getElementById("pNome");
+          if (alvo) alvo.focus({ preventScroll: true });
+        }, 700);
+      });
+    });
+  }
+
   function iniciarHero() {
     hideLoader();
     initDeepLinks();
     initReveals();
+    initProposta();
 
     if (CINEMA && ctx && hasST) {
       // Cinema: pin e timeline montados agora, com o canvas ainda vazio por

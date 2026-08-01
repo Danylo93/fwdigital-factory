@@ -148,8 +148,8 @@
     font-size:.9rem;line-height:1.15;padding:1.05rem 1.7rem;border-radius:.35rem;cursor:pointer;border:1px solid transparent;
     transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s,color .3s,border-color .3s;text-align:center}
   .btn svg{width:1.2em;height:1.2em;flex:none}
-  .btn-wa{background:hsl(var(--primary-solid));color:#fff;box-shadow:var(--shadow-glow)}
-  .btn-wa:hover{transform:translateY(-2px);box-shadow:var(--shadow-strong);filter:brightness(1.08)}
+  .btn-wa,.btn-primary{background:hsl(var(--primary-solid));color:#fff;box-shadow:var(--shadow-glow)}
+  .btn-wa:hover,.btn-primary:hover{transform:translateY(-2px);box-shadow:var(--shadow-strong);filter:brightness(1.08)}
   .btn-light{background:#fff;color:hsl(var(--primary));box-shadow:var(--shadow-strong)}
   .btn-light:hover{transform:translateY(-2px);background:#fff}
   .btn-outline{border-color:hsl(var(--primary)/.6);color:hsl(var(--fg));background:transparent;overflow:hidden;z-index:0}
@@ -413,11 +413,9 @@
   .tier .desde b{color:hsl(var(--primary));font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;
     font-variant-numeric:tabular-nums}
   .tier ul{list-style:none;margin-top:1.4rem;border-top:1px solid hsl(var(--border))}
-  .tier li{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
-    padding:.72rem 0;border-bottom:1px solid hsl(var(--border));font-size:.9rem}
-  .tier li span{color:hsl(var(--fg)/.88)}
-  .tier li b{flex:none;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.92rem;
-    color:hsl(var(--fg));font-variant-numeric:tabular-nums}
+  .tier li{padding:.72rem 0;border-bottom:1px solid hsl(var(--border))}
+  .tier li span{display:block;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.92rem;color:hsl(var(--fg)/.92)}
+  .tier li i{display:block;font-style:normal;font-size:.83rem;color:hsl(var(--muted-fg));margin-top:.2rem}
   .tier .pe{margin-top:1.1rem;font-size:.82rem;color:hsl(var(--muted-fg))}
 
   /* ---- combos e o que sempre acompanha ---- */
@@ -434,6 +432,56 @@
     font-size:clamp(1.2rem,2.6vw,1.6rem)}
   .oferta-cta p{color:hsl(var(--muted-fg));margin-top:.6rem}
   .oferta-cta .acoes{display:flex;flex-direction:column;gap:.7rem}
+
+  /* ---- proposta sob medida: formulário ---- */
+  .prop{display:grid;grid-template-columns:1.4fr .6fr;gap:1.3rem;align-items:start}
+  .prop-form{display:flex;flex-direction:column;gap:1.15rem}
+  .prop-form .linha{display:grid;grid-template-columns:1fr 1fr;gap:1.15rem}
+  .campo{display:flex;flex-direction:column;gap:.45rem;min-width:0;border:0;padding:0;margin:0}
+  .campo label,.campo legend{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.78rem;
+    text-transform:uppercase;letter-spacing:.1em;color:hsl(var(--fg)/.82);padding:0}
+  .campo .dica{text-transform:none;letter-spacing:0;font-weight:500;color:hsl(var(--muted-fg))}
+  .campo input,.campo select,.campo textarea{width:100%;font:inherit;font-size:.95rem;color:hsl(var(--fg));
+    background:hsl(var(--bg)/.7);border:1px solid hsl(var(--border));border-radius:.45rem;
+    padding:.78rem .9rem;transition:border-color .25s,box-shadow .25s;-webkit-appearance:none;appearance:none}
+  .campo textarea{resize:vertical;min-height:5.2rem}
+  .campo select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239AA0AA' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right .8rem center;background-size:1.1rem;padding-right:2.4rem}
+  .campo input::placeholder,.campo textarea::placeholder{color:hsl(var(--muted-fg)/.75)}
+  .campo input:focus,.campo select:focus,.campo textarea:focus{outline:none;border-color:hsl(var(--primary)/.7);
+    box-shadow:0 0 0 3px hsl(var(--primary)/.18)}
+  .campo [aria-invalid="true"]{border-color:hsl(0 72% 58%)}
+  .campo .erro{font-size:.8rem;color:hsl(0 78% 70%)}
+  .opcoes{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.55rem}
+  .op{display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;border:1px solid hsl(var(--border));
+    background:hsl(var(--muted)/.4);border-radius:.4rem;padding:.6rem .85rem;min-height:2.75rem;
+    transition:border-color .25s,background .25s}
+  .op span{font-family:inherit;font-size:.88rem;color:hsl(var(--fg)/.88);font-weight:500;
+    text-transform:none;letter-spacing:normal}
+  .op input{-webkit-appearance:none;appearance:none;flex:none;width:1.05rem;height:1.05rem;margin:0;
+    border:1px solid hsl(var(--border));border-radius:.25rem;background:hsl(var(--bg));transition:background .2s,border-color .2s}
+  .op input:checked{background:hsl(var(--primary-solid));border-color:hsl(var(--primary-solid));
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
+    background-size:.8rem;background-position:center;background-repeat:no-repeat}
+  .op:has(input:checked){border-color:hsl(var(--primary)/.6);background:hsl(var(--primary)/.12)}
+  .op:has(input:focus-visible){outline:2px solid hsl(var(--primary));outline-offset:2px}
+  .mel{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  .prop-form .consent{font-size:.78rem;color:hsl(var(--muted-fg));text-align:center}
+  .prop-form .status{font-size:.9rem;border-radius:.45rem;padding:.85rem 1rem;border:1px solid hsl(var(--border))}
+  .prop-form .status.ok{border-color:hsl(var(--success)/.5);background:hsl(var(--success)/.1);color:hsl(var(--fg))}
+  .prop-form .status.ruim{border-color:hsl(0 72% 58% /.5);background:hsl(0 72% 58% /.1);color:hsl(var(--fg))}
+  .prop-form button[aria-busy="true"]{opacity:.65;pointer-events:none}
+  .prop-side h3{font-family:'Montserrat',sans-serif;font-weight:700;text-transform:uppercase;font-size:1.05rem}
+  .passos{list-style:none;counter-reset:passo;margin-top:1.3rem;display:flex;flex-direction:column;gap:1.05rem}
+  .passos li{counter-increment:passo;position:relative;padding-left:2.1rem}
+  .passos li::before{content:counter(passo);position:absolute;left:0;top:.05rem;width:1.5rem;height:1.5rem;
+    border-radius:.3rem;background:hsl(var(--primary)/.15);border:1px solid hsl(var(--primary)/.4);
+    color:hsl(var(--primary));display:flex;align-items:center;justify-content:center;
+    font-family:'Montserrat',sans-serif;font-weight:800;font-size:.72rem}
+  .passos b{display:block;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.92rem}
+  .passos i{display:block;font-style:normal;font-size:.85rem;color:hsl(var(--muted-fg));margin-top:.2rem}
+  .prop-side .assinado{margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid hsl(var(--border));
+    font-size:.85rem;color:hsl(var(--muted-fg))}
 
   /* audience */
   .aud .head{display:flex;gap:1.1rem;align-items:flex-start}
@@ -574,7 +622,7 @@
 
   /* ============================================================ RESPONSIVE */
   @media (max-width:960px){
-    .story,.duo,.oferta-cta{grid-template-columns:1fr}
+    .story,.duo,.oferta-cta,.prop{grid-template-columns:1fr}
     .story.rev .story-visual{order:0}
     .grid-3{grid-template-columns:1fr}
     .grid-2{grid-template-columns:1fr}
@@ -608,6 +656,8 @@
     .mod h3{font-size:1.15rem}
     .tier li{font-size:.86rem}
     .combo{flex-direction:column;align-items:flex-start}
+    .prop-form .linha{grid-template-columns:1fr}
+    .opcoes{grid-template-columns:1fr}
     .oferta-cta .acoes .btn{width:100%;text-align:center}
     .aud .head{flex-direction:column;gap:.7rem}
     .visual-card{aspect-ratio:4/3}
@@ -810,8 +860,7 @@
         },
         {
           "@type": "Offer",
-          "itemOffered": { "@type": "Service", "name": "Sistemas web sob medida" },
-          "priceSpecification": { "@type": "PriceSpecification", "minPrice": 16900, "priceCurrency": "BRL" }
+          "itemOffered": { "@type": "Service", "name": "Sistemas web sob medida" }
         },
         {
           "@type": "Offer",
@@ -838,7 +887,7 @@
       {
         "@type": "Question",
         "name": "Quanto custa um projeto com vocês?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Sites começam em R$ 1.990, aplicativos em R$ 7.990 e a automação com IA no WhatsApp em R$ 599 por mês. O valor exato sai depois do diagnóstico, porque depende do escopo — e vai fechado por escrito antes de começar. O catálogo completo com todos os planos está disponível para download nesta página." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Sites começam em R$ 1.990, aplicativos em R$ 7.990 e a automação com IA no WhatsApp em R$ 599 por mês. Esses são valores de entrada: o preço do seu caso depende do escopo, e quem está começando não paga o mesmo que uma empresa com operação montada. Preencha o formulário de proposta nesta página e eu devolvo por e-mail a estratégia, o prazo e o valor fechados — junto com o catálogo completo." }
       },
       {
         "@type": "Question",
@@ -898,7 +947,7 @@
         <a href="#contato" data-nav>Contato</a>
       </div>
       <div class="nav-cta">
-        <a class="btn btn-wa" data-wa data-msg="Olá! Gostaria de um orçamento com a Agência FW Digital." href="#" target="_blank" rel="noopener">Orçamento Grátis</a>
+        <a class="btn btn-primary" href="#proposta" data-nav data-ancora>Orçamento Grátis</a>
         <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
         </button>
@@ -910,6 +959,7 @@
       <a href="#apps" data-nav>Apps & Sistemas</a>
       <a href="#metodologia" data-nav>Metodologia</a>
       <a href="#oferta" data-nav>Oferta</a>
+      <a href="#proposta" data-nav data-ancora>Pedir proposta</a>
       <a href="#cases" data-nav>Cases</a>
       <a href="#time" data-nav>Quem somos</a>
       <a href="#contato" data-nav>Contato</a>
@@ -1189,9 +1239,9 @@
               <div><h4>Sites</h4><span class="desde">a partir de <b>R$ 1.990</b></span></div>
             </div>
             <ul>
-              <li><span>Landing Page</span><b>R$ 1.990</b></li>
-              <li><span>Site Institucional</span><b>R$ 3.990</b></li>
-              <li><span>Loja Virtual</span><b>R$ 6.990</b></li>
+              <li><span>Landing Page</span><i>Página única focada em uma oferta e uma ação.</i></li>
+              <li><span>Site Institucional</span><i>Até 6 páginas, blog, formulário e mapa.</i></li>
+              <li><span>Loja Virtual</span><i>Carrinho, pagamento online e controle de estoque.</i></li>
             </ul>
             <p class="pe">Página única, site completo ou e-commerce com pagamento e estoque.</p>
           </div>
@@ -1201,9 +1251,9 @@
               <div><h4>Apps &amp; Sistemas</h4><span class="desde">a partir de <b>R$ 7.990</b></span></div>
             </div>
             <ul>
-              <li><span>App Simples</span><b>R$ 7.990</b></li>
-              <li><span>App com Backend</span><b>R$ 10.990</b></li>
-              <li><span>App Sob Medida</span><b>R$ 16.900</b></li>
+              <li><span>App Simples</span><i>Catálogo, pedidos e notificações.</i></li>
+              <li><span>App com Backend</span><i>Login, conta de cliente e chat.</i></li>
+              <li><span>App Sob Medida</span><i>Marketplace ou operação completa, do zero.</i></li>
             </ul>
             <p class="pe">iOS e Android publicados nas duas lojas, com painel de gestão.</p>
           </div>
@@ -1213,9 +1263,9 @@
               <div><h4>Automação com IA</h4><span class="desde">a partir de <b>R$ 599/mês</b></span></div>
             </div>
             <ul>
-              <li><span>Bot Básico</span><b>R$ 599/mês</b></li>
-              <li><span>Bot com IA</span><b>R$ 999/mês</b></li>
-              <li><span>Bot Personalizado</span><b>R$ 1.799/mês</b></li>
+              <li><span>Bot Básico</span><i>Responde as perguntas que mais se repetem.</i></li>
+              <li><span>Bot com IA</span><i>Entende o pedido e conduz a conversa.</i></li>
+              <li><span>Bot Personalizado</span><i>Integrado ao seu funil e ao seu CRM.</i></li>
             </ul>
             <p class="pe">Atendimento no WhatsApp que responde, qualifica e agenda sozinho.</p>
           </div>
@@ -1225,9 +1275,9 @@
               <div><h4>DevOps &amp; Sustentação</h4><span class="desde">a partir de <b>R$ 890/mês</b></span></div>
             </div>
             <ul>
-              <li><span>Setup de Infraestrutura</span><b>R$ 2.990</b></li>
-              <li><span>Sustentação Essencial</span><b>R$ 890/mês</b></li>
-              <li><span>Sustentação Avançada</span><b>R$ 2.490/mês</b></li>
+              <li><span>Setup de Infraestrutura</span><i>Esteira de deploy, ambientes e backup testado.</i></li>
+              <li><span>Sustentação Essencial</span><i>Monitoramento, segurança e correção em produção.</i></li>
+              <li><span>Sustentação Avançada</span><i>Escala, custo de nuvem e atendimento prioritário.</i></li>
             </ul>
             <p class="pe">Deploy automatizado, monitoramento, backup testado e correção de falhas em produção.</p>
           </div>
@@ -1240,17 +1290,17 @@
         <div class="card card-pad combo" data-reveal style="margin-top:1.3rem">
           <span class="rot">Evolução depois da entrega — no seu ritmo</span>
           <div class="lista">
-            <span class="chip">Banco de 20h/mês <b>R$ 2.990</b></span>
-            <span class="chip">Sprint quinzenal, 40h <b>R$ 5.990</b></span>
+            <span class="chip">Banco de horas mensal</span>
+            <span class="chip">Sprint quinzenal dedicada</span>
           </div>
         </div>
 
         <div class="card card-pad combo" data-reveal style="margin-top:1.3rem">
           <span class="rot">Combos — mais barato que contratar avulso</span>
           <div class="lista">
-            <span class="chip">Presença Digital <b>R$ 5.990</b></span>
-            <span class="chip">Automação <b>R$ 9.990</b></span>
-            <span class="chip">Empresarial <b>R$ 22.500</b></span>
+            <span class="chip">Presença Digital</span>
+            <span class="chip">Automação</span>
+            <span class="chip">Empresarial</span>
           </div>
         </div>
 
@@ -1267,15 +1317,104 @@
         <div class="card card-pad oferta-cta" data-reveal style="margin-top:1.3rem">
           <div>
             <h3>Quer o valor exato do seu caso?</h3>
-            <p>O diagnóstico é gratuito: a gente conversa, entende o objetivo e devolve a proposta com escopo, prazo e valor por escrito. Sem compromisso.</p>
+            <p>Uma tabela fixa não serve para todo mundo: quem está abrindo agora não precisa do mesmo que uma empresa com time montado — e não deveria pagar o mesmo. Conta o seu contexto e eu monto a proposta em cima dele.</p>
           </div>
           <div class="acoes">
-            <a class="btn btn-wa" data-wa data-msg="Olá! Quero um diagnóstico e uma proposta para o meu negócio." href="#" target="_blank" rel="noopener">Pedir proposta no WhatsApp</a>
-            <a class="btn btn-outline" href="/catalogo.pdf" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>
-              Baixar catálogo completo
-            </a>
+            <a class="btn btn-primary" href="#proposta" data-ancora>Montar minha proposta</a>
+            <a class="btn btn-outline" data-wa data-msg="Olá! Quero um diagnóstico e uma proposta para o meu negócio." href="#" target="_blank" rel="noopener">Prefiro falar no WhatsApp</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PROPOSTA SOB MEDIDA ==================== -->
+    <section id="proposta" class="section">
+      <div class="glow-blob" style="width:34rem;height:34rem;background:hsl(var(--primary)/.09);left:50%;top:20%;transform:translateX(-50%)"></div>
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow" data-reveal><span class="idx">06</span><span class="rule"></span>Proposta sob medida</span>
+          <h2 class="title" data-reveal>Quanto custa <span class="text-grad">no seu caso</span></h2>
+          <p class="lead" data-reveal>Um minuto para contar o seu contexto. Eu analiso e devolvo por e-mail uma estratégia com escopo, prazo e valor fechados para a sua realidade — junto com o catálogo completo.</p>
+        </div>
+
+        <div class="prop" style="margin-top:3.5rem">
+          <form class="card card-pad prop-form" id="formProposta" novalidate data-reveal>
+            <div class="linha">
+              <div class="campo">
+                <label for="pNome">Seu nome</label>
+                <input id="pNome" name="nome" type="text" autocomplete="name" required maxlength="120" placeholder="Como devo te chamar" />
+                <span class="erro" id="errNome" hidden></span>
+              </div>
+              <div class="campo">
+                <label for="pEmail">E-mail</label>
+                <input id="pEmail" name="email" type="email" autocomplete="email" required maxlength="180" placeholder="onde envio a proposta" />
+                <span class="erro" id="errEmail" hidden></span>
+              </div>
+            </div>
+
+            <div class="linha">
+              <div class="campo">
+                <label for="pZap">WhatsApp</label>
+                <input id="pZap" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" required maxlength="20" placeholder="(11) 90000-0000" />
+                <span class="erro" id="errZap" hidden></span>
+              </div>
+              <div class="campo">
+                <label for="pNegocio">Tipo de negócio</label>
+                <input id="pNegocio" name="negocio" type="text" required maxlength="120" placeholder="restaurante, clínica, loja, advocacia…" />
+                <span class="erro" id="errNegocio" hidden></span>
+              </div>
+            </div>
+
+            <div class="campo">
+              <label for="pEstagio">Em que ponto o seu negócio está</label>
+              <select id="pEstagio" name="estagio" required>
+                <option value="" selected disabled>Escolha a opção mais parecida</option>
+                <option>Ainda vou começar — não abri ainda</option>
+                <option>Já funciono, mas não tenho presença digital</option>
+                <option>Tenho site ou app e quero evoluir</option>
+                <option>Empresa estabelecida, com time e operação rodando</option>
+              </select>
+              <span class="erro" id="errEstagio" hidden></span>
+            </div>
+
+            <fieldset class="campo">
+              <legend>O que você está buscando <span class="dica">(pode marcar mais de um)</span></legend>
+              <div class="opcoes">
+                <label class="op"><input type="checkbox" name="servico" value="Site" /><span>Site</span></label>
+                <label class="op"><input type="checkbox" name="servico" value="App ou sistema" /><span>App ou sistema</span></label>
+                <label class="op"><input type="checkbox" name="servico" value="Automação com IA" /><span>Automação com IA</span></label>
+                <label class="op"><input type="checkbox" name="servico" value="DevOps e sustentação" /><span>DevOps e sustentação</span></label>
+                <label class="op"><input type="checkbox" name="servico" value="Ainda não sei" /><span>Ainda não sei</span></label>
+              </div>
+              <span class="erro" id="errServico" hidden></span>
+            </fieldset>
+
+            <div class="campo">
+              <label for="pMsg">Alguma coisa que eu precise saber <span class="dica">(opcional)</span></label>
+              <textarea id="pMsg" name="mensagem" rows="3" maxlength="1200" placeholder="O que te trouxe aqui, prazo, orçamento em mente, o que já tentou…"></textarea>
+            </div>
+
+            <!-- isca para robô: humano nunca preenche um campo que não vê -->
+            <div class="mel" aria-hidden="true">
+              <label for="pSite">Não preencha este campo</label>
+              <input id="pSite" name="site" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <button class="btn btn-primary btn-block" type="submit" id="btnProposta">Receber minha proposta</button>
+            <p class="consent">Seus dados são usados só para responder esta solicitação. Sem lista de disparo, sem repasse a terceiros.</p>
+            <p class="status" id="statusProposta" role="status" aria-live="polite" hidden></p>
+          </form>
+
+          <aside class="card card-pad prop-side" data-reveal>
+            <h3>O que chega no seu e-mail</h3>
+            <ol class="passos">
+              <li><b>A leitura do seu caso</b><i>O que faz sentido agora e o que pode esperar — inclusive quando a resposta é "você ainda não precisa disso".</i></li>
+              <li><b>Escopo e prazo</b><i>O que entra, o que não entra e em quantos dias fica pronto.</i></li>
+              <li><b>Valor fechado</b><i>Preço do seu escopo, com as condições de pagamento. Sem surpresa depois.</i></li>
+              <li><b>O catálogo completo</b><i>Todos os planos e pacotes em PDF, para você comparar com calma.</i></li>
+            </ol>
+            <p class="assinado">Quem lê e responde sou eu, o Danylo. Não é robô e não é modelo pronto.</p>
+          </aside>
         </div>
       </div>
     </section>
@@ -1284,7 +1423,7 @@
     <section id="para-quem" class="section">
       <div class="container">
         <div class="section-head center">
-          <span class="eyebrow" data-reveal><span class="idx">06</span><span class="rule"></span>Público Ideal</span>
+          <span class="eyebrow" data-reveal><span class="idx">07</span><span class="rule"></span>Público Ideal</span>
           <h2 class="title" data-reveal>Para <span class="text-grad">quem é</span></h2>
           <p class="lead" data-reveal>Nossas soluções são perfeitas para empreendedores que querem dominar o mercado digital.</p>
         </div>
@@ -1324,7 +1463,7 @@
     <section id="cases" class="section">
       <div class="container">
         <div class="section-head center">
-          <span class="eyebrow" data-reveal><span class="idx">07</span><span class="rule"></span>Cases de Sucesso</span>
+          <span class="eyebrow" data-reveal><span class="idx">08</span><span class="rule"></span>Cases de Sucesso</span>
           <h2 class="title" data-reveal>Resultados <span class="text-grad">Reais</span></h2>
           <p class="lead" data-reveal>Veja como transformamos negócios de brasileiros no exterior em máquinas de vendas digitais.</p>
         </div>
@@ -1399,7 +1538,7 @@
       <div class="glow-blob" style="width:34rem;height:34rem;background:hsl(var(--primary)/.10);right:-10rem;top:20%"></div>
       <div class="container">
         <div class="section-head center">
-          <span class="eyebrow" data-reveal><span class="idx">08</span><span class="rule"></span>Quem faz acontecer</span>
+          <span class="eyebrow" data-reveal><span class="idx">09</span><span class="rule"></span>Quem faz acontecer</span>
           <h2 class="title" data-reveal>Quem vai cuidar do <span class="text-grad">seu projeto</span></h2>
           <p class="lead" data-reveal>Nada de time terceirizado ou atendimento de call center. Aqui você fala direto com quem pensa a estratégia e escreve o código.</p>
         </div>
@@ -1440,14 +1579,14 @@
     <section id="faq" class="section">
       <div class="container">
         <div class="section-head center">
-          <span class="eyebrow" data-reveal><span class="idx">09</span><span class="rule"></span>Dúvidas frequentes</span>
+          <span class="eyebrow" data-reveal><span class="idx">10</span><span class="rule"></span>Dúvidas frequentes</span>
           <h2 class="title" data-reveal>Antes de <span class="text-grad">começar</span></h2>
           <p class="lead" data-reveal>As perguntas que mais recebemos de quem está avaliando contratar.</p>
         </div>
         <div class="faq" data-reveal>
           <details>
             <summary>Quanto custa um projeto com vocês?<span class="sign"></span></summary>
-            <p class="answer">Sites começam em R$ 1.990, aplicativos em R$ 7.990 e a automação com IA no WhatsApp em R$ 599 por mês. O valor exato sai depois do diagnóstico, porque depende do escopo — e vai fechado por escrito antes de começar. O catálogo completo com todos os planos está disponível para download nesta página.</p>
+            <p class="answer">Sites começam em R$ 1.990, aplicativos em R$ 7.990 e a automação com IA no WhatsApp em R$ 599 por mês. Esses são valores de entrada: o preço do seu caso depende do escopo, e quem está começando não paga o mesmo que uma empresa com operação montada. Preencha o formulário de proposta nesta página e eu devolvo por e-mail a estratégia, o prazo e o valor fechados — junto com o catálogo completo.</p>
           </details>
           <details>
             <summary>Quanto tempo leva para o meu projeto ficar pronto?<span class="sign"></span></summary>
@@ -1542,7 +1681,7 @@
             <li><a href="#metodologia" data-nav>Como funciona</a></li>
             <li><a href="#cases" data-nav>Cases</a></li>
             <li><a href="#time" data-nav>Quem somos</a></li>
-            <li><a href="/catalogo.pdf" target="_blank" rel="noopener">Catálogo e preços (PDF)</a></li>
+            <li><a href="#proposta">Pedir proposta e catálogo</a></li>
             <li><a href="#contato" data-nav>Contato</a></li>
           </ul>
         </div>
