@@ -87,6 +87,21 @@ PLANOS = [
         ],
     },
     {
+        "categoria": "DevOps & Sustentação",
+        "resumo": "O que mantém o que já está no ar rodando, seguro e rápido.",
+        "itens": [
+            ("Setup de Infraestrutura", "R$ 2.990", "A esteira montada uma vez, para nunca mais subir no braço.",
+             ["Deploy automatizado a cada alteração", "Ambiente de homologação separado",
+              "Domínio, DNS e certificado SSL", "Backup diário com restauração testada"]),
+            ("Sustentação Essencial", "R$ 890/mês", "Alguém olhando enquanto você cuida do negócio.",
+             ["Monitoramento e alerta de queda", "Atualizações de segurança",
+              "Correção de falhas em produção", "Relatório mensal de disponibilidade"]),
+            ("Sustentação Avançada", "R$ 2.490/mês", "Para quem já depende do sistema para faturar.",
+             ["Tudo da Essencial", "Otimização de custo de nuvem",
+              "Ajuste de escala e performance", "Atendimento prioritário a incidentes"]),
+        ],
+    },
+    {
         "categoria": "Combos",
         "resumo": "Serviços combinados, com economia em relação ao avulso.",
         "itens": [

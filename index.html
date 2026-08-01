@@ -812,6 +812,18 @@
           "@type": "Offer",
           "itemOffered": { "@type": "Service", "name": "Sistemas web sob medida" },
           "priceSpecification": { "@type": "PriceSpecification", "minPrice": 16900, "priceCurrency": "BRL" }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": { "@type": "Service", "name": "DevOps e sustentação de infraestrutura" },
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "minPrice": 890,
+            "priceCurrency": "BRL",
+            "unitText": "mês",
+            "billingDuration": 1,
+            "billingIncrement": 1
+          }
         }
       ]
     }
@@ -1160,7 +1172,7 @@
           <div class="card card-pad mod" data-reveal>
             <span class="tag"><span class="n">2</span>Mensal</span>
             <h3>Recorrência</h3>
-            <p>Depois do ar: manutenção, suporte, otimização contínua e o atendimento automatizado rodando no WhatsApp todo dia.</p>
+            <p>Depois do ar: monitoramento, manutenção, suporte e o atendimento automatizado rodando todo dia. Para continuar evoluindo o produto, sprint quinzenal ou banco de horas — você escolhe o ritmo.</p>
             <div class="price">
               <span class="de">Planos mensais a partir de</span>
               <b>R$ 599<small>/mês</small></b>
@@ -1170,7 +1182,7 @@
         </div>
 
         <!-- Faixas por frente de trabalho: os mesmos valores do catálogo em PDF. -->
-        <div class="grid grid-3" style="margin-top:1.3rem" data-reveal-group>
+        <div class="grid grid-2" style="margin-top:1.3rem" data-reveal-group>
           <div class="card card-pad tier" data-reveal>
             <div class="top">
               <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20"/></svg></span>
@@ -1206,6 +1218,30 @@
               <li><span>Bot Personalizado</span><b>R$ 1.799/mês</b></li>
             </ul>
             <p class="pe">Atendimento no WhatsApp que responde, qualifica e agenda sozinho.</p>
+          </div>
+          <div class="card card-pad tier" data-reveal>
+            <div class="top">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/><path d="M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg></span>
+              <div><h4>DevOps &amp; Sustentação</h4><span class="desde">a partir de <b>R$ 890/mês</b></span></div>
+            </div>
+            <ul>
+              <li><span>Setup de Infraestrutura</span><b>R$ 2.990</b></li>
+              <li><span>Sustentação Essencial</span><b>R$ 890/mês</b></li>
+              <li><span>Sustentação Avançada</span><b>R$ 2.490/mês</b></li>
+            </ul>
+            <p class="pe">Deploy automatizado, monitoramento, backup testado e correção de falhas em produção.</p>
+          </div>
+        </div>
+
+        <!-- PENDENTE DE CONFIRMAÇÃO DO DANYLO: os preços de DevOps, banco de
+             horas e sprint foram propostos a partir da hora implícita da tabela
+             existente (~R$ 150/h). Não são dado do cliente. Confirmar antes de
+             publicar. -->
+        <div class="card card-pad combo" data-reveal style="margin-top:1.3rem">
+          <span class="rot">Evolução depois da entrega — no seu ritmo</span>
+          <div class="lista">
+            <span class="chip">Banco de 20h/mês <b>R$ 2.990</b></span>
+            <span class="chip">Sprint quinzenal, 40h <b>R$ 5.990</b></span>
           </div>
         </div>
 
